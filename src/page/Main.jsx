@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import InputCountry from '../component/InputCountry';
+import WorldMap from '../component/WorldMap';
 
 const Wrapper = styled.div`
     width: 100%;
@@ -11,12 +12,18 @@ const Wrapper = styled.div`
 
 const MapContainer = styled.div`
     width: 80%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const Main = () => {
     return (
         <Wrapper>
-            <MapContainer>여기는 지도자리</MapContainer>
+            <MapContainer>
+                <WorldMap/>
+            </MapContainer>
             <InputCountry />
         </Wrapper>
     )

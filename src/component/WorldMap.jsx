@@ -16,20 +16,19 @@ const MapDiv = styled.div`
   justify-content: center;
   align-element: center;
 `
-const [latitude, longitude] = [180, 90];
-const divider = 0.5;
+const [latitude, longitude] = [90, 180];
+const divider = 20;
 
 const WorldMap = () => {
   const generateMapGrid = () => {
     const worldgrid = [];
-    for (let j = -longitude * divider ; j < longitude * divider ; j ++) {
+    for (let j = latitude ; j > -latitude ; j -= divider) {
       const rows = [];
-      for (let i = -latitude * divider ; i < latitude * divider ; i ++) {
-        rows.push([i, j]);
+      for (let i = -longitude ; i < longitude ; i += divider) {
+        rows.push([j, i]);
       }
       worldgrid.push(rows);
     }
-    console.log(worldgrid.length, worldgrid[0].length)
     return worldgrid.map((r, i) => <MapDiv key = {i}>
       {
         r.map(geo => <Grid key={geo[0] + ', ' + geo[1]} latitude={geo[0]} longitude={geo[1]}></Grid>)

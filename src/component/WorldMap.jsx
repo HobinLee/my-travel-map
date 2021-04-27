@@ -5,7 +5,7 @@ import Grid from './Grid';
 const MapWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 3px;
   justify-content: center;
   align-element: center;
 `

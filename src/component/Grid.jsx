@@ -1,33 +1,22 @@
-import {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import Geocode from "react-geocode";
-
-Geocode.setApiKey("AIzaSyAxJqOZOoJkhv7XadPfaKcYbfAmHmYK2AI")
-Geocode.setLanguage("en");
-Geocode.setRegion("us");
 
 const Load = styled.div`
   background-color: #eee;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+  width: 10px;
+  height: 10px;
 `
 const Sea = styled.div`
   background-color: #ABDCFC;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+  width: 10px;
+  height: 10px;
 `
 const Land = styled.div`
   background-color: #3C6B40;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+  width: 10px;
+  height: 10px;
 `
 
 const Grid = ({address}) => {
-  const [region, setRegion] = useState(null);
-
   if (address === null) {
     return <Load></Load>;
   } else {

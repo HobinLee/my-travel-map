@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { userListUpdate } from '../store/modules/map';
 import UserList from '../component/UserList';
+import InputResultList from './InputResultList';
 
 const InputCountryWrap = styled.div`
 	width: 20%;
@@ -42,11 +43,16 @@ const InputCountry = () => {
 	return (
 		<InputCountryWrap>
 			<div>
-				<input 
-					type="text" 
-					value={inputText} 
-					onChange={onChangeInput}
-				/>
+        <div>
+          <input 
+            type="text" 
+            value={inputText} 
+            onChange={onChangeInput}
+          />
+
+          <InputResultList />
+        </div>
+			
 				<button onClick={onClickButton}>추가하기</button>
 			</div>
 			<UserList />

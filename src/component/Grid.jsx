@@ -11,19 +11,57 @@ const Sea = styled.div`
   width: 10px;
   height: 10px;
   border-radius: 50%;
+  position: relative;
+
+  &: hover > div {
+    display: block;
+  }
+
+  & > div {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid gray;
+    z-index: 1;
+  }
 `
 const Land = styled.div`
   background-color: #3C6B40;
   width: 10px;
   height: 10px;
   border-radius: 50%;
+  position: relative;
+
+  &: hover > div {
+    display: block;
+  }
+
+  & > div {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid gray;
+    z-index: 1;
+  }
 `
 
 const Grid = ({address}) => {
   if (address === null) {
     return <Load></Load>;
   } else {
-    return (address.includes('sea') || address.includes('ocean') || address.includes('bay') || address.includes('gulf') || address.includes('passages')) ? <Sea/>: <Land/>;
+    return (address.includes('sea') || address.includes('ocean') || address.includes('bay') || address.includes('gulf') || address.includes('passages')) 
+    ? 
+      <Sea>
+        <div>{address}</div>
+      </Sea>
+    : 
+      <Land>
+        <div>{address}</div>
+      </Land>
   }
 }
 

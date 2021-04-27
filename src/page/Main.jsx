@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import InputCountry from '../component/InputCountry';
 import MapImage from '../rsc/images/test.svg';
 import WorldMap from '../component/WorldMap';
-
+import Grid from '../component//Grid';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -14,7 +14,6 @@ const Wrapper = styled.div`
 
 const MapContainer = styled.div`
   width: 80%;
-  padding: 5%;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -29,7 +28,8 @@ const Main = () => {
   return (
     <Wrapper>
       <MapContainer>
-        <WorldMap/>
+        <Grid />
+        {/* <WorldMap/> */}
         {/* <img src={MapImage} alt=""/> */}
       </MapContainer>
       <InputCountry />

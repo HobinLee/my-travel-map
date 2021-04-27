@@ -1,10 +1,22 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import UserListItem from './UserListItem';
+import { userListUpdate } from '../store/modules/map';
+
 
 const UserList = () => {
+  const dispatch = useDispatch();
   const { userList } = useSelector(state => state.map);
+
+  useEffect(()=> {
+    const localData = JSON.parse(window.localStorage.getItem("visited"));
+    console.log(localData);
+
+    if(localData?.length > 0) {
+      dispatch(userListUpdate(localData));
+    }
+  }, [])
 
   return (
     <ul>

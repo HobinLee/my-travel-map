@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import Grid from './Grid';
 
 const MapWrapper = styled.div`
+  width: auto;
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 3px;
   justify-content: center;
   align-element: center;
 `

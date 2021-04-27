@@ -16,7 +16,7 @@ const MapContainer = styled.div`
   width: 80%;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   min-width: 500px;
   overflow: auto;

@@ -1,11 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const InputResultListItem = () => {
-    return (
-        <li>
+const ListWrap = styled.li`
+  border: 1px solid #000;
+`
 
-        </li>
-    )
+const InputResultListItem = ({listItem, listIndex}) => {
+	return (
+		<ListWrap>
+      {listItem}
+		</ListWrap>
+	)
 }
 
 export default InputResultListItem;

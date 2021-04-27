@@ -1,5 +1,6 @@
-import Grid from './Grid';
+import worldgrid from './map.json';
 import styled from 'styled-components';
+import Grid from './Grid';
 
 const MapWrapper = styled.div`
   display: flex;
@@ -12,29 +13,20 @@ const MapDiv = styled.div`
   width: auto;
   display: flex;
   flex-direction: row;
-  gap: 1px;
-  justify-content: center;
+  gap: 3px;
+  justify-content: flex-start;
   align-element: center;
 `
-const [latitude, longitude] = [90, 180];
-const divider = 1;
 
 const WorldMap = () => {
+  
   const generateMapGrid = () => {
-    const worldgrid = [];
-    for (let j = latitude ; j > -latitude ; j -= divider) {
-      const rows = [];
-      for (let i = -longitude ; i < longitude ; i += divider) {
-        rows.push([j, i]);
-      }
-      worldgrid.push(rows);
-    }
     
-    //return worldgrid.map((r, i) => <MapDiv key = {i}>
-    //  {
-    //    r.map(geo => <Grid key={geo[0] + ', ' + geo[1]} latitude={geo[0]} longitude={geo[1]}></Grid>)
-    //  }
-    //</MapDiv>);
+    return worldgrid.map((r, i) => <MapDiv key = {i}>
+     {
+       r.map((geo, j) => <Grid key={i + ','+ j} address={geo.toLowerCase()}></Grid>)
+     }
+    </MapDiv>);
   }
 
   return <MapWrapper> {generateMapGrid()} </MapWrapper>;

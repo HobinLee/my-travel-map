@@ -18,6 +18,8 @@ const MapContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 500px;
+  overflow: auto;
 
   & > img {
     width: 100%;
@@ -28,8 +30,7 @@ const Main = () => {
   return (
     <Wrapper>
       <MapContainer>
-        <Grid />
-        {/* <WorldMap/> */}
+        <WorldMap/>
         {/* <img src={MapImage} alt=""/> */}
       </MapContainer>
       <InputCountry />

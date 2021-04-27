@@ -29,8 +29,8 @@ const Main = () => {
   return (
     <Wrapper>
       <MapContainer>
-        {/* <WorldMap/> */}
-        <img src={MapImage} alt=""/>
+        <WorldMap/>
+        {/* <img src={MapImage} alt=""/> */}
       </MapContainer>
       <InputCountry />
     </Wrapper>

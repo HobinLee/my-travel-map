@@ -17,7 +17,7 @@ const MapDiv = styled.div`
   align-element: center;
 `
 const [latitude, longitude] = [90, 180];
-const divider = 20;
+const divider = 1;
 
 const WorldMap = () => {
   const generateMapGrid = () => {
@@ -29,11 +29,12 @@ const WorldMap = () => {
       }
       worldgrid.push(rows);
     }
-    return worldgrid.map((r, i) => <MapDiv key = {i}>
-      {
-        r.map(geo => <Grid key={geo[0] + ', ' + geo[1]} latitude={geo[0]} longitude={geo[1]}></Grid>)
-      }
-    </MapDiv>);
+    
+    //return worldgrid.map((r, i) => <MapDiv key = {i}>
+    //  {
+    //    r.map(geo => <Grid key={geo[0] + ', ' + geo[1]} latitude={geo[0]} longitude={geo[1]}></Grid>)
+    //  }
+    //</MapDiv>);
   }
 
   return <MapWrapper> {generateMapGrid()} </MapWrapper>;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { userListAdd } from '../store/modules/map';
+import { userListUpdate } from '../store/modules/map';
 import UserList from '../component/UserList';
 
 const InputCountryWrap = styled.div`
@@ -13,6 +13,7 @@ const InputCountryWrap = styled.div`
 
 const InputCountry = () => {
 	const dispatch = useDispatch();
+	const { userList } = useSelector(state => state.map);
 
 	const [inputText, setInputText] = useState("");
 
@@ -21,8 +22,21 @@ const InputCountry = () => {
 	}
 
 	const onClickButton = () => {
+		if(inputText?.length === 0) {
+			alert("1글자이상 입력해주세요");
+			return;
+		} 
 		setInputText("");
-		dispatch(userListAdd(inputText));
+
+		const newList = [...userList, inputText];
+		dispatch(userListUpdate(newList));
+
+		const localData = JSON.parse(window.localStorage.getItem("visited"));
+		if(localData) {
+			window.localStorage.setItem("visited", JSON.stringify([...localData, inputText]));
+		} else {
+			window.localStorage.setItem("visited", JSON.stringify([inputText]));
+		}	
 	}
 
 	return (
@@ -35,8 +49,6 @@ const InputCountry = () => {
 				/>
 				<button onClick={onClickButton}>추가하기</button>
 			</div>
-		
-
 			<UserList />
 		</InputCountryWrap>
 	)

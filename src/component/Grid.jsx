@@ -48,12 +48,21 @@ const Land = styled.div`
     z-index: 1;
   }
 `
+const isWater = (address) => {
+  return address.includes('sea')
+          || address.includes('ocean')
+          || address.includes(' bay')
+          || address.includes('pond')
+          || address.includes('lake')
+          || address.includes('gulf')
+          || address.includes('passages');
+}
 
 const Grid = ({address}) => {
   if (address === null) {
     return <Load></Load>;
   } else {
-    return (address.includes('sea') || address.includes('ocean') || address.includes('bay') || address.includes('gulf') || address.includes('passages')) 
+    return (isWater(address))
     ? 
       <Sea>
         <div>{address}</div>

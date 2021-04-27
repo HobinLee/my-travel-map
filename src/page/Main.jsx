@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import InputCountry from '../component/InputCountry';
 import MapImage from '../rsc/images/test.svg';
 import WorldMap from '../component/WorldMap';
-import Grid from '../component//Grid';
+import DragScroll from '../component/DragScroll';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -17,7 +17,7 @@ const MapContainer = styled.div`
   height: 100vh;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   min-width: 500px;
   overflow: auto;
 
@@ -30,7 +30,9 @@ const Main = () => {
   return (
     <Wrapper>
       <MapContainer>
-        <WorldMap/>
+        <DragScroll>
+          <WorldMap/>
+        </DragScroll>
         {/* <img src={MapImage} alt=""/> */}
       </MapContainer>
       <InputCountry />

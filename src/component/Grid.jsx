@@ -55,7 +55,11 @@ const isWater = (address) => {
           || address.includes('pond')
           || address.includes('lake')
           || address.includes('gulf')
-          || address.includes('passages');
+          || address.includes('st helena')
+          || address.includes('passages')
+          || address.includes('polynesia')
+          || address.includes('kiribati')
+          || address.includes('cook island');
 }
 
 const Grid = ({address}) => {

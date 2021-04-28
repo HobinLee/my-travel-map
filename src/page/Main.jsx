@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import InputCountry from '../component/InputCountry';
 import MapImage from '../rsc/images/test.svg';
 import WorldMap from '../component/WorldMap';
-import DragScroll from '../component/DragScroll';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -30,9 +29,7 @@ const Main = () => {
   return (
     <Wrapper>
       <MapContainer>
-        <DragScroll>
-          <WorldMap/>
-        </DragScroll>
+        <WorldMap/>
         {/* <img src={MapImage} alt=""/> */}
       </MapContainer>
       <InputCountry />

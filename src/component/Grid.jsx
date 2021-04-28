@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { memo } from 'react';
+=======
+import React, {memo} from 'react';
+>>>>>>> b4d30c648e321ca3b07dacc2d3f02ea873d2293d
 import styled from 'styled-components';
 
 const Load = styled.div`
@@ -7,6 +11,19 @@ const Load = styled.div`
   height: 10px;
   cursor: pointer;
   border-radius: 50%;
+  &: hover > div {
+    display: block;
+  }
+
+  & > div {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border: 2px solid gray;
+    z-index: 1;
+  }
 `
 const Sea = styled.div`
   background-color: white;
@@ -51,7 +68,7 @@ const Grid = ({ address, visited }) => {
   }
 
   if (address === null) {
-    return <Load></Load>;
+    return <Load>{address}</Load>;
   } else {
     return (isWater(address.toLowerCase()))
     ? 

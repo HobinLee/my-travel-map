@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import UserListItem from './UserListItem';
@@ -11,7 +11,6 @@ const UserList = () => {
 
   useEffect(()=> {
     const localData = JSON.parse(window.localStorage.getItem("visited"));
-    console.log(localData);
 
     if(localData?.length > 0) {
       dispatch(userListUpdate(localData));

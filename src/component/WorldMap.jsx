@@ -23,13 +23,12 @@ const WorldMap = () => {
   
   const generateMapGrid = () => {
     
-    return worldgrid.map((r, i) => <MapDiv key = {i}>
+    return worldgrid.filter((geo, i) => i % 10000).map((r, i) => <MapDiv key = {i}>
      {
-       r.map((geo, j) => <Grid key={i + ','+ j} address={geo.toLowerCase()}></Grid>)
+       r.filter((geo, i) => i % 10000).map((geo, j) => <Grid key={i + ','+ j} address={geo.toLowerCase()}></Grid>)
      }
     </MapDiv>);
   }
-
   return <MapWrapper> {generateMapGrid()} </MapWrapper>;
 }
 

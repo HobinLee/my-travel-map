@@ -7,19 +7,6 @@ const Load = styled.div`
   height: 10px;
   cursor: pointer;
   border-radius: 50%;
-  &: hover > div {
-    display: block;
-  }
-
-  & > div {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #fff;
-    border: 2px solid gray;
-    z-index: 1;
-  }
 `
 const Sea = styled.div`
   background-color: white;
@@ -35,8 +22,9 @@ const Land = styled.div`
   border-radius: 50%;
   cursor: pointer;
   position: relative;
-  opacity: ${props => props.visited ? "1" : "0.3"};
-
+  opacity: ${props => (props.point || props.visited) ? "1" : "0.3"};
+`
+/*
   &: hover > div {
     display: block;
   }
@@ -50,30 +38,24 @@ const Land = styled.div`
     border: 2px solid gray;
     z-index: 1;
   }
-`
+*/
 
-const Grid = ({ address, visited }) => {
-  const isWater = (address) => {
-    return address.includes('sea')
-            || address.includes('ocean')
-            || address.includes(' bay')
-            || address.includes('pond')
-            || address.includes('lake')
-            || address.includes('gulf')
-            || address.includes('passages');
-  }
-
+const Grid = ({ address, visited, setCountry, point }) => {
   if (address === null) {
     return <Load>{address}</Load>;
   } else {
-    return (isWater(address.toLowerCase()))
+    return (address === 'Sea')
     ? 
-      <Sea>
-        <div>{address}</div>
+      <Sea
+        onMouseOver={() => setCountry(null)}
+      >
       </Sea>
     : 
-      <Land visited={visited}>
-        <div>{address}</div>
+      <Land
+        point={point}
+        visited={visited}
+        onMouseOver={() => setCountry(address)}
+        >
       </Land>
   }
 }

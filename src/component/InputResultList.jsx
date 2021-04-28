@@ -24,12 +24,18 @@ const InputResultList = () => {
       })
     })
 
-    console.log(newObj);
     setResultArray(Object.keys(newObj).sort((a,b)=> b-a));
   }, [])
 
   return (
     <ListWrap>
+      {resultArray.filter((item, index)=> {
+        return item.toLowerCase().includes(userInput.toLowerCase()) && !item.toLowerCase().includes("sea") && isFocus
+      }).filter((_,index)=> {
+        return index < 10;
+      }).map((item, index)=> {
+        return <InputResultListItem key={item + index} listItem={item} listIndex={index}/>
+      })}
     </ListWrap>
   )
 }

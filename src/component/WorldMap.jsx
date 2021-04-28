@@ -23,6 +23,7 @@ const MapDiv = styled.div`
 
 const WorldMap = () => {
   const { userList } = useSelector(state => state.map);
+  const [ country, setCountry ] = useState(null);
   useEffect(()=> {
     // const _localData = JSON.parse(window.localStorage.getItem("visited"));
   }, [])
@@ -31,10 +32,10 @@ const WorldMap = () => {
     return worldgrid.filter((geo, i) => i % 10000).map((r, i) => <MapDiv key = {i}>
      {
        r.filter((geo, i) => i % 10000).map((geo, j) => {
-        if(userList.includes(geo)) {
-          return <Grid key={i + ','+ j} address={geo} visited={"true"}></Grid>
+        if(userList.map(item => item.toLowerCase()).includes(geo)) {
+          return <Grid key={i + ','+ j} address={geo} visited={"true"} point = {country === geo} setCountry={setCountry}></Grid>
         } else {
-          return <Grid key={i + ','+ j} address={geo}></Grid>
+          return <Grid key={i + ','+ j} address={geo} point = {country === geo} setCountry={setCountry}></Grid>
         }
         
        })

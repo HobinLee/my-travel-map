@@ -35,10 +35,10 @@ const InputCountry = () => {
     dispatch(userInputUpdate(""));
     dispatch(userCountUpdate(1));
 
-		const newList = [...userList, userInput];
-		dispatch(userListUpdate(newList));
+		// const newList = [...userList, userInput];
+		
 
-    const localData = JSON.parse(window.localStorage.getItem("visited"));
+    // const localData = JSON.parse(window.localStorage.getItem("visited"));
 
     const localDataOjb = JSON.parse(window.localStorage.getItem("visitedObj"));
     if (userListObj[userInput]) userListObj[userInput] = parseInt(userCount);
@@ -48,11 +48,14 @@ const InputCountry = () => {
       ...userListObj
     }));
 
-		if(localData) {
-			window.localStorage.setItem("visited", JSON.stringify([...localData, userInput]));
-		} else {
-			window.localStorage.setItem("visited", JSON.stringify([userInput]));
-		}	
+    dispatch(userListUpdate( Object.keys(userListObj)) );
+    window.localStorage.setItem("visited", JSON.stringify(Object.keys(userListObj)));
+
+		// if(localData) {
+		// 	window.localStorage.setItem("visited", JSON.stringify([...localData, userInput]));
+		// } else {
+		// 	window.localStorage.setItem("visited", JSON.stringify([userInput]));
+		// }	
   }
   
   const onFocusInput = () => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
 const Load = styled.div`
@@ -47,17 +47,13 @@ const Grid = ({ address, visited }) => {
             || address.includes('pond')
             || address.includes('lake')
             || address.includes('gulf')
-            || address.includes('st helena')
-            || address.includes('passages')
-            || address.includes('polynesia')
-            || address.includes('kiribati')
-            || address.includes('cook island');
+            || address.includes('passages');
   }
 
   if (address === null) {
     return <Load></Load>;
   } else {
-    return (isWater(address))
+    return (isWater(address.toLowerCase()))
     ? 
       <Sea>
         <div>{address}</div>
@@ -69,4 +65,4 @@ const Grid = ({ address, visited }) => {
   }
 }
 
-export default Grid;
+export default React.memo(Grid);

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import React, {useEffect} from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 
 const Load = styled.div`
   background-color: #eee;
@@ -13,24 +12,8 @@ const Sea = styled.div`
   background-color: white;
   width: 10px;
   height: 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  position: relative;
-  background-color: ${props => props.darkMode ? `#333`:`white`};
-
-  &: hover > div {
-    display: block;
-  }
-
-  & > div {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #fff;
-    border: 2px solid gray;
-    z-index: 1;
-  }
+  cursor: default;
+  opacity: 0;
 `
 const Land = styled.div`
   background-color: #3C6B40;
@@ -39,7 +22,6 @@ const Land = styled.div`
   border-radius: 50%;
   cursor: pointer;
   position: relative;
-  box-shadow: 0px 0px 1px #3C6B40;
 
   &: hover > div {
     display: block;
@@ -57,8 +39,6 @@ const Land = styled.div`
 `
 
 const Grid = ({address}) => {
-  const { darkMode } = useSelector(state => state.mode);
-
   const isWater = (address) => {
     return address.includes('sea')
             || address.includes('ocean')
@@ -78,7 +58,7 @@ const Grid = ({address}) => {
   } else {
     return (isWater(address))
     ? 
-      <Sea darkMode={darkMode}>
+      <Sea>
         <div>{address}</div>
       </Sea>
     : 

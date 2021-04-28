@@ -18,10 +18,6 @@ const App = () => {
   const dispatch = useDispatch();
   const { darkMode } = useSelector(state => state.mode);
 
-  const switchMode = () => {
-    dispatch(switchScreenMode());
-  }
-
   return (
     <Container darkMode={darkMode}>
       <Switch>
@@ -33,9 +29,9 @@ const App = () => {
           <Redirect to='/' />
         } />
       </Switch>
-      <Toggle 
+      <Toggle
         value = {darkMode}
-        onChangeToggle = {switchMode}>
+        onChangeToggle = {() => dispatch(switchScreenMode())}>
       </Toggle>
     </Container> 
   );

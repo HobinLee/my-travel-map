@@ -22,6 +22,7 @@ const Land = styled.div`
   border-radius: 50%;
   cursor: pointer;
   position: relative;
+  opacity: ${props => props.visited ? "1" : "0.3"};
 
   &: hover > div {
     display: block;
@@ -38,7 +39,7 @@ const Land = styled.div`
   }
 `
 
-const Grid = ({address}) => {
+const Grid = ({ address, visited }) => {
   const isWater = (address) => {
     return address.includes('sea')
             || address.includes('ocean')
@@ -62,7 +63,7 @@ const Grid = ({address}) => {
         <div>{address}</div>
       </Sea>
     : 
-      <Land>
+      <Land visited={visited}>
         <div>{address}</div>
       </Land>
   }

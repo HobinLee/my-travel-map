@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { userListUpdate } from '../store/modules/map';
+import { userListUpdate, userInputUpdate, userFocusOff, userFocusOn } from '../store/modules/map';
 import UserList from '../component/UserList';
 import InputResultList from './InputResultList';
 
@@ -14,31 +14,43 @@ const InputCountryWrap = styled.div`
 
 const InputCountry = () => {
 	const dispatch = useDispatch();
-	const { userList } = useSelector(state => state.map);
+	const { userList, userInput } = useSelector(state => state.map);
 
-	const [inputText, setInputText] = useState("");
+	// const [inputText, setInputText] = useState("");
 
 	const onChangeInput = (e) => {
-		setInputText(e.target.value);
+		// setInputText(e.target.value);
+		dispatch(userInputUpdate(e.target.value));
 	}
 
 	const onClickButton = () => {
-		if(inputText?.length === 0) {
+		if(userInput?.length === 0) {
 			alert("1글자이상 입력해주세요");
 			return;
 		} 
-		setInputText("");
+		dispatch(userInputUpdate(""));
+		// setInputText("");
 
-		const newList = [...userList, inputText];
+		const newList = [...userList, userInput];
 		dispatch(userListUpdate(newList));
 
 		const localData = JSON.parse(window.localStorage.getItem("visited"));
 		if(localData) {
-			window.localStorage.setItem("visited", JSON.stringify([...localData, inputText]));
+			window.localStorage.setItem("visited", JSON.stringify([...localData, userInput]));
 		} else {
-			window.localStorage.setItem("visited", JSON.stringify([inputText]));
+			window.localStorage.setItem("visited", JSON.stringify([userInput]));
 		}	
-	}
+  }
+  
+  const onFocusInput = () => {
+    console.log("포커스");
+    dispatch(userFocusOn());
+  }
+
+  // const onBlurInput = () => {
+  //   console.log("떼짐");
+  //   dispatch(userFocusOff());
+  // }
 
 	return (
 		<InputCountryWrap>
@@ -46,8 +58,10 @@ const InputCountry = () => {
         <div>
           <input 
             type="text" 
-            value={inputText} 
+            value={userInput} 
             onChange={onChangeInput}
+            onFocus={onFocusInput}
+            // onBlur={onBlurInput}
           />
 
           <InputResultList />

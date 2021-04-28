@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const Load = styled.div`
@@ -63,6 +64,7 @@ const isWater = (address) => {
 }
 
 const Grid = ({address}) => {
+
   if (address === null) {
     return <Load></Load>;
   } else {

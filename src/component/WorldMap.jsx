@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import worldgrid from './map.json';
 import styled from 'styled-components';
 import Grid from './Grid';
@@ -20,6 +21,10 @@ const MapDiv = styled.div`
 `
 
 const WorldMap = () => {
+
+  useEffect(()=> {
+
+  }, [])
   
   const generateMapGrid = () => {
     

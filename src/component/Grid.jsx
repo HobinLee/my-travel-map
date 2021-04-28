@@ -47,17 +47,13 @@ const Grid = ({ address, visited }) => {
             || address.includes('pond')
             || address.includes('lake')
             || address.includes('gulf')
-            || address.includes('st helena')
-            || address.includes('passages')
-            || address.includes('polynesia')
-            || address.includes('kiribati')
-            || address.includes('cook island');
+            || address.includes('passages');
   }
 
   if (address === null) {
     return <Load></Load>;
   } else {
-    return (isWater(address))
+    return (isWater(address.toLowerCase()))
     ? 
       <Sea>
         <div>{address}</div>

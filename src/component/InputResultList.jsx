@@ -18,20 +18,9 @@ const InputResultList = () => {
     const newObj = {}
 
     worldList.map(item1 => {
-      return item1.map((item2, index)=> {
-        let itemLength = item2.split(", ").length;
-        let count = 1;
-        while(!isNaN(parseInt(item2.split(", ")[item2.split(", ").length - count]))) {
-          count++;
-        }
-
-        // if(!isNaN(parseInt(item2.split(", ")[item2.split(", ").length -1]))) {
-        //   const city = item2.split(", ")[item2.split(", ").length -2];
-        //   return newObj[city] =  newObj[city] ? (newObj[city] || 0)+1 : 1
-        // } else {
-        const city = item2.split(", ")[item2.split(", ").length - count];
-        return newObj[city] =  newObj[city] ? (newObj[city] || 0)+1 : 1
-        // }   
+      return item1.map(item2 => {
+        const city = item2;
+        return newObj[city] =  newObj[city] ? (newObj[city] || 0) + 1 : 1
       })
     })
 

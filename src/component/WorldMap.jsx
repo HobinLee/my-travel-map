@@ -25,18 +25,16 @@ const WorldMap = () => {
   const { userList } = useSelector(state => state.map);
   useEffect(()=> {
     // const _localData = JSON.parse(window.localStorage.getItem("visited"));
-
-    
   }, [])
   
   const generateMapGrid = () => {
     return worldgrid.filter((geo, i) => i % 10000).map((r, i) => <MapDiv key = {i}>
      {
        r.filter((geo, i) => i % 10000).map((geo, j) => {
-        if(userList.map(item => item.toLowerCase()).includes(geo.toLowerCase())) {
-          return <Grid key={i + ','+ j} address={geo.toLowerCase()} visited={"true"}></Grid>
+        if(userList.includes(geo)) {
+          return <Grid key={i + ','+ j} address={geo} visited={"true"}></Grid>
         } else {
-          return <Grid key={i + ','+ j} address={geo.toLowerCase()}></Grid>
+          return <Grid key={i + ','+ j} address={geo}></Grid>
         }
         
        })

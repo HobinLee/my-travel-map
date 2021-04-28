@@ -9,7 +9,6 @@ import InputResultList from './InputResultList';
 const InputCountryWrap = styled.div`
 	width: 20%;
 	height: 100%;
-	box-shadow: -2px 0px 2px #eee;
 `
 
 const InputCountry = () => {

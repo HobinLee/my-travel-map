@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
 import InputCountry from '../component/InputCountry';
@@ -37,4 +37,4 @@ const Main = () => {
   )
 }
 
-export default Main;
+export default React.memo(Main);

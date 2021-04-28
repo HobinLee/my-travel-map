@@ -13,7 +13,7 @@ const ToggleWrapper = styled.div`
   cursor: pointer;
   bottom: 10px;
   
-  ${props => props.valid ? '& > div { left: 0px; }' : '& > div { left: 40px; }'}
+  ${props => props.valid ? '& > div { left: 40px; }' : '& > div { left: 0px; }'}
 `
 const Handle = styled.div`
   width: 32px;

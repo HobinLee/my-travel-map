@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import UserListItem from './UserListItem';
-import { userListUpdate } from '../store/modules/map';
+import { userListUpdate, userListObjUpdate } from '../store/modules/map';
 
 
 const UserList = () => {
@@ -10,7 +10,9 @@ const UserList = () => {
   const { userList } = useSelector(state => state.map);
 
   useEffect(()=> {
-    const localData = JSON.parse(window.localStorage.getItem("visited"));
+    // const localData = JSON.parse(window.localStorage.getItem("visited"));
+    const localData = JSON.parse(window.localStorage.getItem("visitedObj"));
+    
 
     if(localData?.length > 0) {
       dispatch(userListUpdate(localData));

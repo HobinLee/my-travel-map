@@ -5,10 +5,11 @@ import { userListUpdate } from '../store/modules/map';
 
 const UserListItem = ({ listItem, listIndex }) => {
   const dispatch = useDispatch();
-  const { userList } = useSelector(state => state.map);
+  const { userList, userListObj } = useSelector(state => state.map);
 
   const onClickDelete = () => {
     const newList = [...userList].filter((_,index)=> index !== listIndex);
+   
   
     dispatch(userListUpdate(newList));
     window.localStorage.setItem("visited", JSON.stringify([...newList]));

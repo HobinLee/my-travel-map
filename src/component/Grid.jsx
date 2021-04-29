@@ -9,11 +9,8 @@ const Load = styled.div`
   border-radius: 50%;
 `
 const Sea = styled.div`
-  background-color: white;
   width: 10px;
   height: 10px;
-  cursor: default;
-  opacity: 0;
 `
 const Land = styled.div`
   background-color: #3C6B40;
@@ -22,7 +19,7 @@ const Land = styled.div`
   border-radius: 50%;
   cursor: pointer;
   position: relative;
-  opacity: ${props => (props.point || props.visited) ? `${props.visited/5 + 0.1}` : "0.1"};
+  opacity: ${props => (props.point) ? '1' : props.visited ? `${props.visited / 5 + 0.1}` : "0.1"};
 `
 /*
   &: hover > div {
@@ -44,14 +41,16 @@ const Land = styled.div`
 const Grid = ({ address, visited, setCountry, point }) => {
   return (address === 'Sea')
   ? 
-    <Sea/>
+    <Sea
+      onMouseOver={() => !point && setCountry(address)}
+    />
   : 
     <Land
-      point={point}
-      visited={visited}
-      onMouseOver={() => !point && setCountry(address)}
+      point = {point}
+      visited = {visited}
+      onMouseOver = {() => !point && setCountry(address)}
     >
     </Land>
 }
 
-export default React.memo(Grid, (prev, next) => prev.point === next.point);
+export default React.memo(Grid, (prev, next) => next.address === 'Sea' || (prev.visited === next.visited) && (prev.point === next.point));

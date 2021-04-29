@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import worldgrid from './map.json';
 import styled from 'styled-components';
 import Grid from './Grid';
@@ -6,37 +6,32 @@ import { useSelector } from 'react-redux';
 
 const MapWrapper = styled.div`
   width: auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: repeat(85, 10px);
   gap: 3px;
-  justify-content: center;
-  align-element: center;
 `
 const MapDiv = styled.div`
   width: auto;
-  display: flex;
-  flex-direction: row;
-  gap: 3px;
-  justify-content: flex-start;
-  align-element: center;
+  display: grid;
+  grid-template-columns: repeat(180, 10px);
+  gap: 3px
 `
 
 const WorldMap = () => {
   const { userListObj } = useSelector(state => state.map);
   const [ country, setCountry ] = useState(null);
-  useEffect(()=> {
-    // const _localData = JSON.parse(window.localStorage.getItem("visited"));
-  }, [])
   
   const generateMapGrid = () => {
     return worldgrid.map((r, i) => <MapDiv key = {i}>
      {
        r.map((geo, j) => {
-        if(userListObj[geo]) {
-          return <Grid key={i + ','+ j} address={geo} visited={userListObj[geo]} point = {country === geo} setCountry={setCountry}></Grid>
-        } else {
-          return <Grid key={i + ','+ j} address={geo} point = {country === geo} setCountry={setCountry}></Grid>
-        }
+          return <Grid
+                  key = {i + ','+ j}
+                  address = {geo}
+                  visited = {userListObj[geo] ? userListObj[geo] : 0}
+                  point = {country === geo}
+                  setCountry={setCountry}
+                 />
        })
      }
     </MapDiv>);

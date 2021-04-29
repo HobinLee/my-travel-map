@@ -41,23 +41,17 @@ const Land = styled.div`
 */
 
 const Grid = ({ address, visited, setCountry, point }) => {
-  if (address === null) {
-    return <Load>{address}</Load>;
-  } else {
-    return (address === 'Sea')
-    ? 
-      <Sea
-        onMouseOver={() => setCountry(null)}
-      >
-      </Sea>
-    : 
-      <Land
-        point={point}
-        visited={visited}
-        onMouseOver={() => setCountry(address)}
-        >
-      </Land>
-  }
+  return (address === 'Sea')
+  ? 
+    <Sea
+      onMouseOver={() => !point && setCountry(address)}
+    />
+  : 
+    <Land
+      point={point}
+      visited={visited}
+      onMouseOver={() => !point && setCountry(address)}
+    />
 }
 
 export default React.memo(Grid);

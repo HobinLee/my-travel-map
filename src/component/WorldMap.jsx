@@ -3,11 +3,26 @@ import worldgrid from './map.json';
 import styled from 'styled-components';
 import Grid from './Grid';
 import { useSelector } from 'react-redux';
+/*
+const MapWrapper = styled.div`
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 3px;
+`
+const MapDiv = styled.div`
+  width: auto;
+  display: flex;
+  justify-content: flex-start;
+  gap: 3px
+`
+*/
 
 const MapWrapper = styled.div`
   width: auto;
   display: grid;
-  grid-template-rows: repeat(85, 10px);
+  grid-template-rows: repeat(80, 10px);
   gap: 3px;
 `
 const MapDiv = styled.div`
@@ -17,11 +32,13 @@ const MapDiv = styled.div`
   gap: 3px
 `
 
+
 const WorldMap = () => {
   const { userListObj } = useSelector(state => state.map);
   const [ country, setCountry ] = useState(null);
   
   const generateMapGrid = () => {
+    console.log('rerender world map');
     return worldgrid.map((r, i) => <MapDiv key = {i}>
      {
        r.map((geo, j) => {

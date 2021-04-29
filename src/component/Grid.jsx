@@ -20,23 +20,25 @@ const Land = styled.div`
   cursor: pointer;
   position: relative;
   opacity: ${props => (props.point) ? '1' : props.visited ? `${props.visited / 5 + 0.1}` : "0.1"};
-`
-/*
+
   &: hover > div {
     display: block;
   }
-
-  & > div {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #fff;
-    border: 2px solid gray;
-    z-index: 1;
-  }
-  `
-*/
+`
+const Label = styled.div`
+  display:none;
+  position: absolute;
+  bottom: 10px;
+  left: 5px;
+  color: white;
+  width: auto;
+  padding: 4px 10px;
+  height: 24px;
+  background-color: #333;
+  border-radius: 12px;
+  border: 2px solid #eee;
+  z-index: 1;
+`
 
 const Grid = ({ address, visited, setCountry, point }) => {
   return (address === 'Sea')
@@ -50,7 +52,10 @@ const Grid = ({ address, visited, setCountry, point }) => {
       visited = {visited}
       onMouseOver = {() => !point && setCountry(address)}
     >
+      <Label>
+        {address}
+      </Label>
     </Land>
 }
 
-export default React.memo(Grid, (prev, next) => next.address === 'Sea' || (prev.visited === next.visited) && (prev.point === next.point));
+export default React.memo(Grid, (prev, next) => next.address === 'Sea' || (prev.point === next.point) && (prev.visited === next.visited));

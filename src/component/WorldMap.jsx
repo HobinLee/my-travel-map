@@ -22,22 +22,18 @@ const MapDiv = styled.div`
 `
 
 const WorldMap = () => {
-  const { userListObj } = useSelector(state => state.map);
-  const [ country, setCountry ] = useState(null);
-  useEffect(()=> {
-    // const _localData = JSON.parse(window.localStorage.getItem("visited"));
-  }, [])
-  
+  //const { userList } = useSelector(state => state.map);
+  const [ country, setCountry ] = useState('Sea');
+
   const generateMapGrid = () => {
-    return worldgrid.filter((geo, i) => i % 10000).map((r, i) => <MapDiv key = {i}>
+    return worldgrid.map((r, i) => <MapDiv key = {i}>
      {
-       r.filter((geo, i) => i % 10000).map((geo, j) => {
-        if(userListObj[geo]) {
-          return <Grid key={i + ','+ j} address={geo} visited={userListObj[geo]} point = {country === geo} setCountry={setCountry}></Grid>
-        } else {
+       r.map((geo, j) => {
+        //if(userList.includes(geo)) {
+        //  return <Grid key={i + ','+ j} address={geo} visited={"true"} point = {country === geo} setCountry={setCountry}></Grid>
+        //} else {
           return <Grid key={i + ','+ j} address={geo} point = {country === geo} setCountry={setCountry}></Grid>
-        }
-        
+        //}
        })
      }
     </MapDiv>);

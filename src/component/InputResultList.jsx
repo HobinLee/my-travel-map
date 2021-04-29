@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import worldList from './map.json';
 import InputResultListItem from './InputResultListItem';
+import { filterDataUpdate } from '../store/modules/filter';
 
 const ListWrap = styled.ul`
   display: block;
 `
 
 const InputResultList = ({ inputData="", setInputData }) => {
+  const dispatch = useDispatch();
   const { isFocus } = useSelector(state => state.map);
   const [resultArray, setResultArray] = useState([]);
 
@@ -24,6 +26,7 @@ const InputResultList = ({ inputData="", setInputData }) => {
     })
 
     setResultArray(Object.keys(newObj).sort((a,b)=> b-a));
+    dispatch(filterDataUpdate(Object.keys(newObj).sort((a,b)=> b-a)));
   }, [])
 
   return (

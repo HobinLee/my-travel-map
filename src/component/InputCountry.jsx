@@ -37,6 +37,7 @@ const InputWrap = styled.div`
 const InputCountry = () => {
 	const dispatch = useDispatch();
 	const { userListObj } = useSelector(state => state.map);
+  const { filterData } = useSelector(state => state.filter);
   const [inputData, setInputData] = useState("");
   const [inputCount, setInputCount] = useState(1);
 
@@ -49,6 +50,16 @@ const InputCountry = () => {
   }
 
 	const onClickButton = () => {
+    const changeWord = inputData.split(" ").map(item => {
+      if(item.toLowerCase() === "of" || item.toLowerCase() === "and") {
+        return item
+      } else {
+        return item[0].toUpperCase()+item.toLowerCase().slice(1, item.length)
+      }
+    }).join(" ");
+    console.log(changeWord.length);
+    console.log(filterData.includes(changeWord));
+
 		if(inputData?.length === 0) {
 			alert("1글자이상 입력해주세요");
 			return;
@@ -57,13 +68,17 @@ const InputCountry = () => {
 			alert("방문 횟수는 최소 1이상입니다.");
 			return;
 		} 
+    if(!filterData.includes(changeWord)) {
+      alert("해당하는 나라가 없습니다.");
+      return;
+    }
 
     setInputData("");
     setInputCount(1);
 
     const localDataOjb = JSON.parse(window.localStorage.getItem("visitedObj"));
-    if (userListObj[inputData]) userListObj[inputData] = parseInt(inputCount);
-    else userListObj[inputData] = parseInt(inputCount);
+    if (userListObj[changeWord]) userListObj[changeWord] = parseInt(inputCount);
+    else userListObj[changeWord] = parseInt(inputCount);
     window.localStorage.setItem("visitedObj", JSON.stringify({
       ...localDataOjb,
       ...userListObj

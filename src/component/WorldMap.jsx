@@ -24,6 +24,7 @@ const MapWrapper = styled.div`
   display: grid;
   grid-template-rows: repeat(80, 10px);
   gap: 3px;
+  ${props => props.darkMode ? 'filter: hue-rotate(-90deg)':'filter: hue-rotate(90deg)'};
 `
 const MapDiv = styled.div`
   width: auto;
@@ -34,11 +35,12 @@ const MapDiv = styled.div`
 
 
 const WorldMap = () => {
+  const { darkMode } = useSelector(state => state.mode);
   const { userListObj } = useSelector(state => state.map);
   const [ country, setCountry ] = useState(null);
   
   const generateMapGrid = () => {
-    console.log('rerender world map');
+    console.log('mode change');
     return worldgrid.map((r, i) => <MapDiv key = {i}>
      {
        r.map((geo, j) => {
@@ -53,7 +55,7 @@ const WorldMap = () => {
      }
     </MapDiv>);
   }
-  return <MapWrapper> {generateMapGrid()} </MapWrapper>;
+  return <MapWrapper darkMode = {darkMode}> {generateMapGrid()} </MapWrapper>;
 }
 
 export default WorldMap;

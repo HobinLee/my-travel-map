@@ -38,6 +38,7 @@ const Label = styled.div`
   border-radius: 12px;
   border: 2px solid #eee;
   z-index: 1;
+  white-space: no-wrap;
 `
 
 const Grid = ({ address, visited, setCountry, point }) => {

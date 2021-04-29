@@ -9,9 +9,8 @@ const ListWrap = styled.ul`
   display: block;
 `
 
-const InputResultList = () => {
-  const dispatch = useDispatch();
-  const { userInput, isFocus } = useSelector(state => state.map);
+const InputResultList = ({ inputData="", setInputData }) => {
+  const { isFocus } = useSelector(state => state.map);
   const [resultArray, setResultArray] = useState([]);
 
   useEffect(() => {
@@ -29,12 +28,12 @@ const InputResultList = () => {
 
   return (
     <ListWrap>
-      {resultArray.filter((item, index)=> {
-        return item.toLowerCase().includes(userInput.toLowerCase()) && !item.toLowerCase().includes("sea") && isFocus && userInput.length > 0
+      {resultArray.filter((item)=> {
+        return item.toLowerCase().includes(inputData.toLowerCase()) && !item.toLowerCase().includes("sea") && isFocus && inputData.length > 0
       }).filter((_,index)=> {
         return index < 10;
       }).map((item, index)=> {
-        return <InputResultListItem key={item + index} listItem={item} listIndex={index}/>
+        return <InputResultListItem key={item + index} listItem={item} listIndex={index} setInputData={setInputData}/>
       })}
     </ListWrap>
   )

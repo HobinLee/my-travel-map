@@ -31,7 +31,7 @@ const WorldMap = () => {
   const generateMapGrid = () => {
     return worldgrid.map((r, i) => <MapDiv key = {i}>
      {
-       r.filter((geo, i) => i % 10000).map((geo, j) => {
+       r.map((geo, j) => {
         if(userListObj[geo]) {
           return <Grid key={i + ','+ j} address={geo} visited={userListObj[geo]} point = {country === geo} setCountry={setCountry}></Grid>
         } else {

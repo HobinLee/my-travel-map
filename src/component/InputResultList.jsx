@@ -30,7 +30,7 @@ const InputResultList = () => {
   return (
     <ListWrap>
       {resultArray.filter((item, index)=> {
-        return item.toLowerCase().includes(userInput.toLowerCase()) && !item.toLowerCase().includes("sea") && isFocus
+        return item.toLowerCase().includes(userInput.toLowerCase()) && !item.toLowerCase().includes("sea") && isFocus && userInput.length > 0
       }).filter((_,index)=> {
         return index < 10;
       }).map((item, index)=> {

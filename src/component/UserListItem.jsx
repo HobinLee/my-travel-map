@@ -1,18 +1,21 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { userListUpdate } from '../store/modules/map';
+import { userListObjUpdate } from '../store/modules/map';
 
 const UserListItem = ({ listItem, listIndex }) => {
   const dispatch = useDispatch();
-  const { userList, userListObj } = useSelector(state => state.map);
+  const { userListObj } = useSelector(state => state.map);
 
   const onClickDelete = () => {
-    const newList = [...userList].filter((_,index)=> index !== listIndex);
-   
-  
-    dispatch(userListUpdate(newList));
-    window.localStorage.setItem("visited", JSON.stringify([...newList]));
+    // const newList = Object.keys(userListObj).filter((_,index)=> index !== listIndex);
+    const newObj = { ...userListObj };
+    delete newObj[listItem];
+    
+    console.log(newObj);
+    dispatch(userListObjUpdate(newObj));
+
+    window.localStorage.setItem("visitedObj", JSON.stringify({...newObj}));
   }
 
   return (

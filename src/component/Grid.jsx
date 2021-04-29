@@ -22,7 +22,7 @@ const Land = styled.div`
   border-radius: 50%;
   cursor: pointer;
   position: relative;
-  opacity: ${props => (props.point || props.visited) ? "1" : "0.3"};
+  opacity: ${props => (props.point || props.visited) ? `${props.visited/5}` : "0.1"};
 `
 /*
   &: hover > div {

@@ -48,8 +48,8 @@ const InputCountry = () => {
       ...userListObj
     }));
 
-    dispatch(userListUpdate( Object.keys(userListObj)) );
-    window.localStorage.setItem("visited", JSON.stringify(Object.keys(userListObj)));
+    // dispatch(userListUpdate( Object.keys(userListObj)) );
+    // window.localStorage.setItem("visited", JSON.stringify(Object.keys(userListObj)));
 
 		// if(localData) {
 		// 	window.localStorage.setItem("visited", JSON.stringify([...localData, userInput]));

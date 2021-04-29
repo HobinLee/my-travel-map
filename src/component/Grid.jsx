@@ -9,11 +9,8 @@ const Load = styled.div`
   border-radius: 50%;
 `
 const Sea = styled.div`
-  background-color: white;
   width: 10px;
   height: 10px;
-  cursor: default;
-  opacity: 0;
 `
 const Land = styled.div`
   background-color: #3C6B40;
@@ -56,4 +53,4 @@ const Grid = ({ address, visited, setCountry, point }) => {
     </Land>
 }
 
-export default React.memo(Grid, (prev, next) => (prev.visited === next.visited) && (prev.point === next.point));
+export default React.memo(Grid, (prev, next) => next.address === 'Sea' || (prev.visited === next.visited) && (prev.point === next.point));

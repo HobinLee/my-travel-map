@@ -6,19 +6,15 @@ import { useSelector } from 'react-redux';
 
 const MapWrapper = styled.div`
   width: auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: repeat(85, 10px);
   gap: 3px;
-  justify-content: center;
-  align-element: center;
 `
 const MapDiv = styled.div`
   width: auto;
-  display: flex;
-  flex-direction: row;
-  gap: 3px;
-  justify-content: flex-start;
-  align-element: center;
+  display: grid;
+  grid-template-columns: repeat(180, 10px);
+  gap: 3px
 `
 
 const WorldMap = () => {

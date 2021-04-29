@@ -9,15 +9,34 @@ import InputResultList from './InputResultList';
 const InputCountryWrap = styled.div`
 	width: 20%;
 	height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+
+  & > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+  }
+
+  & > div > button {
+    border: none;
+  }
 `
 
 const UserCountWrap = styled.div`
   display: ${props => props.isVisible === "on" ? "block" : "none"};
 `
 
+const InputWrap = styled.div`
+  position: relative;
+`
+
 const InputCountry = () => {
 	const dispatch = useDispatch();
-	const { userList, userInput, userCount, userListObj } = useSelector(state => state.map);
+	const { userInput, userCount, userListObj } = useSelector(state => state.map);
 
 	const onChangeInput = (e) => {
 		dispatch(userInputUpdate(e.target.value));
@@ -32,13 +51,12 @@ const InputCountry = () => {
 			alert("1글자이상 입력해주세요");
 			return;
 		} 
+    if(userCount < 1) {
+			alert("방문 횟수는 최소 1이상입니다.");
+			return;
+		} 
     dispatch(userInputUpdate(""));
     dispatch(userCountUpdate(1));
-
-		// const newList = [...userList, userInput];
-		
-
-    // const localData = JSON.parse(window.localStorage.getItem("visited"));
 
     const localDataOjb = JSON.parse(window.localStorage.getItem("visitedObj"));
     if (userListObj[userInput]) userListObj[userInput] = parseInt(userCount);
@@ -47,15 +65,6 @@ const InputCountry = () => {
       ...localDataOjb,
       ...userListObj
     }));
-
-    // dispatch(userListUpdate( Object.keys(userListObj)) );
-    // window.localStorage.setItem("visited", JSON.stringify(Object.keys(userListObj)));
-
-		// if(localData) {
-		// 	window.localStorage.setItem("visited", JSON.stringify([...localData, userInput]));
-		// } else {
-		// 	window.localStorage.setItem("visited", JSON.stringify([userInput]));
-		// }	
   }
   
   const onFocusInput = () => {
@@ -63,35 +72,27 @@ const InputCountry = () => {
     dispatch(userFocusOn());
   }
 
-  // const onBlurInput = () => {
-  //   console.log("떼짐");
-  //   dispatch(userFocusOff());
-  // }
-
 	return (
 		<InputCountryWrap>
 			<div>
-        <div>
+        <InputWrap>
           <input 
             type="text" 
             value={userInput} 
             onChange={onChangeInput}
             onFocus={onFocusInput}
           />
-
-        <UserCountWrap isVisible={userInput?.length > 0 ? "on" : "off"}>
-          <input 
-            type="number"
-            value={userCount}
-            onChange={onChangeCount}
-          />
-        </UserCountWrap>
-
           <InputResultList />
-        </div>		
-				<button onClick={onClickButton}>추가하기</button>
-
-       
+          <UserCountWrap isVisible={userInput?.length > 0 ? "on" : "off"}>
+            <input 
+              type="number"
+              value={userCount}
+              onChange={onChangeCount}
+            />
+          </UserCountWrap>
+        </InputWrap>	
+       	
+				<button onClick={onClickButton}>추가</button>
 			</div>
 			<UserList />
 		</InputCountryWrap>

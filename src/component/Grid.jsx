@@ -22,8 +22,9 @@ const Land = styled.div`
   border-radius: 50%;
   cursor: pointer;
   position: relative;
-  opacity: ${props => (props.point || props.visited) ? `${props.visited/5}` : "0.1"};
-
+  opacity: ${props => (props.point || props.visited) ? `${props.visited/5 + 0.1}` : "0.1"};
+`
+/*
   &: hover > div {
     display: block;
   }
@@ -38,6 +39,7 @@ const Land = styled.div`
     z-index: 1;
   }
   `
+*/
 
 const Grid = ({ address, visited, setCountry, point }) => {
   return (address === 'Sea')
@@ -49,9 +51,6 @@ const Grid = ({ address, visited, setCountry, point }) => {
       visited={visited}
       onMouseOver={() => !point && setCountry(address)}
     >
-      <div>
-      {address}
-      </div>
     </Land>
 }
 

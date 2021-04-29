@@ -11,11 +11,10 @@ const USER_FOCUS_OFF = 'USER_FOCUS_OFF';
 
 
 const initialState = {
-  mapData: {},
-  userList: [],
+  // userList: [],
   userListObj: {},
-  userInput: "",
-  userCount: 1,
+  // userInput: "",
+  // userCount: 1,
   isFocus: false
 }
 

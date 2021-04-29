@@ -36,31 +36,34 @@ const InputWrap = styled.div`
 
 const InputCountry = () => {
 	const dispatch = useDispatch();
-	const { userInput, userCount, userListObj } = useSelector(state => state.map);
+	const { userListObj } = useSelector(state => state.map);
+  const [inputData, setInputData] = useState("");
+  const [inputCount, setInputCount] = useState(1);
 
 	const onChangeInput = (e) => {
-		dispatch(userInputUpdate(e.target.value));
+    setInputData(e.target.value);
   }
   
   const onChangeCount = (e) => {
-    dispatch(userCountUpdate(e.target.value));
+    setInputCount(e.target.value);
   }
 
 	const onClickButton = () => {
-		if(userInput?.length === 0) {
+		if(inputData?.length === 0) {
 			alert("1글자이상 입력해주세요");
 			return;
 		} 
-    if(userCount < 1) {
+    if(inputCount < 1) {
 			alert("방문 횟수는 최소 1이상입니다.");
 			return;
 		} 
-    dispatch(userInputUpdate(""));
-    dispatch(userCountUpdate(1));
+
+    setInputData("");
+    setInputCount(1);
 
     const localDataOjb = JSON.parse(window.localStorage.getItem("visitedObj"));
-    if (userListObj[userInput]) userListObj[userInput] = parseInt(userCount);
-    else userListObj[userInput] = parseInt(userCount);
+    if (userListObj[inputData]) userListObj[inputData] = parseInt(inputCount);
+    else userListObj[inputData] = parseInt(inputCount);
     window.localStorage.setItem("visitedObj", JSON.stringify({
       ...localDataOjb,
       ...userListObj
@@ -68,7 +71,6 @@ const InputCountry = () => {
   }
   
   const onFocusInput = () => {
-    console.log("포커스");
     dispatch(userFocusOn());
   }
 
@@ -78,15 +80,15 @@ const InputCountry = () => {
         <InputWrap>
           <input 
             type="text" 
-            value={userInput} 
+            value={inputData} 
             onChange={onChangeInput}
             onFocus={onFocusInput}
           />
-          <InputResultList />
-          <UserCountWrap isVisible={userInput?.length > 0 ? "on" : "off"}>
+          <InputResultList inputData={inputData} setInputData={setInputData}/>
+          <UserCountWrap isVisible={inputData?.length > 0 ? "on" : "off"}>
             <input 
               type="number"
-              value={userCount}
+              value={inputCount}
               onChange={onChangeCount}
             />
           </UserCountWrap>

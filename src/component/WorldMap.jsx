@@ -37,7 +37,6 @@ const WorldMap = () => {
         } else {
           return <Grid key={i + ','+ j} address={geo} point = {country === geo} setCountry={setCountry}></Grid>
         }
-        
        })
      }
     </MapDiv>);

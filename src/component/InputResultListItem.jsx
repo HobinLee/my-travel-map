@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
-import { userInputUpdate, userFocusOff } from '../store/modules/map';
+import { userFocusOff } from '../store/modules/map';
 
 const ListWrap = styled.li`
   border: 1px solid #000;
@@ -12,11 +12,11 @@ const ListWrap = styled.li`
   }
 `
 
-const InputResultListItem = ({listItem, listIndex}) => {
+const InputResultListItem = ({listItem, listIndex, setInputData}) => {
 	const dispatch = useDispatch();
 
 	const onClickResult = () => {
-    dispatch(userInputUpdate(listItem));
+    setInputData(listItem);
     dispatch(userFocusOff());
 	}
 

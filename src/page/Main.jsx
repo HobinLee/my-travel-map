@@ -19,6 +19,7 @@ const MapContainer = styled.div`
   min-width: 500px;
   overflow: auto;
 
+
   & > img {
     width: 100%;
   }

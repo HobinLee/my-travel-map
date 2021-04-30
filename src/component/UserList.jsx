@@ -1,9 +1,14 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import styled from 'styled-components';
 
 import UserListItem from './UserListItem';
 import { userListObjUpdate } from '../store/modules/map';
 
+const UserListWrap = styled.ul`
+  max-height: calc(100vh - 120px);
+  overflow: auto;
+`
 
 const UserList = () => {
   const dispatch = useDispatch();
@@ -15,11 +20,11 @@ const UserList = () => {
   }, [])
 
   return (
-    <ul>
+    <UserListWrap>
       {Object.keys(userListObj).map((item, index)=> {
         return <UserListItem key={item + index} listItem={item} listIndex={index}/>
       })}
-    </ul>
+    </UserListWrap>
   )
 }
 

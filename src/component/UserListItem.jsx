@@ -12,6 +12,7 @@ const ListItemWrap = styled.li`
   padding: 5px;
   margin-bottom: 5px;
   border: 1px solid #eee;
+  color: ${props => props.darkMode && "#fff"};
 
   & > button {
     width: 20px;
@@ -33,6 +34,7 @@ const ListItemWrap = styled.li`
 const UserListItem = ({ listItem, listIndex }) => {
   const dispatch = useDispatch();
   const { userListObj } = useSelector(state => state.map);
+  const { darkMode } = useSelector(state => state.mode);
 
   const onClickDelete = () => {
     // const newList = Object.keys(userListObj).filter((_,index)=> index !== listIndex);
@@ -44,7 +46,7 @@ const UserListItem = ({ listItem, listIndex }) => {
   }
 
   return (
-    <ListItemWrap>
+    <ListItemWrap darkMode={darkMode}>
       <div>
         <div>
           <span>여행한 나라 : </span>

@@ -1,19 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { userFocusOff } from '../store/modules/map';
 
 const ListWrap = styled.li`
-  border: 1px solid #000;
+	padding: 3px;
+	font-size: 13px;
+	margin-bottom: 1px;
+	color: ${props => props.darkMode && "#fff"};
 
   &:hover {
 	  cursor: pointer;
+		background-color: ${props => props.darkMode ? "#000" : "#eee"};;
   }
 `
 
 const InputResultListItem = ({listItem, listIndex, setInputData}) => {
 	const dispatch = useDispatch();
+	const { darkMode } = useSelector(state => state.mode);
 
 	const onClickResult = () => {
     setInputData(listItem);
@@ -21,8 +26,9 @@ const InputResultListItem = ({listItem, listIndex, setInputData}) => {
 	}
 
 	return (
-		<ListWrap onClick={onClickResult} >
+		<ListWrap onClick={onClickResult} darkMode={darkMode}>
       {listItem}
+			{console.log(darkMode)}
 		</ListWrap>
 	)
 }

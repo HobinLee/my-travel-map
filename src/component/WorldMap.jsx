@@ -30,12 +30,7 @@ const WorldMap = () => {
       {
         r.map((geo, j) => {
           return (geo === "Sea") ?
-            <MemoizedGridSea
-              key = {i + ','+ j}
-              address = {geo}
-              point = {country === geo}
-              setCountry = {setCountry}
-            />
+            <div key = {i + ',' + j}/>
             :
             <GridLand
               key = {i + ','+ j}

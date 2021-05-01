@@ -29,16 +29,10 @@ const WorldMap = () => {
     return worldgrid.map((r, i) => <MapDiv key = {i}>
       {
         r.map((geo, j) => {
-          return (geo === "Sea") ?
-            <MemoizedGridSea
-              key = {i + ','+ j}
-              address = {geo}
-              point = {country === geo}
-              setCountry = {setCountry}
-            />
-            :
+          return (geo !== "Sea") &&
             <GridLand
               key = {i + ','+ j}
+              column = {j}
               address = {geo}
               visited = {userListObj[geo]}
               point = {country === geo}

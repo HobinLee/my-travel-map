@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Land = styled.div`
+  grid-column-start: ${props => `${props.column + 1}`};
   background-color: #3C6B40;
   width: 10px;
   height: 10px;
@@ -30,8 +31,9 @@ const Label = styled.div`
   white-space: no-wrap;
 `
 
-const GridLand = ({ address, visited, setCountry, point }) => {
+const GridLand = ({ address, column, visited, setCountry, point }) => {
   return <Land
+            column = {column}
             point = {point}
             visited = {visited}
             onMouseOver = {() => !point && setCountry(address)}

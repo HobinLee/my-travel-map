@@ -24,6 +24,13 @@ const WorldMap = () => {
   const { darkMode } = useSelector(state => state.mode);
   const { userListObj } = useSelector(state => state.map);
   const [ country, setCountry ] = useState(null);
+
+  const onClickLand = (geo) => {
+    console.log(geo);
+    if(geo === country) {
+      console.log(country);
+    }
+  }
   
   const generateMapGrid = () => {
     return worldgrid.map((r, i) => <MapDiv key = {i}>
@@ -37,6 +44,7 @@ const WorldMap = () => {
               visited = {userListObj[geo]}
               point = {country === geo}
               setCountry = {setCountry}
+              onClick={() => onClickLand(geo)}
             />
         })
      }

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
 
-import InputCountry from '../component/InputCountry';
+import UtilSection from '../component/UtilSection';
 import WorldMap from '../component/WorldMap';
 
 const Wrapper = styled.div`
@@ -31,7 +31,7 @@ const Main = () => {
       <MapContainer>
         <WorldMap/>
       </MapContainer>
-      <InputCountry />
+      <UtilSection />
     </Wrapper>
   )
 }

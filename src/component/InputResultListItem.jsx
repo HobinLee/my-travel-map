@@ -9,6 +9,7 @@ const ListWrap = styled.li`
 	font-size: 13px;
 	margin-bottom: 1px;
 	color: ${props => props.darkMode && "#fff"};
+	background-color: ${props => props.darkMode && "#333"};
 
   &:hover {
 	  cursor: pointer;
@@ -16,19 +17,19 @@ const ListWrap = styled.li`
   }
 `
 
-const InputResultListItem = ({listItem, listIndex, setInputData}) => {
+const InputResultListItem = ({listItem, listIndex, setInputData, setIsClickResult}) => {
 	const dispatch = useDispatch();
 	const { darkMode } = useSelector(state => state.mode);
 
 	const onClickResult = () => {
-    setInputData(listItem);
-    dispatch(userFocusOff());
+		setInputData(listItem);
+		dispatch(userFocusOff());
+		setIsClickResult(true);
 	}
 
 	return (
 		<ListWrap onClick={onClickResult} darkMode={darkMode}>
       {listItem}
-			{console.log(darkMode)}
 		</ListWrap>
 	)
 }

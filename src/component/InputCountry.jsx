@@ -8,45 +8,47 @@ import UserList from '../component/UserList';
 import InputResultList from './InputResultList';
 
 const InputCountryWrap = styled.div`
-	width: 20%;
-	height: 100%;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
+  width: 100%;
+  margin-bottom: 15px;
+`
 
-  & > div {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 15px;
+const WriteButton = styled.button`
+  width: 30px;
+  height: 30px;
+  border: none;
+  padding: 5px;
+  background-color: #00acee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > svg {
+    font-size: 20px;
+    color: #fff;
   }
 
-  & > div > button {
-    width: 30px;
+  &:hover {
+    cursor: pointer;
+  }
+`
+
+const UserInputWrap = styled.div`
+  position: relative;
+  width: 100%;
+
+  & > input {
+    width: 100%;
     height: 30px;
-    border: none;
     padding: 5px;
-    background-color: #00acee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    & > svg {
-      font-size: 20px;
-      color: #fff;
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
+    border: 1px solid #00acee;
+    outline: none;
   }
 `
 
 const UserCountWrap = styled.div`
   width: 100%;
-  display: ${props => props.isVisible === "on" ? "block" : "none"};
+  display: ${props => props.isVisible === "on" ? "flex" : "none"};
+  align-items: center;
   margin-top: 10px;
 
   & > input {
@@ -58,17 +60,11 @@ const UserCountWrap = styled.div`
   }
 `
 
-const InputWrap = styled.div`
-  position: relative;
-  width: 90%;
-
-  & > input {
-    width: 100%;
-    height: 30px;
-    padding: 5px;
-    border: 1px solid #00acee;
-    outline: none;
-  }
+const CloseButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
 `
 
 const InputCountry = () => {
@@ -77,6 +73,7 @@ const InputCountry = () => {
   const { filterData } = useSelector(state => state.filter);
   const [inputData, setInputData] = useState("");
   const [inputCount, setInputCount] = useState("");
+  const [isClickResult, setIsClickResult] = useState(false);
 
 	const onChangeInput = (e) => {
     setInputData(e.target.value);
@@ -84,6 +81,12 @@ const InputCountry = () => {
   
   const onChangeCount = (e) => {
     setInputCount(e.target.value);
+  }
+
+  const onClickCloseButton = () => {
+    setInputData("");
+    setInputCount("");
+    setIsClickResult(false);
   }
 
 	const onClickButton = () => {
@@ -112,6 +115,7 @@ const InputCountry = () => {
 
     setInputData("");
     setInputCount(1);
+    setIsClickResult(false);
 
     if (userListObj[changeWord]) userListObj[changeWord] = parseInt(inputCount);
     else userListObj[changeWord] = parseInt(inputCount);
@@ -129,31 +133,34 @@ const InputCountry = () => {
 
 	return (
 		<InputCountryWrap>
-			<div>
-        <InputWrap>
-          <input 
-            type="text" 
-            value={inputData} 
-            onChange={onChangeInput}
-            onFocus={onFocusInput}
-            placeholder="국가명을 입력해주세요."
-          />
-          <InputResultList inputData={inputData} setInputData={setInputData}/>
-          <UserCountWrap isVisible={inputData?.length > 0 ? "on" : "off"}>
-            <input 
-              type="number"
-              value={inputCount}
-              onChange={onChangeCount}
-              placeholder="방문횟수"
-            />
-          </UserCountWrap>
-        </InputWrap>	
-       	
-				<button onClick={onClickButton}>
+      <UserInputWrap>
+        <input 
+          type="text" 
+          value={inputData} 
+          onChange={onChangeInput}
+          onFocus={onFocusInput}
+          placeholder="국가명을 입력해주세요."
+          disabled={isClickResult && true}
+        />
+        {isClickResult && 
+          <CloseButton onClick={onClickCloseButton}>
+            x
+          </CloseButton>
+        }
+        <InputResultList inputData={inputData} setInputData={setInputData} setIsClickResult={setIsClickResult}/>
+      </UserInputWrap>
+      
+      <UserCountWrap isVisible={isClickResult ? "on" : "off"}>
+        <input 
+          type="number"
+          value={inputCount}
+          onChange={onChangeCount}
+          placeholder="방문횟수"
+        />
+        <WriteButton onClick={onClickButton}>
           <IoCreateOutline />
-        </button>
-			</div>
-			<UserList />
+        </WriteButton>
+      </UserCountWrap>			
 		</InputCountryWrap>
 	)
 }

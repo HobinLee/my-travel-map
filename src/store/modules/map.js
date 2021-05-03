@@ -9,13 +9,12 @@ const USER_COUNT_UPDATE = 'USER_COUNT_UPDATE';
 const USER_FOCUS_ON = 'USER_FOCUS_ON';
 const USER_FOCUS_OFF = 'USER_FOCUS_OFF';
 
-
 const initialState = {
   // userList: [],
   userListObj: {},
   // userInput: "",
   // userCount: 1,
-  isFocus: false
+  isFocus: false,
 }
 
 export const userListUpdate = (item) => ({type: USER_LIST_UPDATE, item: item});

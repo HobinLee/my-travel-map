@@ -7,10 +7,18 @@ import InputResultListItem from './InputResultListItem';
 import { filterDataUpdate } from '../store/modules/filter';
 
 const ListWrap = styled.ul`
+  width: 100%;
+  max-height: 350px;
+  overflow: auto;
   display: block;
+  box-shadow: 0px 3px 3px #eee;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background-color: #fff;
 `
 
-const InputResultList = ({ inputData="", setInputData }) => {
+const InputResultList = ({ inputData="", setInputData, setIsClickResult }) => {
   const dispatch = useDispatch();
   const { isFocus } = useSelector(state => state.map);
   const [resultArray, setResultArray] = useState([]);
@@ -33,10 +41,14 @@ const InputResultList = ({ inputData="", setInputData }) => {
     <ListWrap>
       {resultArray.filter((item)=> {
         return item.toLowerCase().includes(inputData.toLowerCase()) && !item.toLowerCase().includes("sea") && isFocus && inputData.length > 0
-      }).filter((_,index)=> {
-        return index < 10;
       }).map((item, index)=> {
-        return <InputResultListItem key={item + index} listItem={item} listIndex={index} setInputData={setInputData}/>
+        return <InputResultListItem 
+                  key={item + index}
+                  listItem={item} 
+                  listIndex={index} 
+                  setInputData={setInputData}
+                  setIsClickResult={setIsClickResult}
+              />
       })}
     </ListWrap>
   )

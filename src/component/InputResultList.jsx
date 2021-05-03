@@ -24,15 +24,17 @@ const InputResultList = ({ inputData="", setInputData }) => {
         return newObj[city] =  newObj[city] ? (newObj[city] || 0) + 1 : 1
       })
     })
-
+    delete newObj.Sea;
     setResultArray(Object.keys(newObj).sort((a,b)=> b-a));
     dispatch(filterDataUpdate(Object.keys(newObj).sort((a,b)=> b-a)));
   }, [])
 
+  const input = inputData.replace('\\','\\\\').replace('[','\\[').replace(']','\\]').replace('?','\\?').replace('(','\\(').replace(')','\\)');
+ 
   return (
     <ListWrap>
       {resultArray.filter((item)=> {
-        return item.toLowerCase().includes(inputData.toLowerCase()) && !item.toLowerCase().includes("sea") && isFocus && inputData.length > 0
+        return item.match(new RegExp(`${input}`, 'i')) && isFocus && inputData.length
       }).filter((_,index)=> {
         return index < 10;
       }).map((item, index)=> {

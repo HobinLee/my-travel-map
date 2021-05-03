@@ -2,7 +2,6 @@ import React, { useState, useEffect, memo } from 'react';
 import worldgrid from './map.json';
 import styled from 'styled-components';
 import GridLand from './GridLand';
-import { MemoizedGridSea } from './GridSea';
 import { useSelector } from 'react-redux';
 
 const MapWrapper = styled.div`
@@ -28,14 +27,14 @@ const WorldMap = () => {
   const generateMapGrid = () => {
     return worldgrid.map((r, i) => <MapDiv key = {i}>
       {
-        r.map((geo, j) => {
-          return (geo !== "Sea") &&
+        r.map((address, j) => {
+          return (address !== "Sea") &&
             <GridLand
               key = {i + ','+ j}
               column = {j}
-              address = {geo}
-              visited = {userListObj[geo]}
-              point = {country === geo}
+              address = {address}
+              visited = {userListObj[address]}
+              point = {country === address}
               setCountry = {setCountry}
             />
         })

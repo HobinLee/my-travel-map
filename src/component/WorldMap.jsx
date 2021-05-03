@@ -18,17 +18,13 @@ const MapDiv = styled.div`
   gap: 3px
 `
 
-
 const WorldMap = () => {
   const { darkMode } = useSelector(state => state.mode);
   const { userListObj } = useSelector(state => state.map);
   const [ country, setCountry ] = useState(null);
 
-  const onClickLand = (address) => {
-    console.log(address);
-    if(address === country) {
-      console.log(country);
-    }
+  const onClickLand = () => {
+    console.log(country);
   }
   
   const generateMapGrid = () => {
@@ -43,13 +39,15 @@ const WorldMap = () => {
               visited = {userListObj[address]}
               point = {country === address}
               setCountry = {setCountry}
-              onClick={() => onClickLand(address)}
             />
         })
      }
     </MapDiv>);
   }
-  return <MapWrapper darkMode = {darkMode}> {generateMapGrid()} </MapWrapper>;
+  return <MapWrapper darkMode = {darkMode} onClick={onClickLand}>
+          {generateMapGrid()}
+          
+         </MapWrapper>;
 }
 
 export default WorldMap;

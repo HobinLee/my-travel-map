@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { IoCreateOutline } from 'react-icons/io5';
 
-import { userListUpdate, userInputUpdate, userListObjUpdate, userFocusOn, userCountUpdate } from '../store/modules/map';
-import UserList from '../component/UserList';
+import { userListObjUpdate, userFocusOn } from '../store/modules/map';
 import InputResultList from './InputResultList';
+import InputCount from './InputCount';
 
 const InputCountryWrap = styled.div`
   width: 100%;
@@ -151,15 +150,11 @@ const InputCountry = () => {
       </UserInputWrap>
       
       <UserCountWrap isVisible={isClickResult ? "on" : "off"}>
-        <input 
-          type="number"
-          value={inputCount}
-          onChange={onChangeCount}
-          placeholder="방문횟수"
+        <InputCount 
+          inputcount={inputCount}
+          onChnageCount={onChangeCount}
+          onClickButton={onClickButton}
         />
-        <WriteButton onClick={onClickButton}>
-          <IoCreateOutline />
-        </WriteButton>
       </UserCountWrap>			
 		</InputCountryWrap>
 	)

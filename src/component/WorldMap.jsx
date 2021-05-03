@@ -24,9 +24,9 @@ const WorldMap = () => {
   const { userListObj } = useSelector(state => state.map);
   const [ country, setCountry ] = useState(null);
 
-  const onClickLand = (geo) => {
-    console.log(geo);
-    if(geo === country) {
+  const onClickLand = (address) => {
+    console.log(address);
+    if(address === country) {
       console.log(country);
     }
   }
@@ -43,7 +43,7 @@ const WorldMap = () => {
               visited = {userListObj[address]}
               point = {country === address}
               setCountry = {setCountry}
-              onClick={() => onClickLand(geo)}
+              onClick={() => onClickLand(address)}
             />
         })
      }

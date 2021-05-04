@@ -23,9 +23,19 @@ const WorldMap = () => {
   const { darkMode } = useSelector(state => state.mode);
   const { userListObj } = useSelector(state => state.map);
   const [ country, setCountry ] = useState(null);
+  
+  useEffect(() => {
+    let string = '';
+    for (let i = 0 ; i < worldgrid.length ; i ++) {
+      for (let j = 0 ; j < worldgrid[0].length ; j ++) {
+        string += (worldgrid[i][j] + ' ');
+      }
+      string += '\n';
+    }
+    console.log(string);
+  }, [])
 
   const onClickLand = (address) => {
-    console.log(address);
     if(address === country) {
       console.log(country);
     }

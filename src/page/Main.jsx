@@ -30,7 +30,7 @@ const Main = () => {
   return (
     <Wrapper>
       <MapContainer>
-        <WorldMap/>
+        <WorldMapGrid/>
       </MapContainer>
       <UtilSection />
     </Wrapper>

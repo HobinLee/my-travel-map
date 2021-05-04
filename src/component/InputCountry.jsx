@@ -11,26 +11,6 @@ const InputCountryWrap = styled.div`
   margin-bottom: 15px;
 `
 
-const WriteButton = styled.button`
-  width: 30px;
-  height: 30px;
-  border: none;
-  padding: 5px;
-  background-color: #00acee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  & > svg {
-    font-size: 20px;
-    color: #fff;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-`
-
 const UserInputWrap = styled.div`
   position: relative;
   width: 100%;
@@ -89,16 +69,6 @@ const InputCountry = () => {
   }
 
 	const onClickButton = () => {
-    const changeWord = inputData.split(" ").map(item => {
-      if(item.toLowerCase() === "of" || item.toLowerCase() === "and" || item.toLowerCase() === "the") {
-        return item
-      } else {
-        return item[0].toUpperCase()+item.toLowerCase().slice(1, item.length)
-      }
-    }).join(" ");
-    console.log(changeWord.length);
-    console.log(filterData.includes(changeWord));
-
 		if(inputData?.length === 0) {
 			alert("1글자이상 입력해주세요");
 			return;
@@ -107,7 +77,7 @@ const InputCountry = () => {
 			alert("방문 횟수는 최소 1이상입니다.");
 			return;
 		} 
-    if(!filterData.includes(changeWord)) {
+    if(!filterData.includes(inputData)) {
       alert("해당하는 나라가 없습니다.");
       return;
     }
@@ -116,8 +86,8 @@ const InputCountry = () => {
     setInputCount(1);
     setIsClickResult(false);
 
-    if (userListObj[changeWord]) userListObj[changeWord] = parseInt(inputCount);
-    else userListObj[changeWord] = parseInt(inputCount);
+    if (userListObj[inputData]) userListObj[inputData] = parseInt(inputCount);
+    else userListObj[inputData] = parseInt(inputCount);
     window.localStorage.setItem("visitedObj", JSON.stringify({
       ...userListObj
     }));
@@ -151,8 +121,8 @@ const InputCountry = () => {
       
       <UserCountWrap isVisible={isClickResult ? "on" : "off"}>
         <InputCount 
-          inputcount={inputCount}
-          onChnageCount={onChangeCount}
+          inputCount={inputCount}
+          onChangeCount={onChangeCount}
           onClickButton={onClickButton}
         />
       </UserCountWrap>			

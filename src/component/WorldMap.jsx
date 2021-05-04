@@ -35,6 +35,7 @@ const WorldMap = () => {
   }, [])
 
   const onClickLand = (address) => {
+    console.log(country);
     if(address === country) {
       console.log(country);
     }
@@ -59,8 +60,7 @@ const WorldMap = () => {
   }
   return <MapWrapper darkMode = {darkMode} onClick={onClickLand}>
           {generateMapGrid()}
-          
-         </MapWrapper>;
+         </MapWrapper>
 }
 
 export default WorldMap;

@@ -59,7 +59,6 @@ const WorldMap = () => {
   }
   return <MapWrapper darkMode = {darkMode} onClick={onClickLand}>
           {generateMapGrid()}
-          
          </MapWrapper>;
 }
 

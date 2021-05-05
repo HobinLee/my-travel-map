@@ -35,13 +35,13 @@ const WriteButton = styled.button`
   }
 `
 
-const InputCount = ({ inputCount, onChangeInput, onClickButton }) => {
+const InputCount = ({ inputCount, onChangeCount, onClickButton }) => {
   return (
     <InputCountWrap>
       <input 
         type="number"
         value={inputCount}
-        onChange={onChangeInput}
+        onChange={onChangeCount}
         placeholder="방문횟수"
       />
       <WriteButton onClick={onClickButton}>

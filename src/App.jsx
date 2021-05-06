@@ -5,7 +5,7 @@ import { switchScreenMode } from './store/modules/mode';
 import styled from 'styled-components';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import Loading from './page/Loading';
+import { Loading } from './page/Loading';
 import Main from './page/Main';
 import Toggle from './component/Toggle';
 
@@ -18,10 +18,11 @@ const Container = styled.div`
 const App = () => {
   const dispatch = useDispatch();
   const [ loadStart, startLoad ] = useState(false);
-  const [ loadFinish, finishLoad ] = useState(false);
+  const [ progress, setProgress ] = useState(0);
   const { darkMode } = useSelector(state => state.mode);
-
+  
   useEffect(() =>{
+    console.log('??');
     startLoad(true);
   }, [ darkMode ])
 
@@ -31,13 +32,11 @@ const App = () => {
         loadStart ?
         <>
         {
-          !loadFinish && <Loading/>
+          ( progress < 100 ) && <Loading progress = {progress}/>
         }
           <Switch>
           <Route exact path='/' render={()=>
-            <Main finishLoad = {() => {
-              console.log('finish load');
-              finishLoad(true)}}/>
+            <Main setProgress = {(p) => setProgress(p)}/>
           } />
           
           <Route path='*' render={()=> 
@@ -45,7 +44,7 @@ const App = () => {
           } />
           </Switch>
           {
-          loadFinish &&
+          ( progress >= 100 ) &&
             <Toggle
               value = {darkMode}
               onChangeToggle = {() => {
@@ -57,7 +56,7 @@ const App = () => {
           
         </>
         :
-        <Loading/>
+        <Loading progress = {progress} darkMode = {darkMode}/>
       }
     </Container> 
   );

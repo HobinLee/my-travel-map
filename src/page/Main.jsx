@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import UtilSection from '../component/UtilSection';
@@ -25,11 +25,11 @@ const MapContainer = styled.div`
   }
 `
 
-const Main = ({finishLoad}) => {
+const Main = ({setProgress}) => {
   return (
     <Wrapper>
       <MapContainer>
-        <WorldMap finishLoad = {finishLoad}/>
+        <WorldMap setProgress = {setProgress}/>
       </MapContainer>
       <UtilSection />
     </Wrapper>

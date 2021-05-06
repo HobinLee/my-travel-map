@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import mapArray from './mapArray.json';
 import styled from 'styled-components';
 import RowLand from './RowLand';
 import { MemoizedSea } from './RowSea';
@@ -63,22 +62,33 @@ const InputCountWrap = styled.div`
   }
 `
 
-const WorldMap = ({finishLoad}) => {
-  useEffect(() => {
-    finishLoad();
-  }, []);
-
+const WorldMap = ({setProgress}) => {
   const { darkMode } = useSelector(state => state.mode);
   const { userListObj } = useSelector(state => state.map);
+  const [ mapArray, setMapArray] = useState(null);
   const [ country, setCountry ] = useState(null);
 
   const dispatch = useDispatch();
+
   const [ isLandClick, setIsLandClick ] = useState(false);
   const [ inputCount, setInputCount ] = useState("");
   const [ clickCountryName, setClickCountryName ] = useState("");
   const [ xPosition, setXPosition ] = useState(0);
   const [ yPosition, setYPosition ] = useState(0);
+  
+  useEffect(() => {
+    fetch('https://my-travel-map.s3.ap-northeast-2.amazonaws.com/mapArray.json')
+      .then(res => res.json())
+      .then(data => {
+        setProgress(20);
+        setMapArray(data);
+      })
+      .catch(err => console.error(err))
+  }, []);
 
+  useEffect(() => {
+    setProgress(100);
+  }, [mapArray]);
 
   const onClickLand = (e) => {
     if(country !== 'Sea') {
@@ -117,7 +127,7 @@ const WorldMap = ({finishLoad}) => {
   }
 
   const generateMapGrid = () => {
-    return mapArray.map((r, i) => {
+    return mapArray?.map((r, i) => {
       let column = 0;
       return <MapDiv key = {i}>
       {
@@ -146,7 +156,7 @@ const WorldMap = ({finishLoad}) => {
     </MapDiv>
     });
   }
-
+  
   return <>
     <MapWrapper darkMode = {darkMode} onClick={onClickLand}>
       {generateMapGrid()}

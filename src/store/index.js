@@ -7,7 +7,7 @@ import filter from './modules/filter';
 const rootReducer = combineReducers({
   map,
   mode,
-  filter
+  filter,
 });
 
 export default rootReducer;

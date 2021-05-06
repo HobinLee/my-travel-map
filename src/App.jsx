@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { switchScreenMode } from './store/modules/mode';
+import { switchScreenMode, setScreenMode } from './store/modules/mode';
 
 import styled from 'styled-components';
 import { Route, Switch, Redirect } from 'react-router-dom';
@@ -15,6 +15,16 @@ const Container = styled.div`
 `
 
 const App = () => {
+
+  useEffect(()=> {
+    const localData = JSON.parse(window.localStorage.getItem("darkMode"));
+    if (localData !== null) {
+      dispatch(setScreenMode(localData));
+    } else {
+      window.localStorage.setItem("darkMode", JSON.stringify(false));
+    }
+  }, [])
+
   const dispatch = useDispatch();
   const { darkMode } = useSelector(state => state.mode);
 
@@ -31,7 +41,10 @@ const App = () => {
       </Switch>
       <Toggle
         value = {darkMode}
-        onChangeToggle = {() => dispatch(switchScreenMode())}>
+        onChangeToggle = {() => {
+            window.localStorage.setItem("darkMode", JSON.stringify(!darkMode));
+            dispatch(switchScreenMode());
+          }}>
       </Toggle>
     </Container> 
   );

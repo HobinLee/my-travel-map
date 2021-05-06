@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState } from 'react';
 import mapArray from './mapArray.json';
 import styled from 'styled-components';
 import RowLand from './RowLand';
@@ -22,14 +22,6 @@ const MapDiv = styled.div`
   display: grid;
   grid-template-columns: repeat(180, 13px);
 `
-
-const Land = styled.div`
-  grid-area: land${props => props.i};
-  background-color: #3C6B40;
-  width: 100%;
-  height: 100%;
-`
-
 
 const InputCountWrap = styled.div`
   width: 250px;
@@ -73,7 +65,6 @@ const InputCountWrap = styled.div`
 
 const WorldMap = () => {
   const { darkMode } = useSelector(state => state.mode);
-  const [ world, setWorld ] = useState(null);
   const { userListObj } = useSelector(state => state.map);
   const [ country, setCountry ] = useState(null);
 
@@ -151,26 +142,27 @@ const WorldMap = () => {
     </MapDiv>
     });
   }
-  return  <>
-            <MapWrapper darkMode = {darkMode} onClick={onClickLand}>
-              {generateMapGrid()}
-            </MapWrapper>
-            {isLandClick &&
-            <InputCountWrap xPosition={xPosition} yPosition={yPosition}>
-              <span>
-                국가명 : {clickCountryName}
-              </span> 
-              <InputCount 
-                inputCount={inputCount}
-                onChangeCount={onChangeCount}
-                onClickButton={onClickButton}
-              />
 
-              <button onClick={onClickClose}>
-                <AiOutlineClose />
-              </button>
-            </InputCountWrap>}
-         </>
+  return <>
+    <MapWrapper darkMode = {darkMode} onClick={onClickLand}>
+      {generateMapGrid()}
+    </MapWrapper>
+    {isLandClick &&
+    <InputCountWrap xPosition = {xPosition} yPosition = {yPosition}>
+      <span>
+        국가명 : {clickCountryName}
+      </span> 
+      <InputCount 
+        inputCount = {inputCount}
+        onChangeCount = {onChangeCount}
+        onClickButton = {onClickButton}
+      />
+
+      <button onClick={onClickClose}>
+        <AiOutlineClose />
+      </button>
+    </InputCountWrap>}
+  </>
 }
 
 export default WorldMap;

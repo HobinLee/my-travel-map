@@ -25,11 +25,11 @@ const MapContainer = styled.div`
   }
 `
 
-const Main = () => {
+const Main = ({finishLoad}) => {
   return (
     <Wrapper>
       <MapContainer>
-        <WorldMap/>
+        <WorldMap finishLoad = {finishLoad}/>
       </MapContainer>
       <UtilSection />
     </Wrapper>

@@ -1,8 +1,10 @@
 const SWITCH_MODE = 'SWITCH_MODE';
 const SET_MODE = 'SET_MODE';
 
+const initDarkMode = JSON.parse(window.localStorage.getItem("darkMode"));
+
 const initialState = {
-  darkMode: false,
+  darkMode: initDarkMode ? initDarkMode : false,
 }
 
 export const setScreenMode = ( mode ) => ({type: SET_MODE, mode: mode});

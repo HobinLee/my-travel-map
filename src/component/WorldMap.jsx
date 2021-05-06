@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import mapArray from './mapArray.json';
 import styled from 'styled-components';
 import RowLand from './RowLand';
@@ -63,7 +63,11 @@ const InputCountWrap = styled.div`
   }
 `
 
-const WorldMap = () => {
+const WorldMap = ({finishLoad}) => {
+  useEffect(() => {
+    finishLoad();
+  }, []);
+
   const { darkMode } = useSelector(state => state.mode);
   const { userListObj } = useSelector(state => state.map);
   const [ country, setCountry ] = useState(null);
@@ -157,7 +161,6 @@ const WorldMap = () => {
         onChangeCount = {onChangeCount}
         onClickButton = {onClickButton}
       />
-
       <button onClick={onClickClose}>
         <AiOutlineClose />
       </button>

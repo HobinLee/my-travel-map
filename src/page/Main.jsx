@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import UtilSection from '../component/UtilSection';
 import WorldMap from '../component/WorldMap';
-import WorldMapGrid from '../component/WorldMapGrid';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -30,7 +29,7 @@ const Main = () => {
   return (
     <Wrapper>
       <MapContainer>
-        <WorldMapGrid/>
+        <WorldMap/>
       </MapContainer>
       <UtilSection />
     </Wrapper>

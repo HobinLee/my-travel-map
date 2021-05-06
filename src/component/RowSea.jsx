@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const Land = styled.div`
   grid-column-start: ${props => `${props.column + 1}`};
   grid-column-end: ${props => `${props.column + 1 + props.length}`};
-  background-color: #white;
 `
 export const RowSea = ({ column, setCountry, point, length }) => {
   return <Land

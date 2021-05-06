@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+
 const SkeletonLand = styled.div`
   background-color: #3C6B40;
   grid-column-start: ${props => `${props.column + 1}`};
@@ -36,6 +37,7 @@ const GridLand = styled.div`
   background-color: #3C6B40;
   border-radius: 50%;
 `
+
 const Label = styled.div`
   display:none;
   position: absolute;

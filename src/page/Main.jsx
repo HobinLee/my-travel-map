@@ -29,7 +29,7 @@ const Main = ({setProgress}) => {
   return (
     <Wrapper>
       <MapContainer>
-        <WorldMap setProgress = {setProgress}/>
+        <WorldMap setProgress = {(p) => setProgress(p)}/>
       </MapContainer>
       <UtilSection />
     </Wrapper>

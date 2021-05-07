@@ -87,7 +87,9 @@ const WorldMap = ({setProgress}) => {
   }, []);
 
   useEffect(() => {
-    setProgress(100);
+    if (mapArray !== null) {
+      setProgress(100);
+    }
   }, [mapArray]);
 
   const onClickLand = (e) => {

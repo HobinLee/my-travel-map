@@ -21,8 +21,8 @@ const App = () => {
   const [ progress, setProgress ] = useState(0);
   const { darkMode } = useSelector(state => state.mode);
   
-  useEffect(() =>{
-    console.log('??');
+  useEffect(() => {
+    console.log('aa');
     startLoad(true);
   }, [ darkMode ])
 

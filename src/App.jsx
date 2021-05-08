@@ -22,7 +22,6 @@ const App = () => {
   const { darkMode } = useSelector(state => state.mode);
   
   useEffect(() => {
-    console.log('aa');
     startLoad(true);
   }, [ darkMode ])
 
@@ -44,7 +43,7 @@ const App = () => {
           } />
           </Switch>
           {
-          ( progress >= 100 ) &&
+          (progress >= 100) &&
             <Toggle
               value = {darkMode}
               onChangeToggle = {() => {
@@ -53,7 +52,6 @@ const App = () => {
                 }}
             />
           }
-          
         </>
         :
         <Loading progress = {progress} darkMode = {darkMode}/>

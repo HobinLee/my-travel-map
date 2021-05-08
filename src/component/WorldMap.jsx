@@ -14,7 +14,11 @@ const MapWrapper = styled.div`
   display: grid;
   grid-gap: 3px;
   grid-template-rows: repeat(80, 10px);
-  filter: hue-rotate(${props => props.darkMode ? '-90deg':'90deg'} );
+  ${props => props.darkMode ?
+    'filter: brightness(2) hue-rotate(-90deg);'
+    :
+    'filter: brightness(0) hue-rotate(90deg);'
+  }
 `
 const MapDiv = styled.div`
   width: auto;
@@ -119,6 +123,7 @@ const WorldMap = ({setProgress}) => {
 
     if (userListObj[clickCountryName]) userListObj[clickCountryName] = parseInt(inputCount);
     else userListObj[clickCountryName] = parseInt(inputCount);
+    
     window.localStorage.setItem("visitedObj", JSON.stringify({
       ...userListObj
     }));

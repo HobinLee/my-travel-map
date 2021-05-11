@@ -8,6 +8,7 @@ import InputCount from './InputCount';
 import { userListObjUpdate } from '../store/modules/map';
 import { useDispatch } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
+import Draggable from 'react-draggable';
 
 const MapWrapper = styled.div`
   width: auto;
@@ -100,8 +101,9 @@ const WorldMap = ({setProgress}) => {
     if(country !== 'Sea') {
       setIsLandClick(true);
       setClickCountryName(country);
-      setXPosition(e.clientX)
-      setYPosition(e.clientY)
+      setXPosition(e.clientX);
+      setYPosition(e.clientY);
+      userListObj[country] ? setInputCount(userListObj[country]) : setInputCount("");
     } else {
       setIsLandClick(false);
     }
@@ -169,19 +171,21 @@ const WorldMap = ({setProgress}) => {
       {generateMapGrid()}
     </MapWrapper>
     {isLandClick &&
-    <InputCountWrap xPosition = {xPosition} yPosition = {yPosition}>
-      <span>
-        국가명 : {clickCountryName}
-      </span> 
-      <InputCount 
-        inputCount = {inputCount}
-        onChangeCount = {onChangeCount}
-        onClickButton = {onClickButton}
-      />
-      <button onClick={onClickClose}>
-        <AiOutlineClose />
-      </button>
-    </InputCountWrap>}
+    <Draggable> 
+      <InputCountWrap xPosition = {xPosition} yPosition = {yPosition}>
+        <span>
+          국가명 : {clickCountryName}
+        </span> 
+        <InputCount 
+          inputCount = {inputCount}
+          onChangeCount = {onChangeCount}
+          onClickButton = {onClickButton}
+        />
+        <button onClick={onClickClose}>
+          <AiOutlineClose />
+        </button>
+      </InputCountWrap>
+    </Draggable>}
   </>
 }
 

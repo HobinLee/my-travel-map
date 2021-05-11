@@ -6,7 +6,7 @@ import UserListItem from './UserListItem';
 import { userListObjUpdate } from '../store/modules/map';
 
 const UserListWrap = styled.ul`
-  max-height: calc(100vh - 120px);
+  max-height: calc(100vh - 170px);
   overflow: auto;
 `
 

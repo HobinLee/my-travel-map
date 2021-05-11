@@ -11,6 +11,7 @@ const ToggleWrapper = styled.div`
   right: 10px;
   cursor: pointer;
   bottom: 10px;
+  z-index: 100;
   
   ${props => props.valid ? '& > div { left: 40px; }' : '& > div { left: 0px; }'}
 `

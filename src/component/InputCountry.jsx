@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
+import { AiOutlineClose } from 'react-icons/ai';
 
 import { userListObjUpdate, userFocusOn } from '../store/modules/map';
 import InputResultList from './InputResultList';
@@ -29,27 +30,28 @@ const UserCountWrap = styled.div`
   display: ${props => props.isVisible === "on" ? "flex" : "none"};
   align-items: center;
   margin-top: 10px;
-
-  & > input {
-    width: 100%;
-    height: 30px;
-    padding: 5px;
-    border: 1px solid #00acee;
-    outline: none;
-  }
 `
 
 const CloseButton = styled.button`
   position: absolute;
   top: 50%;
-  right: 10px;
+  right: 5px;
   transform: translateY(-50%);
+  background: unset;
+  border: none;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const InputCountry = () => {
 	const dispatch = useDispatch();
 	const { userListObj } = useSelector(state => state.map);
   const { filterData } = useSelector(state => state.filter);
+  // const { darkMode } = useSelector(state => state.mode);
   const [inputData, setInputData] = useState("");
   const [inputCount, setInputCount] = useState("");
   const [isClickResult, setIsClickResult] = useState(false);
@@ -113,7 +115,7 @@ const InputCountry = () => {
         />
         {isClickResult && 
           <CloseButton onClick={onClickCloseButton}>
-            x
+            <AiOutlineClose />
           </CloseButton>
         }
         <InputResultList inputData={inputData} setInputData={setInputData} setIsClickResult={setIsClickResult}/>

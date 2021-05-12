@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -36,6 +36,9 @@ const UserListItem = ({ listItem, listIndex }) => {
   const { userListObj } = useSelector(state => state.map);
   const { darkMode } = useSelector(state => state.mode);
 
+  const [isEdit, setIsEdit] = useState(false);
+  const [count, setCount] = useState("");
+
   const onClickDelete = () => {
     // const newList = Object.keys(userListObj).filter((_,index)=> index !== listIndex);
     const newObj = { ...userListObj };
@@ -43,6 +46,26 @@ const UserListItem = ({ listItem, listIndex }) => {
   
     dispatch(userListObjUpdate(newObj));
     window.localStorage.setItem("visitedObj", JSON.stringify({...newObj}));
+  }
+
+  const onClickEdit = () => {
+    setCount(userListObj[listItem]);
+    setIsEdit(true);
+  }
+
+  const onClickEditComplete = () => {
+    const newObj =  { ...userListObj };
+    newObj[listItem] = parseInt(count);
+    if(parseInt(count) === 0) {
+      delete newObj[listItem];
+    }
+    dispatch(userListObjUpdate(newObj));
+    window.localStorage.setItem("visitedObj", JSON.stringify({...newObj}));
+    setIsEdit(false);
+  }
+
+  const onChangeCount = (e) => {
+    setCount(e.target.value);
   }
 
   return (
@@ -54,7 +77,10 @@ const UserListItem = ({ listItem, listIndex }) => {
         </div>
         <div>
           <span>방문 횟수 : </span>
-          <span>{userListObj[listItem]}</span> 
+          {isEdit && <input type="number" value={count} onChange={onChangeCount} min="1"/>}
+          {!isEdit && <span>{userListObj[listItem]}</span> }
+          {!isEdit &&  <span onClick={onClickEdit}> 수정</span>}
+          {isEdit && <span onClick={onClickEditComplete}> 완료</span>}
         </div>
       </div>
       <button onClick={onClickDelete}>

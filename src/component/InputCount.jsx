@@ -43,6 +43,7 @@ const InputCount = ({ inputCount, onChangeCount, onClickButton }) => {
         value={inputCount}
         onChange={onChangeCount}
         placeholder="방문횟수"
+        min="1"
       />
       <WriteButton onClick={onClickButton}>
         <IoCreateOutline />

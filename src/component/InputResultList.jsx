@@ -18,7 +18,7 @@ const ListWrap = styled.ul`
   background-color: #fff;
 `
 
-const InputResultList = ({ inputData="", setInputData, setIsClickResult }) => {
+const InputResultList = ({ inputData="", setInputData, setIsClickResult, setInputCount }) => {
   const dispatch = useDispatch();
   const { isFocus } = useSelector(state => state.map);
   const [resultArray, setResultArray] = useState([]);
@@ -48,6 +48,7 @@ const InputResultList = ({ inputData="", setInputData, setIsClickResult }) => {
                   listIndex={index} 
                   setInputData={setInputData}
                   setIsClickResult={setIsClickResult}
+                  setInputCount={setInputCount}
               />
       })}
     </ListWrap>

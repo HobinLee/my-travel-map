@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
 
@@ -61,7 +61,20 @@ const InputCountry = () => {
   }
   
   const onChangeCount = (e) => {
-    setInputCount(e.target.value);
+    
+    // const reg = /[0-9]/gi;
+    // console.log(e.target.value.match(reg));
+
+    // if(e.target.value === "-") {
+    //   console.log("hihi")
+    //   setInputCount("");
+    // } else {
+    // if(e.target.value.match(reg)) {
+      setInputCount(e.target.value);
+    // }
+      
+    // }
+    
   }
 
   const onClickCloseButton = () => {
@@ -118,7 +131,13 @@ const InputCountry = () => {
             <AiOutlineClose />
           </CloseButton>
         }
-        <InputResultList inputData={inputData} setInputData={setInputData} setIsClickResult={setIsClickResult}/>
+
+        <InputResultList 
+          inputData={inputData}
+          setInputData={setInputData} 
+          setIsClickResult={setIsClickResult} 
+          setInputCount={setInputCount}
+        />
       </UserInputWrap>
       
       <UserCountWrap isVisible={isClickResult ? "on" : "off"}>

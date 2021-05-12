@@ -17,11 +17,15 @@ const ListWrap = styled.li`
   }
 `
 
-const InputResultListItem = ({listItem, listIndex, setInputData, setIsClickResult}) => {
+const InputResultListItem = ({ listItem, listIndex, setInputData, setIsClickResult, setInputCount }) => {
 	const dispatch = useDispatch();
 	const { darkMode } = useSelector(state => state.mode);
+	const { userListObj } = useSelector(state => state.map);
 
 	const onClickResult = () => {
+		if(userListObj[listItem]) {
+			setInputCount(userListObj[listItem]);
+		}
 		setInputData(listItem);
 		dispatch(userFocusOff());
 		setIsClickResult(true);

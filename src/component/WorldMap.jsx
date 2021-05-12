@@ -18,7 +18,7 @@ const MapWrapper = styled.div`
   ${props => props.darkMode ?
     'filter: brightness(2) hue-rotate(-90deg);'
     :
-    'filter: brightness(0) hue-rotate(90deg);'
+    'filter: brightness(1) hue-rotate(90deg);'
   }
 `
 const MapDiv = styled.div`

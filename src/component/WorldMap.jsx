@@ -115,6 +115,7 @@ const WorldMap = ({setProgress}) => {
 
   const onClickClose = () => {
     setIsLandClick(false);
+    setClickCountryName(null);
   }
 
   const onClickButton = () => {
@@ -156,7 +157,7 @@ const WorldMap = ({setProgress}) => {
               column = {column - address[1]}
               address = {address[0]}
               visited = {userListObj[address[0]]}
-              point = {country === address[0]}
+              point = {(clickCountryName === address[0]) || (country === address[0])}
               length = {address[1]}
               setCountry = {setCountry}
             />

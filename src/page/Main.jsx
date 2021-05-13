@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 `
 
 const MapContainer = styled.div`
-  width:  ${props => props.fold ? "100%" : "80%"};
+  width:  ${props => props.fold ? "100%" : "calc(100% - 350px)"};
   height: 100vh;
   display: flex;
   justify-content: flex-start;

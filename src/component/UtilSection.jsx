@@ -18,7 +18,7 @@ const UtilSectionWrap = styled.div`
   transition: 0.3s;
   z-index: 10;
   background-color: ${props => props.darkMode ? "#555" : "#fff"};
- 
+
   & > button {
     position: absolute;
     left: 10px;
@@ -28,6 +28,7 @@ const UtilSectionWrap = styled.div`
   @media screen and (max-width: 780px) {
     position: fixed;
     height: 100%;
+    min-width: 0;
     width: ${props => props.fold ? "0" : "100vw"};
   }
 `

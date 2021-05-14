@@ -10,6 +10,7 @@ const UserListWrap = styled.ul`
   overflow: auto;
 `
 
+
 const UserList = () => {
   const dispatch = useDispatch();
   const { userListObj } = useSelector(state => state.map);

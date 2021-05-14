@@ -76,7 +76,7 @@ const WorldMap = ({setProgress}) => {
   const dispatch = useDispatch();
 
   const [ isLandClick, setIsLandClick ] = useState(false);
-  const [ inputCount, setInputCount ] = useState("");
+  const [ inputCount, setInputCount ] = useState(0);
   const [ clickCountryName, setClickCountryName ] = useState("");
   const [ xPosition, setXPosition ] = useState(0);
   const [ yPosition, setYPosition ] = useState(0);
@@ -103,7 +103,7 @@ const WorldMap = ({setProgress}) => {
       setClickCountryName(country);
       setXPosition(e.clientX);
       setYPosition(e.clientY);
-      userListObj[country] ? setInputCount(userListObj[country]) : setInputCount("");
+      userListObj[country] ? setInputCount(userListObj[country]) : setInputCount(0);
     } else {
       setIsLandClick(false);
     }
@@ -118,22 +118,26 @@ const WorldMap = ({setProgress}) => {
     setClickCountryName(null);
   }
 
-  const onClickButton = () => {
-    if(inputCount < 1) {
-			alert("방문 횟수는 최소 1이상입니다.");
-			return;
-		} 
+  const onClickButton = () => { 
+    setInputCount(0);
+    setIsLandClick(false);
 
-    if (userListObj[clickCountryName]) userListObj[clickCountryName] = parseInt(inputCount);
-    else userListObj[clickCountryName] = parseInt(inputCount);
-    
+    if(inputCount === 0) {
+      if(userListObj[clickCountryName]) {
+        delete userListObj[clickCountryName];
+      } else {
+        return;
+      }
+    } else {
+      if (userListObj[clickCountryName]) userListObj[clickCountryName] = parseInt(inputCount);
+      else userListObj[clickCountryName] = parseInt(inputCount);
+    }
+
     window.localStorage.setItem("visitedObj", JSON.stringify({
       ...userListObj
     }));
 
     dispatch(userListObjUpdate({...userListObj}));
-    setInputCount(1);
-    setIsLandClick(false);
   }
 
   const generateMapGrid = () => {
@@ -181,6 +185,7 @@ const WorldMap = ({setProgress}) => {
           inputCount = {inputCount}
           onChangeCount = {onChangeCount}
           onClickButton = {onClickButton}
+          setInputCount = {setInputCount}
         />
         <button onClick={onClickClose}>
           <AiOutlineClose />

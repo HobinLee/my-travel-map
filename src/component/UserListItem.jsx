@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
 
-import { userListObjUpdate } from '../store/modules/map';
+import { userListObjUpdate, userEditOn, userEditOff, userEditData } from '../store/modules/map';
 
 const ListItemWrap = styled.li`
   display: flex;
@@ -33,14 +33,12 @@ const ListItemWrap = styled.li`
 
 const UserListItem = ({ listItem, listIndex }) => {
   const dispatch = useDispatch();
-  const { userListObj } = useSelector(state => state.map);
+  const { userListObj, isEdit } = useSelector(state => state.map);
   const { darkMode } = useSelector(state => state.mode);
 
-  const [isEdit, setIsEdit] = useState(false);
   const [count, setCount] = useState("");
 
   const onClickDelete = () => {
-    // const newList = Object.keys(userListObj).filter((_,index)=> index !== listIndex);
     const newObj = { ...userListObj };
     delete newObj[listItem];
   
@@ -50,7 +48,8 @@ const UserListItem = ({ listItem, listIndex }) => {
 
   const onClickEdit = () => {
     setCount(userListObj[listItem]);
-    setIsEdit(true);
+    dispatch(userEditOn());
+    dispatch(userEditData(listItem, userListObj[listItem]));
   }
 
   const onClickEditComplete = () => {
@@ -61,7 +60,7 @@ const UserListItem = ({ listItem, listIndex }) => {
     }
     dispatch(userListObjUpdate(newObj));
     window.localStorage.setItem("visitedObj", JSON.stringify({...newObj}));
-    setIsEdit(false);
+    dispatch(userEditOff());
   }
 
   const onChangeCount = (e) => {

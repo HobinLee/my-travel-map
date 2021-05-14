@@ -53,7 +53,7 @@ const InputCountry = () => {
   const { filterData } = useSelector(state => state.filter);
   // const { darkMode } = useSelector(state => state.mode);
   const [inputData, setInputData] = useState("");
-  const [inputCount, setInputCount] = useState("");
+  const [inputCount, setInputCount] = useState(0);
   const [isClickResult, setIsClickResult] = useState(false);
 
 	const onChangeInput = (e) => {
@@ -61,25 +61,12 @@ const InputCountry = () => {
   }
   
   const onChangeCount = (e) => {
-    
-    // const reg = /[0-9]/gi;
-    // console.log(e.target.value.match(reg));
-
-    // if(e.target.value === "-") {
-    //   console.log("hihi")
-    //   setInputCount("");
-    // } else {
-    // if(e.target.value.match(reg)) {
-      setInputCount(e.target.value);
-    // }
-      
-    // }
-    
+    setInputCount(e.target.value);
   }
 
   const onClickCloseButton = () => {
     setInputData("");
-    setInputCount("");
+    setInputCount(0);
     setIsClickResult(false);
   }
 
@@ -87,22 +74,28 @@ const InputCountry = () => {
 		if(inputData?.length === 0) {
 			alert("1글자이상 입력해주세요");
 			return;
-		} 
-    if(inputCount < 1) {
-			alert("방문 횟수는 최소 1이상입니다.");
-			return;
-		} 
+		}
+
     if(!filterData.includes(inputData)) {
       alert("해당하는 나라가 없습니다.");
       return;
     }
 
     setInputData("");
-    setInputCount(1);
+    setInputCount(0);
     setIsClickResult(false);
 
-    if (userListObj[inputData]) userListObj[inputData] = parseInt(inputCount);
-    else userListObj[inputData] = parseInt(inputCount);
+    if(inputCount === 0) {
+      if(userListObj[inputData]) {
+        delete userListObj[inputData];
+      } else {
+        return;
+      }
+    } else {
+      if (userListObj[inputData]) userListObj[inputData] = parseInt(inputCount);
+      else userListObj[inputData] = parseInt(inputCount);
+    }
+
     window.localStorage.setItem("visitedObj", JSON.stringify({
       ...userListObj
     }));
@@ -145,6 +138,7 @@ const InputCountry = () => {
           inputCount={inputCount}
           onChangeCount={onChangeCount}
           onClickButton={onClickButton}
+          setInputCount={setInputCount}
         />
       </UserCountWrap>			
 		</InputCountryWrap>

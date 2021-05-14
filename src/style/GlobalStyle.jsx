@@ -16,6 +16,25 @@ const GlobalStyle = createGlobalStyle`
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
     }
+    ::-webkit-scrollbar-thumb {
+        background: #7A93A7;
+        border-radius: 4px;
+    }
+    /* width */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #ECEFF2;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #406380;
+    }
 `
 
 export default GlobalStyle;

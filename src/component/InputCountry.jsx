@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
 
-import { userListObjUpdate, userFocusOn } from '../store/modules/map';
+import { userListObjUpdate, userFocusOn, userFocusOff, userEditOff } from '../store/modules/map';
 import InputResultList from './InputResultList';
 import InputCount from './InputCount';
 
@@ -49,12 +49,20 @@ const CloseButton = styled.button`
 
 const InputCountry = () => {
 	const dispatch = useDispatch();
-	const { userListObj } = useSelector(state => state.map);
+	const { userListObj, isEdit, editCountry, editCount } = useSelector(state => state.map);
   const { filterData } = useSelector(state => state.filter);
   // const { darkMode } = useSelector(state => state.mode);
   const [inputData, setInputData] = useState("");
   const [inputCount, setInputCount] = useState(0);
   const [isClickResult, setIsClickResult] = useState(false);
+
+  useEffect(()=> {
+    if(isEdit) {
+      setInputData(editCountry);
+      setInputCount(editCount);
+      setIsClickResult(true);
+    }
+  }, [isEdit])
 
 	const onChangeInput = (e) => {
     setInputData(e.target.value);
@@ -68,6 +76,7 @@ const InputCountry = () => {
     setInputData("");
     setInputCount(0);
     setIsClickResult(false);
+    isEdit && dispatch(userEditOff());
   }
 
 	const onClickButton = () => {
@@ -84,6 +93,7 @@ const InputCountry = () => {
     setInputData("");
     setInputCount(0);
     setIsClickResult(false);
+    isEdit && dispatch(userEditOff());
 
     if(inputCount === 0) {
       if(userListObj[inputData]) {
@@ -108,6 +118,11 @@ const InputCountry = () => {
     dispatch(userFocusOn());
   }
 
+  // const onBlurInput = (e) => {
+  //   console.log(e.target);
+  //   dispatch(userFocusOff());
+  // }
+
 	return (
 		<InputCountryWrap>
       <UserInputWrap>
@@ -118,6 +133,7 @@ const InputCountry = () => {
           onFocus={onFocusInput}
           placeholder="국가명을 입력해주세요."
           disabled={isClickResult && true}
+          // onBlur={onBlurInput}
         />
         {isClickResult && 
           <CloseButton onClick={onClickCloseButton}>

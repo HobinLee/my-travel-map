@@ -12,6 +12,7 @@ import Draggable from 'react-draggable';
 
 const MapWrapper = styled.div`
   width: auto;
+  padding: 15px;
   display: grid;
   grid-gap: 3px;
   grid-template-rows: repeat(80, 10px);

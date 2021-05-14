@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
 
-import { userListObjUpdate, userEditOn, userEditOff, userEditData } from '../store/modules/map';
+import { userListObjUpdate, userEditOn, userEditData } from '../store/modules/map';
 
 const ListItemWrap = styled.li`
   display: flex;
@@ -11,7 +11,7 @@ const ListItemWrap = styled.li`
   align-items: center;
   padding: 5px;
   margin-bottom: 5px;
-  border: 1px solid #eee;
+  border: ${props => props.currentTarget ? "1px solid red" : "1px solid #eee"};
   color: ${props => props.darkMode && "#fff"};
 
   & > button {
@@ -35,8 +35,13 @@ const UserListItem = ({ listItem, listIndex }) => {
   const dispatch = useDispatch();
   const { userListObj, isEdit } = useSelector(state => state.map);
   const { darkMode } = useSelector(state => state.mode);
+  const [currentTarget, setCurrentTarget] = useState(false);
 
-  const [count, setCount] = useState("");
+  useEffect(()=> {
+    if(!isEdit) {
+      setCurrentTarget(false);
+    }
+  }, [isEdit])
 
   const onClickDelete = () => {
     const newObj = { ...userListObj };
@@ -47,28 +52,13 @@ const UserListItem = ({ listItem, listIndex }) => {
   }
 
   const onClickEdit = () => {
-    setCount(userListObj[listItem]);
+    setCurrentTarget(true);
     dispatch(userEditOn());
     dispatch(userEditData(listItem, userListObj[listItem]));
   }
 
-  const onClickEditComplete = () => {
-    const newObj =  { ...userListObj };
-    newObj[listItem] = parseInt(count);
-    if(parseInt(count) === 0) {
-      delete newObj[listItem];
-    }
-    dispatch(userListObjUpdate(newObj));
-    window.localStorage.setItem("visitedObj", JSON.stringify({...newObj}));
-    dispatch(userEditOff());
-  }
-
-  const onChangeCount = (e) => {
-    setCount(e.target.value);
-  }
-
   return (
-    <ListItemWrap darkMode={darkMode}>
+    <ListItemWrap darkMode={darkMode} currentTarget={currentTarget}>
       <div>
         <div>
           <span>여행한 나라 : </span>
@@ -76,10 +66,8 @@ const UserListItem = ({ listItem, listIndex }) => {
         </div>
         <div>
           <span>방문 횟수 : </span>
-          {isEdit && <input type="number" value={count} onChange={onChangeCount} min="1"/>}
-          {!isEdit && <span>{userListObj[listItem]}</span> }
-          {!isEdit &&  <span onClick={onClickEdit}> 수정</span>}
-          {isEdit && <span onClick={onClickEditComplete}> 완료</span>}
+          <span>{userListObj[listItem]}</span>
+          {!isEdit && <span onClick={onClickEdit}> 수정</span>}
         </div>
       </div>
       <button onClick={onClickDelete}>

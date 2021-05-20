@@ -106,6 +106,7 @@ const WorldMap = ({setProgress}) => {
       setYPosition(e.clientY);
       userListObj[country] ? setInputCount(userListObj[country]) : setInputCount(0);
     } else {
+      setClickCountryName(null); 
       setIsLandClick(false);
     }
   }
@@ -139,6 +140,10 @@ const WorldMap = ({setProgress}) => {
     }));
 
     dispatch(userListObjUpdate({...userListObj}));
+  }
+
+  const onDragName = () => {
+    console.log("hio");
   }
 
   const generateMapGrid = () => {
@@ -179,7 +184,7 @@ const WorldMap = ({setProgress}) => {
     {isLandClick &&
     <Draggable> 
       <InputCountWrap xPosition = {xPosition} yPosition = {yPosition}>
-        <span>
+        <span onDrag={onDragName}>
           국가명 : {clickCountryName}
         </span> 
         <InputCount 

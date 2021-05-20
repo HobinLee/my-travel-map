@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { IoCreateOutline } from 'react-icons/io5';
 
@@ -22,24 +22,33 @@ const InputCountWrap = styled.div`
       border: 1px solid #00acee;
       outline: none;
     }
-
-    & > span {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background-color: #00acee;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
   }
+`
 
+const PlusButton = styled.button`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: ${props => props.btnPlusDisabled ? "#eee" : "#00acee"};
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
   
+
+  &:hover {
+    cursor: ${props => props.btnPlusDisabled ? "unset" : "pointer"};
+  }
+`
+
+const MinusButton = styled(PlusButton)`
+  background-color: ${props => props.btnMinusDisabled ? "#eee" : "#00acee"};
+  color: #fff;
+
+  &:hover {
+    cursor: ${props => props.btnMinusDisabled ? "unset" : "pointer"};
+  }
 `
 
 const WriteButton = styled.button`
@@ -62,20 +71,40 @@ const WriteButton = styled.button`
 `
 
 const InputCount = ({ inputCount, setInputCount, onChangeCount, onClickButton }) => {
+  const [btnPlusDisabled, setBtnPlusDisabled] = useState(false);
+  const [btnMinusDisabled, setBtnMinusDisabled] = useState(false);
+
+  useEffect(()=> {
+    if(inputCount === 10) {
+      setBtnPlusDisabled(true);
+    } else if (inputCount === 0) {
+      setBtnMinusDisabled(true);
+    } else {
+      setBtnMinusDisabled(false);
+      setBtnPlusDisabled(false);
+    }
+
+  }, [inputCount])
+
   const onClickPlus = () => {
-    if(parseInt(inputCount) >= 10) return;
-    setInputCount(parseInt(inputCount) + 1);
+    if(parseInt(inputCount) === 10) {
+    } else { 
+      setInputCount(parseInt(inputCount) + 1);
+    }
   }
 
   const onClickMinus = () => {
-    if(parseInt(inputCount) <= 0) return;
-    setInputCount(parseInt(inputCount) - 1);
+    if(parseInt(inputCount) === 0) {
+    } else {
+      setInputCount(parseInt(inputCount) - 1);
+    }
+    
   }
 
   return (
     <InputCountWrap>
       <div>
-        <span onClick={onClickMinus}>-</span>
+        <MinusButton onClick={onClickMinus} btnMinusDisabled={btnMinusDisabled}>-</MinusButton>
         <input 
           type="number"
           value={inputCount}
@@ -84,7 +113,7 @@ const InputCount = ({ inputCount, setInputCount, onChangeCount, onClickButton })
           min="0"
           max="10"
         />
-        <span onClick={onClickPlus}>+</span>
+        <PlusButton onClick={onClickPlus} btnPlusDisabled={btnPlusDisabled}>+</PlusButton>
       </div>
       <WriteButton onClick={onClickButton}>
         <IoCreateOutline />

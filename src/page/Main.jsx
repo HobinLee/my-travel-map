@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import UtilSection from '../component/UtilSection';
-import WorldMap from '../component/WorldMap';
+import WorldMapGrid from '../component/WorldMapGrid';
+import WorldMapSVG from '../component/WorldMapSVG';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -38,7 +39,7 @@ const Main = ({setProgress}) => {
   return (
     <Wrapper>
       <MapContainer fold={fold}>
-        <WorldMap setProgress = {(p) => setProgress(p)}/>
+        <WorldMapGrid setProgress = {(p) => setProgress(p)}/>
       </MapContainer>
       <UtilSection fold={fold} onClickFold={onClickFold}/>
 

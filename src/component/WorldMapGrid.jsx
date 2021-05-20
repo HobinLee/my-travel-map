@@ -68,7 +68,7 @@ const InputCountWrap = styled.div`
   }
 `
 
-const WorldMap = ({setProgress}) => {
+const WorldMapGrid = ({setProgress}) => {
   const { darkMode } = useSelector(state => state.mode);
   const { userListObj } = useSelector(state => state.map);
   const [ mapArray, setMapArray] = useState(null);
@@ -196,4 +196,4 @@ const WorldMap = ({setProgress}) => {
   </>
 }
 
-export default WorldMap;
+export default WorldMapGrid;

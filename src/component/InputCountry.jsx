@@ -62,7 +62,7 @@ const InputCountry = () => {
       setInputCount(editCount);
       setIsClickResult(true);
     }
-  }, [isEdit])
+  }, [isEdit, editCount, editCountry])
 
 	const onChangeInput = (e) => {
     setInputData(e.target.value);
@@ -117,11 +117,6 @@ const InputCountry = () => {
   const onFocusInput = () => {
     dispatch(userFocusOn());
   }
-
-  // const onBlurInput = (e) => {
-  //   console.log(e.target);
-  //   dispatch(userFocusOff());
-  // }
 
 	return (
 		<InputCountryWrap>

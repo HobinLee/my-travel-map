@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
 
-import { userListObjUpdate, userEditOn, userEditData } from '../store/modules/map';
+import { userListObjUpdate, userEditOn, userEditData, userFocusOff } from '../store/modules/map';
 
 const ListItemWrap = styled.li`
   display: flex;
@@ -53,6 +53,7 @@ const UserListItem = ({ listItem, listIndex }) => {
 
   const onClickEdit = () => {
     setCurrentTarget(true);
+    dispatch(userFocusOff());
     dispatch(userEditOn());
     dispatch(userEditData(listItem, userListObj[listItem]));
   }

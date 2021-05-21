@@ -75,10 +75,14 @@ const InputCount = ({ inputCount, setInputCount, onChangeCount, onClickButton })
   const [btnMinusDisabled, setBtnMinusDisabled] = useState(false);
 
   useEffect(()=> {
-    if(inputCount === 10) {
+    if (inputCount === 10) {
+      console.log("asdf");
       setBtnPlusDisabled(true);
+      setBtnMinusDisabled(false);
     } else if (inputCount === 0) {
+      console.log("asdf123");
       setBtnMinusDisabled(true);
+      setBtnPlusDisabled(false);
     } else {
       setBtnMinusDisabled(false);
       setBtnPlusDisabled(false);
@@ -103,6 +107,7 @@ const InputCount = ({ inputCount, setInputCount, onChangeCount, onClickButton })
 
   return (
     <InputCountWrap>
+    {console.log(btnMinusDisabled,btnPlusDisabled)}
       <div>
         <MinusButton onClick={onClickMinus} btnMinusDisabled={btnMinusDisabled}>-</MinusButton>
         <input 

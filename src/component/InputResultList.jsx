@@ -8,13 +8,9 @@ import { filterDataUpdate } from '../store/modules/filter';
 
 const ListWrap = styled.ul`
   width: 100%;
-  max-height: 350px;
+  height: calc(100vh - 170px);
   overflow: auto;
   display: block;
-  box-shadow: 0px 3px 3px #eee;
-  position: absolute;
-  top: 30px;
-  left: 0;
   background-color: #fff;
 `
 
@@ -33,14 +29,40 @@ const InputResultList = ({ inputData="", setInputData, setIsClickResult, setInpu
       })
     })
 
-    setResultArray(Object.keys(newObj).sort((a,b)=> b-a));
-    dispatch(filterDataUpdate(Object.keys(newObj).sort((a,b)=> b-a)));
+    console.log(Object.keys(newObj).sort((a,b)=> {
+      if(a < b) {
+        return -1;
+      } else if (a > b) {
+        return 1;
+      } else {
+        return 0;
+      }
+    } ));
+
+    setResultArray(Object.keys(newObj).sort((a,b)=> {
+      if(a < b) {
+        return -1;
+      } else if (a > b) {
+        return 1;
+      } else {
+        return 0;
+      }
+    } ));
+    dispatch(filterDataUpdate(Object.keys(newObj).sort((a,b)=> {
+      if(a < b) {
+        return -1;
+      } else if (a > b) {
+        return 1;
+      } else {
+        return 0;
+      }
+    } )));
   }, [])
 
   return (
     <ListWrap>
       {resultArray.filter((item)=> {
-        return item.toLowerCase().includes(inputData.toLowerCase()) && !item.toLowerCase().includes("sea") && isFocus && inputData.length > 0
+        return item.toLowerCase().includes(inputData.toLowerCase()) && !item.toLowerCase().includes("sea")
       }).map((item, index)=> {
         return <InputResultListItem 
                   key={item + index}

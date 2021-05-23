@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import InputCountry from './InputCountry';
 import UserList from './UserList';
+import { userListObjUpdate } from '../store/modules/map';
 
 const UtilSectionWrap = styled.div`
   display: flex;
@@ -35,13 +36,19 @@ const UtilSectionWrap = styled.div`
 
 
 const UtilSection = ({ fold, onClickFold }) => {
+  const dispatch = useDispatch();
   const { darkMode } = useSelector(state => state.mode);
+
+  useEffect(()=> {
+    const localData = JSON.parse(window.localStorage.getItem("visitedObj"));
+    dispatch(userListObjUpdate(localData));
+  })
 
   return (
     <>
       <UtilSectionWrap fold={fold} darkMode={darkMode}>
         <InputCountry />
-        <UserList />
+        {/* <UserList /> */}
         <button onClick={onClickFold}>
           접기
         </button>

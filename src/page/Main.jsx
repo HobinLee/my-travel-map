@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import UtilSection from '../component/UtilSection';
 import WorldMapGrid from '../component/WorldMapGrid';
 import WorldMapSVG from '../component/WorldMapSVG';
+import HeaderCounting from '../component/HeaderCounting';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -38,6 +39,7 @@ const Main = ({setProgress}) => {
 
   return (
     <Wrapper>
+      <HeaderCounting />
       <MapContainer fold={fold}>
         <WorldMapGrid setProgress = {(p) => setProgress(p)}/>
       </MapContainer>

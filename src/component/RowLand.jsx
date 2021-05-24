@@ -8,7 +8,7 @@ const SkeletonLand = styled.div`
 
   cursor: pointer;
   position: relative;
-  opacity: ${props => (props.point) ? '1' : props.visited ? `${props.visited / 5 + 0.1}` : "0.1"};
+  opacity: ${props => (props.point) ? '1' : props.visited ? "1" : "0.1"};
 
   &: hover > div {
     display: block;
@@ -24,8 +24,8 @@ const Land = styled.div`
   justify-self: center;
   cursor: pointer;
   position: relative;
-  opacity: ${props => (props.point) ? '1' : props.visited ? `${props.visited / 5 + 0.1}` : "0.1"};
-
+  opacity: ${props => (props.point) ? '1' : props.visited ? "1" : "0.1"};
+  
   &: hover > div {
     display: block;
   }
@@ -34,7 +34,7 @@ const Land = styled.div`
 const GridLand = styled.div`
   width: 10px;
   height: 10px;
-  background-color: #3C6B40;
+  background: ${props => props.visited ? props.visited === 1 ? "orange" : "blue" : "#3C6B40"};
   border-radius: 50%;
 `
 
@@ -66,7 +66,7 @@ const RowLand = ({ address, column, visited, setCountry, point, length }) => {
   }, [])
 
   const makeLand = () => {
-    return grid.map((value, i) => <GridLand key = {value}/>);
+    return grid.map((value, i) => <GridLand visited = { visited } key = {value}/>);
   }
 
   return grid ? <Land

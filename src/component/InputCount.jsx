@@ -76,11 +76,9 @@ const InputCount = ({ inputCount, setInputCount, onChangeCount, onClickButton })
 
   useEffect(()=> {
     if (inputCount === 10) {
-      console.log("asdf");
       setBtnPlusDisabled(true);
       setBtnMinusDisabled(false);
     } else if (inputCount === 0) {
-      console.log("asdf123");
       setBtnMinusDisabled(true);
       setBtnPlusDisabled(false);
     } else {

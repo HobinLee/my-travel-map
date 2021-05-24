@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { userFocusOff } from '../store/modules/map';
+import UserCountryButtons from './UserCountryButtons';
 
 const ListWrap = styled.li`
 	padding: 15px;
@@ -27,27 +27,12 @@ const ListWrap = styled.li`
 
 
 const InputResultListItem = ({ listItem, listIndex, setInputData, setIsClickResult, setInputCount }) => {
-	const dispatch = useDispatch();
 	const { darkMode } = useSelector(state => state.mode);
-	const { userListObj } = useSelector(state => state.map);
-
-	const onClickResult = () => {
-		if(userListObj[listItem]) {
-			setInputCount(userListObj[listItem]);
-		}
-		setInputData(listItem);
-		dispatch(userFocusOff());
-		setIsClickResult(true);
-	}
 
 	return (
 		<ListWrap darkMode={darkMode}>
-      <span>{listItem}</span> 
-
-			<div>
-				<button>visit</button>
-				<button>bucket</button>
-			</div>
+      	<span>{listItem}</span> 
+			<UserCountryButtons listItem={ listItem }/>
 		</ListWrap>
 	)
 }

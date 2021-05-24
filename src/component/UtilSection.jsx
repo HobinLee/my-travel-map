@@ -17,7 +17,7 @@ const UtilSectionWrap = styled.div`
   height: 100%;
   overflow: hidden;
   transition: 0.3s;
-  z-index: 10;
+  z-index: 60;
   background-color: ${props => props.darkMode ? "#555" : "#fff"};
 
   & > button {

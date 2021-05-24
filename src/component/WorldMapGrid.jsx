@@ -9,6 +9,7 @@ import { userListObjUpdate } from '../store/modules/map';
 import { useDispatch } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
 import Draggable from 'react-draggable';
+import UserCountryButtons from './UserCountryButtons';
 
 const MapWrapper = styled.div`
   width: auto;
@@ -123,6 +124,7 @@ const WorldMapGrid = ({setProgress}) => {
   const onClickButton = () => { 
     setInputCount(0);
     setIsLandClick(false);
+    setClickCountryName(null);
 
     if(inputCount === 0) {
       if(userListObj[clickCountryName]) {
@@ -187,12 +189,13 @@ const WorldMapGrid = ({setProgress}) => {
         <span onDrag={onDragName}>
           국가명 : {clickCountryName}
         </span> 
-        <InputCount 
+        {/* <InputCount 
           inputCount = {inputCount}
           onChangeCount = {onChangeCount}
           onClickButton = {onClickButton}
           setInputCount = {setInputCount}
-        />
+        /> */}
+        <UserCountryButtons listItem = {clickCountryName} closeModal = { onClickClose }/>
         <button onClick={onClickClose}>
           <AiOutlineClose />
         </button>

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import UtilSection from '../component/UtilSection';
 import WorldMapGrid from '../component/WorldMapGrid';
 import WorldMapSVG from '../component/WorldMapSVG';
-import HeaderCounting from '../component/HeaderCounting';
+import Header from '../component/Header';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -14,7 +14,7 @@ const Wrapper = styled.div`
 `
 
 const MapContainer = styled.div`
-  width:  ${props => props.fold ? "100%" : "calc(100% - 350px)"};
+  width:  100%;
   height: 100vh;
   display: flex;
   justify-content: flex-start;
@@ -30,6 +30,12 @@ const OpenButton = styled.button`
   z-index: 5;
 `
 
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width:  ${props => props.fold ? "100%" : "calc(100% - 350px)"};
+`
+
 const Main = ({setProgress}) => {
   const [fold, setFold] = useState(false);
 
@@ -39,10 +45,13 @@ const Main = ({setProgress}) => {
 
   return (
     <Wrapper>
-      <HeaderCounting />
-      <MapContainer fold={fold}>
-        <WorldMapGrid setProgress = {(p) => setProgress(p)}/>
-      </MapContainer>
+      <ContentWrapper fold={fold}>
+        <Header />
+        <MapContainer fold={fold}>
+          <WorldMapGrid setProgress = {(p) => setProgress(p)}/>
+        </MapContainer>
+      </ContentWrapper>
+     
       <UtilSection fold={fold} onClickFold={onClickFold}/>
 
       {fold && <OpenButton onClick={onClickFold}>

@@ -12,21 +12,22 @@ import Toggle from './component/Toggle';
 const Container = styled.div`
   width: auto;
   height: 100vh;
-  background-color: ${props => props.darkMode ? `#333`:`white`};
+  background-color: var(--backgroundColor)};
 `
 
 const App = () => {
   const dispatch = useDispatch();
   const [ loadStart, startLoad ] = useState(false);
   const [ progress, setProgress ] = useState(0);
-  const { darkMode } = useSelector(state => state.mode);
+  const { colorTheme } = useSelector(state => state.mode);
   
   useEffect(() => {
     startLoad(true);
-  }, [ darkMode ])
+    window.localStorage.setItem('color-theme', (colorTheme === 'dark') ? 'dark' : 'light');
+  }, [ colorTheme ])
 
   return (
-    <Container darkMode={darkMode}>
+    <Container>
       {
         loadStart ?
         <>
@@ -45,16 +46,18 @@ const App = () => {
           {
           (progress >= 100) &&
             <Toggle
-              value = {darkMode}
-              onChangeToggle = {() => {
-                  window.localStorage.setItem("darkMode", JSON.stringify(!darkMode));
+              value = {colorTheme === 'dark'}
+              onChangeToggle = {e => {
+                  e.target.value = !e.target.value;
+                  document.documentElement.setAttribute('color-theme', colorTheme === 'dark' ? 'light' : 'dark');
+                  window.localStorage.setItem("color-theme", colorTheme === 'dark' ? 'light' : 'dark');
                   dispatch(switchScreenMode());
                 }}
             />
           }
         </>
         :
-        <Loading progress = {progress} darkMode = {darkMode}/>
+        <Loading progress = {progress}/>
       }
     </Container> 
   );

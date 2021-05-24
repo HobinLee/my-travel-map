@@ -16,11 +16,6 @@ const MapWrapper = styled.div`
   display: grid;
   grid-gap: 3px;
   grid-template-rows: repeat(80, 10px);
-  ${props => props.darkMode ?
-    'filter: brightness(2) hue-rotate(-90deg);'
-    :
-    'filter: brightness(1) hue-rotate(90deg);'
-  }
 `
 const MapDiv = styled.div`
   width: auto;
@@ -69,7 +64,6 @@ const InputCountWrap = styled.div`
 `
 
 const WorldMapGrid = ({setProgress}) => {
-  const { darkMode } = useSelector(state => state.mode);
   const { userListObj } = useSelector(state => state.map);
   const [ mapArray, setMapArray] = useState(null);
   const [ country, setCountry ] = useState(null);
@@ -86,7 +80,6 @@ const WorldMapGrid = ({setProgress}) => {
     fetch('https://my-travel-map.s3.ap-northeast-2.amazonaws.com/mapArray.json')
       .then(res => res.json())
       .then(data => {
-        setProgress(20);
         setMapArray(data);
       })
       .catch(err => console.error(err))
@@ -147,12 +140,17 @@ const WorldMapGrid = ({setProgress}) => {
   }
 
   const generateMapGrid = () => {
-    return mapArray?.map((r, i) => {
+    if(!mapArray) return <></>;
+    let start = new Date();
+    return mapArray.map((r, i) => {
       let column = 0;
       return <MapDiv key = {i}>
       {
         r.map((address, j) => {
           column += address[1];
+          let finish = new Date();
+          if(i === mapArray.length - 1 && j === r.length - 1)
+          console.log(finish.getTime() - start.getTime());
           return (address[0] === 'Sea') ?
           <MemoizedSea
               key = {i + ','+ j}
@@ -178,7 +176,7 @@ const WorldMapGrid = ({setProgress}) => {
   }
   
   return <>
-    <MapWrapper darkMode = {darkMode} onClick={onClickLand}>
+    <MapWrapper onClick={onClickLand}>
       {generateMapGrid()}
     </MapWrapper>
     {isLandClick &&
@@ -201,4 +199,4 @@ const WorldMapGrid = ({setProgress}) => {
   </>
 }
 
-export default WorldMapGrid;
+export default React.memo(WorldMapGrid, (prev, next) => (prev.point === next.point) && (prev.visited === next.visited));

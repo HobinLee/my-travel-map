@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const SkeletonLand = styled.div`
-  background-color: #3C6B40;
+  background-color: ${props => (props.point) ? 'var(--pointColor)' : props.visited ? `var(--highlightColor)` : "var(--defaultColor)"};
   grid-column-start: ${props => `${props.column + 1}`};
   grid-column-end: ${props => `${props.column + 1 + props.length}`};
 
   cursor: pointer;
   position: relative;
-  opacity: ${props => (props.point) ? '1' : props.visited ? `${props.visited / 5 + 0.1}` : "0.1"};
 
   &: hover > div {
     display: block;
@@ -24,7 +23,6 @@ const Land = styled.div`
   justify-self: center;
   cursor: pointer;
   position: relative;
-  opacity: ${props => (props.point) ? '1' : props.visited ? `${props.visited / 5 + 0.1}` : "0.1"};
 
   &: hover > div {
     display: block;
@@ -32,26 +30,10 @@ const Land = styled.div`
 `
 
 const GridLand = styled.div`
+  background-color: ${props => props.visited ? `var(--pointColor)` : (props.point) ? 'var(--highlightColor)' : "var(--defaultColor)"};
   width: 10px;
   height: 10px;
-  background-color: #3C6B40;
   border-radius: 50%;
-`
-
-const Label = styled.div`
-  display:none;
-  position: absolute;
-  bottom: 10px;
-  left: 5px;
-  color: white;
-  width: auto;
-  padding: 4px 10px;
-  height: 24px;
-  background-color: #333;
-  border-radius: 12px;
-  border: 2px solid #eee;
-  z-index: 1;
-  white-space: no-wrap;
 `
 
 const RowLand = ({ address, column, visited, setCountry, point, length }) => {
@@ -66,7 +48,7 @@ const RowLand = ({ address, column, visited, setCountry, point, length }) => {
   }, [])
 
   const makeLand = () => {
-    return grid.map((value, i) => <GridLand key = {value}/>);
+    return grid.map((value, i) => <GridLand key = {value} point={point} visited={visited}/>);
   }
 
   return grid ? <Land
@@ -86,7 +68,6 @@ const RowLand = ({ address, column, visited, setCountry, point, length }) => {
             length = {length}
             point = {point}
             visited = {visited}
-            onMouseOver = {() => !point && setCountry(address)}
           >
           </SkeletonLand>
 }

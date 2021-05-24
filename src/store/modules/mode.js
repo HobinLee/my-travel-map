@@ -1,10 +1,10 @@
 const SWITCH_MODE = 'SWITCH_MODE';
 const SET_MODE = 'SET_MODE';
 
-const initDarkMode = JSON.parse(window.localStorage.getItem("darkMode"));
+const initColorTheme = window.localStorage.getItem('color-theme');
 
 const initialState = {
-  darkMode: initDarkMode ? initDarkMode : false,
+  colorTheme: initColorTheme ? initColorTheme : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
 }
 
 export const setScreenMode = ( mode ) => ({type: SET_MODE, mode: mode});
@@ -14,11 +14,11 @@ const reducer = (state = initialState, action) => {
   switch(action.type) {
     case SET_MODE:
       return {
-        darkMode: action.mode
+        colorTheme: action.mode
       }
     case SWITCH_MODE:
       return {
-        darkMode: !state.darkMode
+        colorTheme: state.colorTheme === 'dark' ? 'light' : 'dark'
       }
     default:
       return state;

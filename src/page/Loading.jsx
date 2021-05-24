@@ -13,12 +13,12 @@ const LoadingDiv = styled.div`
   align-items: center;
 `
 const Title = styled.h1`
-  color: ${props => props.darkMode ? '#fff' : '#333'};
+  color: var(--textColor);
   font-size: 40px;
   font-weight: bolder;
 `
 const Indication = styled.div`
-  color: ${props => props.darkMode ? '#fff' : '#333'};
+  color: var(--defaultColor);
   font-size: 14px;
   text-align: center;
 `
@@ -27,12 +27,12 @@ const ProgressCircle = styled.div `
   height: 10vw;
 `
 
-export const LoadingScreen = ({ progress, darkMode }) => {
+export const LoadingScreen = ({ progress }) => {
   return <LoadingDiv>
-    <Title darkMode = {darkMode}>
+    <Title>
       세계 여행 지도
     </Title>
-    <Indication darkMode = {darkMode}>
+    <Indication>
       지도를 불러오는 중 입니다. 잠시만 기다려주세요
     </Indication>
     <ProgressCircle>

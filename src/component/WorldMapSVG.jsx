@@ -11,7 +11,6 @@ import { AiOutlineClose } from 'react-icons/ai';
 import Draggable from 'react-draggable';
 import Map from '../rsc/images/world.svg';
 
-
 const WorldMapGrid = ({setProgress}) => {
   const { darkMode } = useSelector(state => state.mode);
 

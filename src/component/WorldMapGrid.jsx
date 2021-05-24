@@ -9,6 +9,7 @@ import { userListObjUpdate } from '../store/modules/map';
 import { useDispatch } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
 import Draggable from 'react-draggable';
+import UserCountryButtons from './UserCountryButtons';
 
 const MapWrapper = styled.div`
   width: auto;
@@ -30,7 +31,9 @@ const InputCountWrap = styled.div`
   left: ${props => props.xPosition && `${props.xPosition}px`};
   z-index: 50;
   padding: 15px;
-  background-color: #fff;
+  background-color: var(--defaultColor);
+  color: var(--textColor);
+  transition: 0.3s;
   border-radius: 10px;
   box-shadow: 0px 0px 5px #000;
 
@@ -62,7 +65,20 @@ const InputCountWrap = styled.div`
     }
   }
 `
-
+const Label = styled.div`
+  display: block;
+  position: absolute;
+  bottom: 10px;
+  left: 5px;
+  color: var(--textColor);
+  background-color: var(--defaultColor);
+  width: auto;
+  height: 24px;
+  padding: 4px 10px;
+  border: 2px solid var(--textColor);
+  z-index: 1;
+  white-space: no-wrap;
+`
 const WorldMapGrid = ({setProgress}) => {
   const { userListObj } = useSelector(state => state.map);
   const [ mapArray, setMapArray] = useState(null);
@@ -116,6 +132,7 @@ const WorldMapGrid = ({setProgress}) => {
   const onClickButton = () => { 
     setInputCount(0);
     setIsLandClick(false);
+    setClickCountryName(null);
 
     if(inputCount === 0) {
       if(userListObj[clickCountryName]) {
@@ -185,17 +202,26 @@ const WorldMapGrid = ({setProgress}) => {
         <span onDrag={onDragName}>
           국가명 : {clickCountryName}
         </span> 
-        <InputCount 
+        {/* <InputCount 
           inputCount = {inputCount}
           onChangeCount = {onChangeCount}
           onClickButton = {onClickButton}
           setInputCount = {setInputCount}
-        />
+        /> */}
+        <UserCountryButtons listItem = {clickCountryName} closeModal = { onClickClose }/>
         <button onClick={onClickClose}>
           <AiOutlineClose />
         </button>
       </InputCountWrap>
     </Draggable>}
+    {
+      (country && country !== 'Sea') ?
+      <Label className='Label'>
+        {country}
+      </Label>
+      :
+      <></>
+    }
   </>
 }
 

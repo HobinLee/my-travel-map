@@ -29,8 +29,8 @@ const PlusButton = styled.button`
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: ${props => props.btnPlusDisabled ? "#eee" : "#00acee"};
-  color: #fff;
+  background-color: ${props => props.btnPlusDisabled ? 'var(--defaultColor)' : 'var(--pointColor)'};
+  color: var(--textColor);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,8 +43,8 @@ const PlusButton = styled.button`
 `
 
 const MinusButton = styled(PlusButton)`
-  background-color: ${props => props.btnMinusDisabled ? "#eee" : "#00acee"};
-  color: #fff;
+  background-color: ${props => props.btnMinusDisabled ? 'var(--defaultColor)' : 'var(--pointColor)'};
+  color: var(--textColor);
 
   &:hover {
     cursor: ${props => props.btnMinusDisabled ? "unset" : "pointer"};
@@ -76,11 +76,9 @@ const InputCount = ({ inputCount, setInputCount, onChangeCount, onClickButton })
 
   useEffect(()=> {
     if (inputCount === 10) {
-      console.log("asdf");
       setBtnPlusDisabled(true);
       setBtnMinusDisabled(false);
     } else if (inputCount === 0) {
-      console.log("asdf123");
       setBtnMinusDisabled(true);
       setBtnPlusDisabled(false);
     } else {

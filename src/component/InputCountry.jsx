@@ -20,8 +20,10 @@ const UserInputWrap = styled.div`
     width: 100%;
     height: 30px;
     padding: 5px;
-    border: 1px solid #00acee;
+    border: 1px solid var(--defaultColor);
     outline: none;
+    background-color: var(--defaultColor);
+    color: var(--textColor);
   }
 `
 
@@ -51,7 +53,6 @@ const InputCountry = () => {
 	const dispatch = useDispatch();
 	const { userListObj, isEdit, editCountry, editCount } = useSelector(state => state.map);
   const { filterData } = useSelector(state => state.filter);
-  // const { darkMode } = useSelector(state => state.mode);
   const [inputData, setInputData] = useState("");
   const [inputCount, setInputCount] = useState(0);
   const [isClickResult, setIsClickResult] = useState(false);

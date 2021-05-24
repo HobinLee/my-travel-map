@@ -4,6 +4,11 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const LoadingDiv = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  background-color: var(--backgroundColor);
   width: 100vw;
   height: 100vh;
   display: flex;

@@ -11,7 +11,7 @@ const ListWrap = styled.ul`
   height: calc(100vh - 170px);
   overflow: auto;
   display: block;
-  background-color: #fff;
+  background-color: var(--backgroundColor);
 `
 
 const InputResultList = ({ inputData="", setInputData, setIsClickResult, setInputCount }) => {

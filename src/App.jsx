@@ -12,7 +12,8 @@ import Toggle from './component/Toggle';
 const Container = styled.div`
   width: auto;
   height: 100vh;
-  background-color: var(--backgroundColor)};
+  background-color: var(--backgroundColor);
+  transition: 0.3s;
 `
 
 const App = () => {
@@ -22,8 +23,9 @@ const App = () => {
   const { colorTheme } = useSelector(state => state.mode);
   
   useEffect(() => {
+    console.log('theme: ', colorTheme);
+    document.documentElement.setAttribute('color-theme', colorTheme);
     startLoad(true);
-    window.localStorage.setItem('color-theme', (colorTheme === 'dark') ? 'dark' : 'light');
   }, [ colorTheme ])
 
   return (

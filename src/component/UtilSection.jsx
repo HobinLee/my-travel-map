@@ -17,8 +17,8 @@ const UtilSectionWrap = styled.div`
   height: 100%;
   overflow: hidden;
   transition: 0.3s;
-  z-index: 10;
-  background-color: ${props => props.darkMode ? "#555" : "#fff"};
+  z-index: 60;
+  background-color: var(--backgroundColor);
 
   & > button {
     position: absolute;
@@ -37,7 +37,6 @@ const UtilSectionWrap = styled.div`
 
 const UtilSection = ({ fold, onClickFold }) => {
   const dispatch = useDispatch();
-  const { darkMode } = useSelector(state => state.mode);
 
   useEffect(()=> {
     const localData = JSON.parse(window.localStorage.getItem("visitedObj"));
@@ -46,7 +45,7 @@ const UtilSection = ({ fold, onClickFold }) => {
 
   return (
     <>
-      <UtilSectionWrap fold={fold} darkMode={darkMode}>
+      <UtilSectionWrap fold={fold}>
         <InputCountry />
         {/* <UserList /> */}
         <button onClick={onClickFold}>

@@ -12,7 +12,7 @@ const ListItemWrap = styled.li`
   padding: 5px;
   margin-bottom: 5px;
   border: ${props => props.currentTarget ? "1px solid red" : "1px solid #eee"};
-  color: ${props => props.darkMode && "#fff"};
+  color: var(--textColor);
 
   & > button {
     width: 20px;
@@ -34,7 +34,6 @@ const ListItemWrap = styled.li`
 const UserListItem = ({ listItem, listIndex }) => {
   const dispatch = useDispatch();
   const { userListObj, isEdit } = useSelector(state => state.map);
-  const { darkMode } = useSelector(state => state.mode);
   const [currentTarget, setCurrentTarget] = useState(false);
 
   useEffect(()=> {
@@ -59,7 +58,7 @@ const UserListItem = ({ listItem, listIndex }) => {
   }
 
   return (
-    <ListItemWrap darkMode={darkMode} currentTarget={currentTarget}>
+    <ListItemWrap currentTarget={currentTarget}>
       <div>
         <div>
           <span>여행한 나라 : </span>

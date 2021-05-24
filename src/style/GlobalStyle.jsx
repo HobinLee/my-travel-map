@@ -50,6 +50,10 @@ const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar-thumb:hover {
         background: var(--pointColor);
     }
+
+    ::placeholder{
+        color: var(--pointColor);
+    }
 `
 
 export default GlobalStyle;

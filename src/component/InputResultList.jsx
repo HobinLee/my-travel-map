@@ -8,10 +8,11 @@ import { filterDataUpdate } from '../store/modules/filter';
 
 const ListWrap = styled.ul`
   width: 100%;
-  height: calc(100vh - 170px);
+  height: calc(100vh - 120px);
   overflow: auto;
   display: block;
   background-color: var(--backgroundColor);
+  transition: 0.3s;
 `
 
 const InputResultList = ({ inputData="", setInputData, setIsClickResult, setInputCount }) => {
@@ -28,16 +29,6 @@ const InputResultList = ({ inputData="", setInputData, setIsClickResult, setInpu
         return newObj[city] =  newObj[city] ? (newObj[city] || 0) + 1 : 1
       })
     })
-
-    console.log(Object.keys(newObj).sort((a,b)=> {
-      if(a < b) {
-        return -1;
-      } else if (a > b) {
-        return 1;
-      } else {
-        return 0;
-      }
-    } ));
 
     setResultArray(Object.keys(newObj).sort((a,b)=> {
       if(a < b) {

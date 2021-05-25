@@ -9,6 +9,9 @@ const GlobalStyle = createGlobalStyle`
         --pointColor: #666396;
         --defaultColor: #e4e4ed;
         --highlightColor: #babad4;
+        --visitColor: orange;
+        --bucketColor: skyblue;
+        --modalColor: #babad4;
     }
     
     :root[color-theme='dark'] {
@@ -17,6 +20,9 @@ const GlobalStyle = createGlobalStyle`
         --pointColor: #d9b58f;
         --defaultColor: #695e56;
         --highlightColor: #a8a19d;
+        --visitColor: orange;
+        --bucketColor: skyblue;
+        --modalColor: #555;
     }
 
     * {
@@ -54,6 +60,11 @@ const GlobalStyle = createGlobalStyle`
     ::placeholder{
         color: var(--pointColor);
     }
+
+    li, span {
+        font-family: 'Roboto Slab', serif;
+    }
+    
 `
 
 export default GlobalStyle;

@@ -105,7 +105,6 @@ const InputCount = ({ inputCount, setInputCount, onChangeCount, onClickButton })
 
   return (
     <InputCountWrap>
-    {console.log(btnMinusDisabled,btnPlusDisabled)}
       <div>
         <MinusButton onClick={onClickMinus} btnMinusDisabled={btnMinusDisabled}>-</MinusButton>
         <input 

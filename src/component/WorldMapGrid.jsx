@@ -31,14 +31,13 @@ const InputCountWrap = styled.div`
   left: ${props => props.xPosition && `${props.xPosition}px`};
   z-index: 50;
   padding: 15px;
-  background-color: var(--defaultColor);
+  background-color: var(--modalColor);
   color: var(--textColor);
-  transition: 0.3s;
   border-radius: 10px;
-  box-shadow: 0px 0px 5px #000;
 
   & > span {
     width: 100%;
+    height: 30px;
     display: block;
     margin-bottom: 10px;
     max-width: 190px;
@@ -79,6 +78,13 @@ const Label = styled.div`
   z-index: 1;
   white-space: no-wrap;
 `
+
+const ButtonWrap = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+
 const WorldMapGrid = ({setProgress}) => {
   const { userListObj } = useSelector(state => state.map);
   const [ mapArray, setMapArray] = useState(null);
@@ -200,7 +206,7 @@ const WorldMapGrid = ({setProgress}) => {
     <Draggable> 
       <InputCountWrap xPosition = {xPosition} yPosition = {yPosition}>
         <span onDrag={onDragName}>
-          국가명 : {clickCountryName}
+          {clickCountryName}
         </span> 
         {/* <InputCount 
           inputCount = {inputCount}
@@ -208,7 +214,10 @@ const WorldMapGrid = ({setProgress}) => {
           onClickButton = {onClickButton}
           setInputCount = {setInputCount}
         /> */}
-        <UserCountryButtons listItem = {clickCountryName} closeModal = { onClickClose }/>
+        <ButtonWrap>
+          <UserCountryButtons listItem = {clickCountryName} closeModal = { onClickClose }/>
+        </ButtonWrap>
+      
         <button onClick={onClickClose}>
           <AiOutlineClose />
         </button>

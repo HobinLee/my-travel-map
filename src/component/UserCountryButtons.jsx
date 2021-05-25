@@ -1,7 +1,43 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
+import { RiFlag2Fill } from 'react-icons/ri';
+import { FaStar } from 'react-icons/fa';
 
 import { userListObjUpdate } from '../store/modules/map';
+
+
+const ButtonWrap = styled.div`
+	display: flex;
+
+`
+
+const Button = styled.button`
+	background-color: unset;
+	border: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	transition: 0.2s;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&:active {
+		transform: scale(1.3);
+	}
+`
+
+const VisitedIcon = styled(RiFlag2Fill)`
+	color: ${props => props.isactive === 1 ? "var(--visitColor)" : "#eee"};
+`
+
+const BucketIcon = styled(FaStar)`
+	color: ${props => props.isactive === 2 ? "var(--bucketColor)" : "#eee"};
+`
+
 
 const UserCountryButtons = ({ listItem, closeModal = null }) => {
   const dispatch = useDispatch();
@@ -49,14 +85,14 @@ const UserCountryButtons = ({ listItem, closeModal = null }) => {
   
 
   return (
-    <div>
-      <button onClick={onClickVisit}>
-        {userListObj[listItem] === 1 ? "온" : "오프"}
-      </button>
-      <button onClick={onClickBucket}>
-        {userListObj[listItem] === 2 ? "온" : "오프"}
-      </button>
-    </div>
+    <ButtonWrap>
+      <Button onClick={onClickVisit}>
+        {userListObj[listItem] === 1 ? <VisitedIcon isactive={userListObj[listItem]} /> : <VisitedIcon isactive={userListObj[listItem]}/>}
+      </Button>
+      <Button onClick={onClickBucket}>
+        {userListObj[listItem] === 2 ? <BucketIcon isactive={userListObj[listItem]}/> : <BucketIcon isactive={userListObj[listItem]}/>}
+      </Button>
+    </ButtonWrap>
   )
 }
 

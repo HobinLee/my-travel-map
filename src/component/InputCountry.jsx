@@ -19,6 +19,7 @@ const UserInputWrap = styled.div`
   & > input {
     width: 100%;
     height: 30px;
+    margin-bottom: 10px;
     padding: 5px;
     border: 1px solid var(--defaultColor);
     outline: none;

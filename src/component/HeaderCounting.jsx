@@ -5,16 +5,15 @@ import { useSelector } from 'react-redux';
 import { IoCloudyNight } from 'react-icons/io5';
 
 const CountingWrap = styled.div`
-  width: 200px;
-  height: 80px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-
+  width: 100%;
 
   & > div {
     display: flex;
     flex-direction: column;
+    width: 100px;
 
     &:hover {
       cursor: pointer;

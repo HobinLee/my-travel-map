@@ -5,11 +5,14 @@ import HeaderCounting from './HeaderCounting';
 const HeaderWrap = styled.header`
   width: 100%;
   height: 150px;
+  padding: 15px;
   background-color: var(--backgroundColor);
   color: var(--textColor);
-  border-bottom: 1px solid var(--highlightColor);
-  border-right: 1px solid var(--highlightColor);
+  box-shadow: 0 1px 5px var(--highlightColor);
   transition: 0.3s;
+  display: flex;
+  justify-contet: center;
+  align-items: flex-end;
 `
 
 

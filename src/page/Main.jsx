@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { BsBoxArrowInLeft } from 'react-icons/bs';
 
 import UtilSection from '../component/UtilSection';
 import WorldMapGrid from '../component/WorldMapGrid';
 import WorldMapSVG from '../component/WorldMapSVG';
 import Header from '../component/Header';
+
+const foldMove = keyframes`
+  0% {
+    right: 20px;
+  }
+
+  100% {
+    right: 40px;
+  }
+`
 
 const Wrapper = styled.div`
   width: 100%;
@@ -20,20 +31,35 @@ const MapContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   overflow: auto;
-  transition: 0.3s;
 `
 
 const OpenButton = styled.button`
   position: fixed;
-  top: 5px;
+  top: 15px;
   right: 20px;
   z-index: 5;
+  font-size: 25px;
+  background: unset;
+  border: none;
+  color: var(--textColor);
+
+
+  &:hover {
+    cursor: pointer;
+    animation: ${foldMove} 0.6s infinite alternate;
+  }
+
+  &:active {
+    color: #eee;
+  }
+ 
 `
 
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width:  ${props => props.fold ? "100%" : "calc(100% - 350px)"};
+  transition: 0.3s;
 `
 
 const Main = ({setProgress}) => {
@@ -55,7 +81,7 @@ const Main = ({setProgress}) => {
       <UtilSection fold={fold} onClickFold={onClickFold}/>
 
       {fold && <OpenButton onClick={onClickFold}>
-        펼치기
+        <BsBoxArrowInLeft />
       </OpenButton>}
     </Wrapper>
   )

@@ -1,10 +1,22 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+import { BsBoxArrowInRight } from 'react-icons/bs';
 
 import InputCountry from './InputCountry';
 import UserList from './UserList';
 import { userListObjUpdate } from '../store/modules/map';
+
+const foldMove = keyframes`
+  0% {
+    left: 10px;
+  }
+
+  100% {
+    left: 30px;
+  }
+`
+
 
 const UtilSectionWrap = styled.div`
   display: flex;
@@ -24,6 +36,19 @@ const UtilSectionWrap = styled.div`
     position: absolute;
     left: 10px;
     bottom: 10px;
+    background: unset;
+    border: none;
+    font-size: 25px;
+    color: var(--textColor);
+
+    &:hover {
+      cursor: pointer;
+      animation: ${foldMove} 0.6s infinite alternate;
+    }
+
+    &:active {
+      color: #777;
+    }
   }
 
   @media screen and (max-width: 780px) {
@@ -49,7 +74,7 @@ const UtilSection = ({ fold, onClickFold }) => {
         <InputCountry />
         {/* <UserList /> */}
         <button onClick={onClickFold}>
-          접기
+          <BsBoxArrowInRight />
         </button>
       </UtilSectionWrap>
     </>

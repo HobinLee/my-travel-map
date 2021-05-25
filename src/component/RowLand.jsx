@@ -30,12 +30,13 @@ const Land = styled.div`
 `
 
 const GridLand = styled.div`
-  background-color: ${props => props.visited ? `var(--pointColor)` : (props.point) ? 'var(--highlightColor)' : "var(--defaultColor)"};
+  background-color: ${props => props.visited ? props.visited === 1 ? "orange" : "skyblue" : (props.point) ? 'var(--highlightColor)' : "var(--defaultColor)"};
   width: 10px;
   height: 10px;
   border-radius: 50%;
 `
-//background: ${props => props.visited ? props.visited === 1 ? "orange" : "blue" : "#3C6B40"};
+//background-color: ${props => props.visited ? `var(--pointColor)` : (props.point) ? 'var(--highlightColor)' : "var(--defaultColor)"};
+//background: ${props => props.visited ? props.visited === 1 ? "orange" : "skyblue" : "var(--defaultColor)"};
 
 const RowLand = ({ address, column, visited, setCountry, point, length }) => {
   const [grid, setGrid] = useState(null);

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-
 import { useSelector } from 'react-redux';
 import { IoCloudyNight } from 'react-icons/io5';
+import { RiFlag2Fill } from 'react-icons/ri';
+import { FaStar } from 'react-icons/fa';
 
 const CountingWrap = styled.div`
   display: flex;
@@ -33,15 +34,36 @@ const VisitCountingListWrap = styled.div`
   opacity: ${props => props.visitVisible ? "1" : "0"};
   transition: 0.5s;
   height: 100vh;
-  background-color: var(--pointColor);
+  background-color: var(--visitColor);
+  color: var(--fontColor);
   transition: 0.3s;
   z-index: 50;
+  font-size: 35px;
+  padding: 2%;
+  overflow: auto;
+
+  & > ul > li {
+    margin-bottom: 15px;
+  }
 `
 
 const BucketCountingListWrap = styled(VisitCountingListWrap)`
   width: ${props => props.bucketVisible ? "100%" : "0"};
   opacity: ${props => props.bucketVisible ? "1" : "0"};
+  background-color: var(--bucketColor);
   transition: 0.5s;
+`
+
+const VisitIcon = styled(RiFlag2Fill)`
+  font-size: 25px;
+  color: orange;
+  margin-bottom: 10px;
+`
+
+const BucketIcon = styled(FaStar)`
+  font-size: 25px;
+  color: skyblue;
+  margin-bottom: 10px;
 `
 
 const HeaderCounting = () => {
@@ -76,12 +98,14 @@ const HeaderCounting = () => {
     <>
       <CountingWrap>
         <div onClick={onClickVisited}>
+          <span><VisitIcon /></span>
           <span>visited</span>
           <span>{visitedCount}</span>
         </div>
 
-        <div>
-          <span onClick={onClickBucket}>bucket</span>
+        <div onClick={onClickBucket}>
+          <span><BucketIcon /></span>
+          <span>bucket</span>
           <span>{bucketCount}</span>
         </div>
       </CountingWrap>

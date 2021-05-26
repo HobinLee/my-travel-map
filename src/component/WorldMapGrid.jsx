@@ -7,7 +7,7 @@ import InputCount from './InputCount';
 
 import { userListObjUpdate } from '../store/modules/map';
 import { useDispatch } from 'react-redux';
-import { AiOutlineClose } from 'react-icons/ai';
+import { IoMdClose } from 'react-icons/io';
 import Draggable from 'react-draggable';
 import UserCountryButtons from './UserCountryButtons';
 
@@ -82,6 +82,20 @@ const Label = styled.div`
 const ButtonWrap = styled.div`
   display: flex;
   justify-content: center;
+
+  &  div > button > div > svg {
+    font-size: 35px;
+    margin: 10px;
+  }
+
+  &  div > button > div > span {
+    color: var(--textColor);
+  }
+`
+
+const CloseButton = styled(IoMdClose)`
+  font-size: 20px;
+  color: var(--textColor);
 `
 
 
@@ -215,11 +229,11 @@ const WorldMapGrid = ({setProgress}) => {
           setInputCount = {setInputCount}
         /> */}
         <ButtonWrap>
-          <UserCountryButtons listItem = {clickCountryName} closeModal = { onClickClose }/>
+          <UserCountryButtons listItem = {clickCountryName} closeModal = { onClickClose } isModal = {true}/>
         </ButtonWrap>
       
         <button onClick={onClickClose}>
-          <AiOutlineClose />
+          <CloseButton />
         </button>
       </InputCountWrap>
     </Draggable>}

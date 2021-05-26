@@ -19,13 +19,13 @@ const Button = styled.button`
 	justify-content: center;
 	align-items: center;
 	font-size: 20px;
-	transition: 0.2s;
-
+	
 	&:hover {
 		cursor: pointer;
 	}
 
-	&:active {
+	&:active > div > svg {
+		transition: 0.2s;
 		transform: scale(1.3);
 	}
 `
@@ -39,7 +39,7 @@ const BucketIcon = styled(FaStar)`
 `
 
 
-const UserCountryButtons = ({ listItem, closeModal = null }) => {
+const UserCountryButtons = ({ listItem, closeModal = null, isModal = false }) => {
   const dispatch = useDispatch();
   const { userListObj } = useSelector(state => state.map);
   
@@ -87,10 +87,16 @@ const UserCountryButtons = ({ listItem, closeModal = null }) => {
   return (
     <ButtonWrap>
       <Button onClick={onClickVisit}>
-        {userListObj[listItem] === 1 ? <VisitedIcon isactive={userListObj[listItem]} /> : <VisitedIcon isactive={userListObj[listItem]}/>}
+				<div>
+					{userListObj[listItem] === 1 ? <VisitedIcon isactive={userListObj[listItem]} title="Visited"/> : <VisitedIcon isactive={userListObj[listItem]} title="Visited"/>}
+					{isModal && <span>Visited</span>}
+				</div>
       </Button>
       <Button onClick={onClickBucket}>
-        {userListObj[listItem] === 2 ? <BucketIcon isactive={userListObj[listItem]}/> : <BucketIcon isactive={userListObj[listItem]}/>}
+				<div>
+					{userListObj[listItem] === 2 ? <BucketIcon isactive={userListObj[listItem]} title="Bucket"/> : <BucketIcon isactive={userListObj[listItem]} title="Bucket"/>}
+					{isModal && <span>Bucket</span>}
+				</div>
       </Button>
     </ButtonWrap>
   )

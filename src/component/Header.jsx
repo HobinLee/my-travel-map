@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import HeaderCounting from './HeaderCounting';
+import { GiEarthAmerica } from 'react-icons/gi';
 
 const HeaderWrap = styled.header`
   width: 100%;
@@ -18,16 +19,28 @@ const HeaderWrap = styled.header`
 
 const HeaderLogo = styled.div`
   width: 100%;
-  font-family: 'Squada One', cursive;
-  font-size: 35px;
-  color: var(--textColor); 
+  display: flex;
+  align-items: center;
+
+  & > h1 {
+    font-family: 'Squada One', cursive;
+    font-size: 35px;
+    color: var(--textColor); 
+  }
+ 
+  & > span > svg {
+    font-size: 35px;
+    margin-right: 10px;
+    color: var(--textColor);
+  }
 `
 
 const Header = () => {
   return (
     <HeaderWrap>
       <HeaderLogo>
-        MY TRAVEL MAP
+        <span><GiEarthAmerica /></span>
+        <h1>MY TRAVEL MAP</h1> 
       </HeaderLogo>
       <HeaderCounting />
     </HeaderWrap>

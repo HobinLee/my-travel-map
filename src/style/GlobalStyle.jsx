@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
         --highlightColor: #babad4;
         --visitColor: orange;
         --bucketColor: skyblue;
-        --modalColor: #babad4;
+        --modalColor: #d4d4d4;
     }
     
     :root[color-theme='dark'] {

@@ -35,6 +35,10 @@ const InputCountWrap = styled.div`
   color: var(--textColor);
   border-radius: 10px;
 
+  &: active {
+    cursor: move;
+  }
+
   & > span {
     width: 100%;
     height: 30px;

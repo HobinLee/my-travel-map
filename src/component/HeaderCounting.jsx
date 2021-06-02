@@ -36,7 +36,7 @@ const VisitCountingListWrap = styled.div`
   background-color: var(--visitColor);
   color: var(--fontColor);
   transition: 0.3s;
-  z-index: 50;
+  z-index: 55;
   font-size: 35px;
   padding: 2%;
   overflow: auto;

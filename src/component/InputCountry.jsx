@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import { AiOutlineClose } from 'react-icons/ai';
+import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
-import { userListObjUpdate, userFocusOn, userFocusOff, userEditOff } from '../store/modules/map';
 import InputResultList from './InputResultList';
-import InputCount from './InputCount';
 
 const InputCountryWrap = styled.div`
   width: 100%;
@@ -28,96 +25,20 @@ const UserInputWrap = styled.div`
   }
 `
 
-const UserCountWrap = styled.div`
-  width: 100%;
-  display: ${props => props.isVisible === "on" ? "flex" : "none"};
-  align-items: center;
-  margin-top: 10px;
-`
-
-const CloseButton = styled.button`
-  position: absolute;
-  top: 50%;
-  right: 5px;
-  transform: translateY(-50%);
-  background: unset;
-  border: none;
-  display: flex;
-  align-items: center;
-
-  &:hover {
-    cursor: pointer;
-  }
-`
-
 const InputCountry = () => {
-	const dispatch = useDispatch();
-	const { userListObj, isEdit, editCountry, editCount } = useSelector(state => state.map);
-  const { filterData } = useSelector(state => state.filter);
+	const { isEdit, editCountry, editCount } = useSelector(state => state.map);
   const [inputData, setInputData] = useState("");
-  const [inputCount, setInputCount] = useState(0);
   const [isClickResult, setIsClickResult] = useState(false);
 
   useEffect(()=> {
     if(isEdit) {
       setInputData(editCountry);
-      setInputCount(editCount);
       setIsClickResult(true);
     }
   }, [isEdit, editCount, editCountry])
 
 	const onChangeInput = (e) => {
     setInputData(e.target.value);
-  }
-  
-  const onChangeCount = (e) => {
-    setInputCount(e.target.value);
-  }
-
-  const onClickCloseButton = () => {
-    setInputData("");
-    setInputCount(0);
-    setIsClickResult(false);
-    isEdit && dispatch(userEditOff());
-  }
-
-	const onClickButton = () => {
-		if(inputData?.length === 0) {
-			alert("1글자이상 입력해주세요");
-			return;
-		}
-
-    if(!filterData.includes(inputData)) {
-      alert("해당하는 나라가 없습니다.");
-      return;
-    }
-
-    setInputData("");
-    setInputCount(0);
-    setIsClickResult(false);
-    isEdit && dispatch(userEditOff());
-
-    if(inputCount === 0) {
-      if(userListObj[inputData]) {
-        delete userListObj[inputData];
-      } else {
-        return;
-      }
-    } else {
-      if (userListObj[inputData]) userListObj[inputData] = parseInt(inputCount);
-      else userListObj[inputData] = parseInt(inputCount);
-    }
-
-    window.localStorage.setItem("visitedObj", JSON.stringify({
-      ...userListObj
-    }));
-
-    dispatch(userListObjUpdate({...userListObj}));
-  }
-   
-  
-  const onFocusInput = () => {
-    dispatch(userFocusOn());
   }
 
 	return (
@@ -127,33 +48,12 @@ const InputCountry = () => {
           type="text" 
           value={inputData} 
           onChange={onChangeInput}
-          onFocus={onFocusInput}
           placeholder="국가명을 입력해주세요."
           disabled={isClickResult && true}
-          // onBlur={onBlurInput}
         />
-        {isClickResult && 
-          <CloseButton onClick={onClickCloseButton}>
-            <AiOutlineClose />
-          </CloseButton>
-        }
 
-        <InputResultList 
-          inputData={inputData}
-          setInputData={setInputData} 
-          setIsClickResult={setIsClickResult} 
-          setInputCount={setInputCount}
-        />
-      </UserInputWrap>
-      
-      <UserCountWrap isVisible={isClickResult ? "on" : "off"}>
-        <InputCount 
-          inputCount={inputCount}
-          onChangeCount={onChangeCount}
-          onClickButton={onClickButton}
-          setInputCount={setInputCount}
-        />
-      </UserCountWrap>			
+        <InputResultList inputData={inputData} />
+      </UserInputWrap>			
 		</InputCountryWrap>
 	)
 }

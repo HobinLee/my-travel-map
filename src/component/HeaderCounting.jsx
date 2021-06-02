@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { IoCloudyNight } from 'react-icons/io5';
 import { RiFlag2Fill } from 'react-icons/ri';
 import { FaStar } from 'react-icons/fa';
 

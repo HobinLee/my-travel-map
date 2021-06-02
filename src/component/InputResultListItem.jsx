@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 
 import UserCountryButtons from './UserCountryButtons';
 
@@ -25,8 +24,7 @@ const ListWrap = styled.li`
 	}
 `
 
-
-const InputResultListItem = ({ listItem, listIndex, setInputData, setIsClickResult, setInputCount }) => {
+const InputResultListItem = ({ listItem }) => {
 	return (
 		<ListWrap>
       	<span>{listItem}</span> 

@@ -35,8 +35,6 @@ const GridLand = styled.div`
   height: 10px;
   border-radius: 50%;
 `
-//background-color: ${props => props.visited ? `var(--pointColor)` : (props.point) ? 'var(--highlightColor)' : "var(--defaultColor)"};
-//background: ${props => props.visited ? props.visited === 1 ? "orange" : "skyblue" : "var(--defaultColor)"};
 
 const RowLand = ({ address, column, visited, setCountry, point, length }) => {
   const [grid, setGrid] = useState(null);

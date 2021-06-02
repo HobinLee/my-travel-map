@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import worldList from './map.json';
 import InputResultListItem from './InputResultListItem';
@@ -15,9 +15,8 @@ const ListWrap = styled.ul`
   transition: 0.3s;
 `
 
-const InputResultList = ({ inputData="", setInputData, setIsClickResult, setInputCount }) => {
+const InputResultList = ({ inputData }) => {
   const dispatch = useDispatch();
-  const { isFocus } = useSelector(state => state.map);
   const [resultArray, setResultArray] = useState([]);
 
   useEffect(() => {
@@ -58,10 +57,6 @@ const InputResultList = ({ inputData="", setInputData, setIsClickResult, setInpu
         return <InputResultListItem 
                   key={item + index}
                   listItem={item} 
-                  listIndex={index} 
-                  setInputData={setInputData}
-                  setIsClickResult={setIsClickResult}
-                  setInputCount={setInputCount}
               />
       })}
     </ListWrap>

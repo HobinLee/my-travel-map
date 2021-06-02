@@ -9,7 +9,6 @@ import { userListObjUpdate } from '../store/modules/map';
 
 const ButtonWrap = styled.div`
 	display: flex;
-
 `
 
 const Button = styled.button`

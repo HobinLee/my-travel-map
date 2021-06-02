@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { BsBoxArrowInRight } from 'react-icons/bs';
 
 import InputCountry from './InputCountry';
-import UserList from './UserList';
 import { userListObjUpdate } from '../store/modules/map';
 
 const foldMove = keyframes`
@@ -16,7 +15,6 @@ const foldMove = keyframes`
     left: 30px;
   }
 `
-
 
 const UtilSectionWrap = styled.div`
   display: flex;
@@ -72,7 +70,6 @@ const UtilSection = ({ fold, onClickFold }) => {
     <>
       <UtilSectionWrap fold={fold}>
         <InputCountry />
-        {/* <UserList /> */}
         <button onClick={onClickFold}>
           <BsBoxArrowInRight />
         </button>

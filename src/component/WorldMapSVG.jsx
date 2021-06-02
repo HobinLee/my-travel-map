@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import RowLand from './RowLand';
 import { MemoizedSea } from './RowSea';
 import { useSelector } from 'react-redux';
-import InputCount from './InputCount';
 
 import { userListObjUpdate } from '../store/modules/map';
 import { useDispatch } from 'react-redux';

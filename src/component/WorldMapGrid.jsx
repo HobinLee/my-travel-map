@@ -3,10 +3,6 @@ import styled from 'styled-components';
 import RowLand from './RowLand';
 import { MemoizedSea } from './RowSea';
 import { useSelector } from 'react-redux';
-import InputCount from './InputCount';
-
-import { userListObjUpdate } from '../store/modules/map';
-import { useDispatch } from 'react-redux';
 import { IoMdClose } from 'react-icons/io';
 import Draggable from 'react-draggable';
 import UserCountryButtons from './UserCountryButtons';
@@ -107,11 +103,7 @@ const WorldMapGrid = ({setProgress}) => {
   const { userListObj } = useSelector(state => state.map);
   const [ mapArray, setMapArray] = useState(null);
   const [ country, setCountry ] = useState(null);
-
-  const dispatch = useDispatch();
-
   const [ isLandClick, setIsLandClick ] = useState(false);
-  const [ inputCount, setInputCount ] = useState(0);
   const [ clickCountryName, setClickCountryName ] = useState("");
   const [ xPosition, setXPosition ] = useState(0);
   const [ yPosition, setYPosition ] = useState(0);
@@ -137,49 +129,17 @@ const WorldMapGrid = ({setProgress}) => {
       setClickCountryName(country);
       setXPosition(e.clientX);
       setYPosition(e.clientY);
-      userListObj[country] ? setInputCount(userListObj[country]) : setInputCount(0);
     } else {
       setClickCountryName(null); 
       setIsLandClick(false);
     }
   }
 
-  const onChangeCount = (e) => {
-    setInputCount(e.target.value);
-  }
-
   const onClickClose = () => {
     setIsLandClick(false);
     setClickCountryName(null);
   }
-
-  const onClickButton = () => { 
-    setInputCount(0);
-    setIsLandClick(false);
-    setClickCountryName(null);
-
-    if(inputCount === 0) {
-      if(userListObj[clickCountryName]) {
-        delete userListObj[clickCountryName];
-      } else {
-        return;
-      }
-    } else {
-      if (userListObj[clickCountryName]) userListObj[clickCountryName] = parseInt(inputCount);
-      else userListObj[clickCountryName] = parseInt(inputCount);
-    }
-
-    window.localStorage.setItem("visitedObj", JSON.stringify({
-      ...userListObj
-    }));
-
-    dispatch(userListObjUpdate({...userListObj}));
-  }
-
-  const onDragName = () => {
-    console.log("hio");
-  }
-
+ 
   const generateMapGrid = () => {
     if(!mapArray) return <></>;
     let start = new Date();
@@ -223,15 +183,9 @@ const WorldMapGrid = ({setProgress}) => {
     {isLandClick &&
     <Draggable> 
       <InputCountWrap xPosition = {xPosition} yPosition = {yPosition}>
-        <span onDrag={onDragName}>
+        <span>
           {clickCountryName}
         </span> 
-        {/* <InputCount 
-          inputCount = {inputCount}
-          onChangeCount = {onChangeCount}
-          onClickButton = {onClickButton}
-          setInputCount = {setInputCount}
-        /> */}
         <ButtonWrap>
           <UserCountryButtons listItem = {clickCountryName} closeModal = { onClickClose } isModal = {true}/>
         </ButtonWrap>

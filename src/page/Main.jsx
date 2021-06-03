@@ -5,6 +5,7 @@ import { BsBoxArrowInLeft } from 'react-icons/bs';
 import UtilSection from '../component/UtilSection';
 import WorldMapGrid from '../component/WorldMapGrid';
 import WorldMapSVG from '../component/WorldMapSVG';
+import Label from '../component/Label';
 import Header from '../component/Header';
 
 const foldMove = keyframes`
@@ -83,6 +84,7 @@ const Main = ({setProgress}) => {
       {fold && <OpenButton onClick={onClickFold}>
         <BsBoxArrowInLeft />
       </OpenButton>}
+      <Label/>
     </Wrapper>
   )
 }

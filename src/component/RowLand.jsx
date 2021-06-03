@@ -30,7 +30,7 @@ const Land = styled.div`
 `
 
 const GridLand = styled.div`
-  background-color: ${props => props.visited ? props.visited === 1 ? "orange" : "skyblue" : (props.point) ? 'var(--highlightColor)' : "var(--defaultColor)"};
+  background-color: ${props => (props.point) ? 'var(--pointColor)' : props.visited ? props.visited === 1 ? "orange" : "skyblue" : (props.point) ? 'var(--highlightColor)' : "var(--defaultColor)"};
   width: 10px;
   height: 10px;
   border-radius: 50%;

@@ -4,6 +4,7 @@ const USER_FOCUS_OFF = 'USER_FOCUS_OFF';
 const USER_EDIT_ON = 'USER_EDIT_ON';
 const USER_EDIT_OFF = 'USER_EDIT_OFF';
 const USER_EDIT_SET_DATA = 'USER_EDIT_SET_DATA';
+const HOVER_COUNTRY = 'HOVER_COUNTRY';
 
 const initialState = {
   userListObj: {},
@@ -11,9 +12,11 @@ const initialState = {
   isEdit: false,
   editCountry: "",
   editCount: 0,
+  hoverCountry: "",
 }
 
 export const userListObjUpdate = (item) => ({type: USER_LIST_OBJ_UPDATE, item: item});
+export const updateHoverContry = (country) => ({type: HOVER_COUNTRY, country: country});
 export const userFocusOn = () => ({type: USER_FOCUS_ON});
 export const userFocusOff = () => ({type: USER_FOCUS_OFF});
 export const userEditOn = () => ({type: USER_EDIT_ON});
@@ -57,6 +60,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         editCountry: action.country,
         editCount: action.count
+      }
+    
+    case HOVER_COUNTRY:
+      return {
+        ...state,
+        hoverCountry: action.country
       }
 
     default:

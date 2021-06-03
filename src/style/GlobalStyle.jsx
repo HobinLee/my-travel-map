@@ -8,10 +8,10 @@ const GlobalStyle = createGlobalStyle`
         --textColor: #333;
         --pointColor: #666396;
         --defaultColor: #e4e4ed;
-        --highlightColor: #babad4;
+        --highlightColor: #566D85;
         --visitColor: orange;
         --bucketColor: skyblue;
-        --modalColor: #d4d4d4;
+        --modalColor: #fff;
     }
     
     :root[color-theme='dark'] {

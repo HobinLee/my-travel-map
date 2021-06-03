@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import RowLand from './RowLand';
 import { MemoizedSea } from './RowSea';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { IoMdClose } from 'react-icons/io';
 import Draggable from 'react-draggable';
 import UserCountryButtons from './UserCountryButtons';
+import { updateHoverContry } from '../store/modules/map';
 
 const MapWrapper = styled.div`
   width: auto;
@@ -25,10 +26,11 @@ const InputCountWrap = styled.div`
   position: absolute;
   top: ${props => props.yPosition && `${props.yPosition}px`};
   left: ${props => props.xPosition && `${props.xPosition}px`};
-  z-index: 50;
+  z-index: 1000;
   padding: 15px;
   background-color: var(--modalColor);
   color: var(--textColor);
+	border: 1px solid var(--pointColor);
   border-radius: 10px;
 
   &: active {
@@ -64,20 +66,6 @@ const InputCountWrap = styled.div`
     }
   }
 `
-const Label = styled.div`
-  display: block;
-  position: absolute;
-  bottom: 10px;
-  left: 5px;
-  color: var(--textColor);
-  background-color: var(--defaultColor);
-  width: auto;
-  height: 24px;
-  padding: 4px 10px;
-  border: 2px solid var(--textColor);
-  z-index: 1;
-  white-space: no-wrap;
-`
 
 const ButtonWrap = styled.div`
   display: flex;
@@ -100,6 +88,7 @@ const CloseButton = styled(IoMdClose)`
 
 
 const WorldMapGrid = ({setProgress}) => {
+  const dispatch = useDispatch();
   const { userListObj } = useSelector(state => state.map);
   const [ mapArray, setMapArray] = useState(null);
   const [ country, setCountry ] = useState(null);
@@ -158,7 +147,10 @@ const WorldMapGrid = ({setProgress}) => {
               column = {column - address[1]}
               point = {country === address[0]}
               length = {address[1]}
-              setCountry = {setCountry}
+              setCountry = {(c) => {
+                dispatch(updateHoverContry(c));
+                setCountry(c);
+              }}
             />
           :
           <RowLand
@@ -168,7 +160,10 @@ const WorldMapGrid = ({setProgress}) => {
               visited = {userListObj[address[0]]}
               point = {(clickCountryName === address[0]) || (country === address[0])}
               length = {address[1]}
-              setCountry = {setCountry}
+              setCountry = {(c) => {
+                dispatch(updateHoverContry(c));
+                setCountry(c);
+              }}
             />
         })
      }
@@ -195,14 +190,6 @@ const WorldMapGrid = ({setProgress}) => {
         </button>
       </InputCountWrap>
     </Draggable>}
-    {
-      (country && country !== 'Sea') ?
-      <Label className='Label'>
-        {country}
-      </Label>
-      :
-      <></>
-    }
   </>
 }
 

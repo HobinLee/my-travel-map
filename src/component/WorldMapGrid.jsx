@@ -87,7 +87,7 @@ const CloseButton = styled(IoMdClose)`
 `
 
 
-const WorldMapGrid = ({setProgress}) => {
+const WorldMapGrid = ({finishLoading}) => {
   const dispatch = useDispatch();
   const { userListObj } = useSelector(state => state.map);
   const [ mapArray, setMapArray] = useState(null);
@@ -108,7 +108,7 @@ const WorldMapGrid = ({setProgress}) => {
 
   useEffect(() => {
     if (mapArray !== null) {
-      setProgress(100);
+      finishLoading(true);
     }
   }, [mapArray]);
 

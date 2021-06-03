@@ -63,7 +63,7 @@ const ContentWrapper = styled.div`
   transition: 0.3s;
 `
 
-const Main = ({setProgress}) => {
+const Main = ({finishLoading}) => {
   const [fold, setFold] = useState(false);
 
   const onClickFold = () => {
@@ -75,7 +75,7 @@ const Main = ({setProgress}) => {
       <ContentWrapper fold={fold}>
         <Header />
         <MapContainer fold={fold}>
-          <WorldMapGrid setProgress = {(p) => setProgress(p)}/>
+          <WorldMapGrid finishLoading = {finishLoading}/>
         </MapContainer>
       </ContentWrapper>
      

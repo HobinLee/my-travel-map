@@ -19,11 +19,10 @@ const Container = styled.div`
 const App = () => {
   const dispatch = useDispatch();
   const [ loadStart, startLoad ] = useState(false);
-  const [ progress, setProgress ] = useState(0);
+  const [ finishLoad, finishLoading ] = useState(false);
   const { colorTheme } = useSelector(state => state.mode);
   
   useEffect(() => {
-    console.log('theme: ', colorTheme);
     document.documentElement.setAttribute('color-theme', colorTheme);
     startLoad(true);
   }, [ colorTheme ])
@@ -34,11 +33,11 @@ const App = () => {
         loadStart ?
         <>
         {
-          ( progress < 100 ) && <Loading progress = {progress}/>
+          !finishLoad && <Loading/>
         }
           <Switch>
           <Route exact path='/' render={()=>
-            <Main setProgress = {(p) => setProgress(p)}/>
+            <Main finishLoading = {(p) => finishLoading(p)}/>
           } />
           
           <Route path='*' render={()=> 
@@ -46,7 +45,7 @@ const App = () => {
           } />
           </Switch>
           {
-          (progress >= 100) &&
+          finishLoad &&
             <Toggle
               value = {colorTheme === 'dark'}
               onChangeToggle = {e => {
@@ -59,7 +58,7 @@ const App = () => {
           }
         </>
         :
-        <Loading progress = {progress}/>
+        <Loading/>
       }
     </Container> 
   );

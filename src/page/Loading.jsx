@@ -1,7 +1,5 @@
 import React, { useEffect, memo } from 'react';
 import styled from 'styled-components';
-import { CircularProgressbar } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
 
 const LoadingDiv = styled.div`
   position: fixed;
@@ -23,7 +21,7 @@ const Title = styled.h1`
   font-weight: bolder;
 `
 const Indication = styled.div`
-  color: var(--defaultColor);
+  color: var(--textColor);
   font-size: 14px;
   text-align: center;
 `
@@ -32,7 +30,7 @@ const ProgressCircle = styled.div `
   height: 10vw;
 `
 
-export const LoadingScreen = ({ progress }) => {
+export const LoadingScreen = () => {
   return <LoadingDiv>
     <Title>
       세계 여행 지도
@@ -40,9 +38,6 @@ export const LoadingScreen = ({ progress }) => {
     <Indication>
       지도를 불러오는 중 입니다. 잠시만 기다려주세요
     </Indication>
-    <ProgressCircle>
-      <CircularProgressbar value={progress} text={`${progress}%`} />
-    </ProgressCircle>
   </LoadingDiv>
 }
 

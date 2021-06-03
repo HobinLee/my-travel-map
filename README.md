@@ -1,70 +1,31 @@
-# Getting Started with Create React App
+# 세계 여행 지도 - MY TRAVEL MAP
+### 내가 다녀간 나라, 버킷리스트를 한눈에 볼 수 있는 웹사이트 입니다.  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  
+![mtm1](https://user-images.githubusercontent.com/54323527/120613963-b3c0ef80-c491-11eb-859e-6b6d85fb05de.jpg)
 
-## Available Scripts
 
-In the project directory, you can run:
+# 사용 방법
+ 0. 해당 파일을 직접 내려받거나 git clone으로 다운 받는다.  
 
-### `yarn start`
+ 1. 코드 편집기로 해당 프로젝트를 열어서 현재 디렉토리 위치에서 npm i
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ 2. npm run start 실행  
+# 주요 기능
+ - JSON으로 추출된 세계지도 데이터를 이용하여 도트 형식으로 나타내었습니다.  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+ - LocalStorage를 사용하여 사용자의 데이터가 사용자의 웹 저장소에 남아있도록 하였습니다.  
 
-### `yarn test`
+ - Redux를 사용하여 전역 데이터(사용자의 visited, bucket 나라 데이터)를 관리, 초기 렌더링때 LocalStorage의 데이터를 불러와 셋팅
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ - 지도에 마우스 호버시 해당 나라의 이름이 시각적으로 보여지며 클릭하면 visited, bucket을 상호작용할 수 있는 모달창이 뜨게 됩니다.(draggable 가능)
 
-### `yarn build`
+ - 해당 지도의 전체 나라들을 state로 받아서 오른쪽 전체 리스트를 보여줍니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ - 오른쪽 리스트에서도 각 나라별로 visited, bucket 상호작용을 할 수 있으며 검색기능을 이용하여 원하는 나라를 검색해서 사용할 수 있습니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ - 내가 방문한 전체 visited, bucket 리스트를 상단 헤더부분의 아이콘을 클릭하여 확인 할 수 있습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ - 지도를 더 크게 볼 수 있게 오른쪽 리스트 부분을 접기 펼치기기능을 넣었습니다.
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ - 다크모드, 라이트모드, 반응형 지원

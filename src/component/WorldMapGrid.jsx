@@ -131,16 +131,14 @@ const WorldMapGrid = ({finishLoading}) => {
  
   const generateMapGrid = () => {
     if(!mapArray) return <></>;
-    let start = new Date();
+    
     return mapArray.map((r, i) => {
       let column = 0;
       return <MapDiv key = {i}>
       {
         r.map((address, j) => {
           column += address[1];
-          let finish = new Date();
-          if(i === mapArray.length - 1 && j === r.length - 1)
-          console.log(finish.getTime() - start.getTime());
+
           return (address[0] === 'Sea') ?
           <MemoizedSea
               key = {i + ','+ j}

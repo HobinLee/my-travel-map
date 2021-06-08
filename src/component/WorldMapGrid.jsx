@@ -33,10 +33,10 @@ const InputCountWrap = styled.div`
 	border: 1px solid var(--pointColor);
   border-radius: 10px;
 
-  &: active {
+  &: hover {
     cursor: move;
-  }
-
+  }  
+ 
   & > span {
     width: 100%;
     height: 30px;
@@ -47,6 +47,8 @@ const InputCountWrap = styled.div`
     overflow-x: auto;
     -ms-overflow-style: none;
     scrollbar-width: none; 
+
+    
 
     &::-webkit-scrollbar {
       display: none;
@@ -168,22 +170,26 @@ const WorldMapGrid = ({finishLoading}) => {
     </MapDiv>
     });
   }
-  
+
+ 
   return <>
     <MapWrapper onClick={onClickLand}>
       {generateMapGrid()}
     </MapWrapper>
     {isLandClick &&
-    <Draggable> 
-      <InputCountWrap xPosition = {xPosition} yPosition = {yPosition}>
-        <span>
+    <Draggable
+      handle=".cursor" 
+      cancel=".no-cursor"
+    > 
+      <InputCountWrap xPosition = {xPosition} yPosition = {yPosition} className="cursor">
+        <span className="cursor">
           {clickCountryName}
         </span> 
-        <ButtonWrap>
+        <ButtonWrap className="no-cursor">
           <UserCountryButtons listItem = {clickCountryName} closeModal = { onClickClose } isModal = {true}/>
         </ButtonWrap>
       
-        <button onClick={onClickClose}>
+        <button onClick={onClickClose} className="no-cursor">
           <CloseButton />
         </button>
       </InputCountWrap>

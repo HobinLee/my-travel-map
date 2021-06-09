@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { BsBoxArrowInLeft } from 'react-icons/bs';
 
 import UtilSection from '../component/UtilSection';
+import WorldMapCanvas from '../component/WorldMapCanvas';
 import WorldMapGrid from '../component/WorldMapGrid';
 import WorldMapSVG from '../component/WorldMapSVG';
 import Label from '../component/Label';

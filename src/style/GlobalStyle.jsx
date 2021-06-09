@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
         --visitColor: orange;
         --bucketColor: skyblue;
         --modalColor: #fff;
+        --transparentColor: rgba(0,0,0, 0.3);
     }
     
     :root[color-theme='dark'] {
@@ -23,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
         --visitColor: orange;
         --bucketColor: skyblue;
         --modalColor: #555;
+        --transparentColor: rgba(0,0,0, 0.5);
     }
 
     * {

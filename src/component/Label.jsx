@@ -4,33 +4,25 @@ import { useSelector } from 'react-redux';
 
 const LabelWrapper = styled.div`
   position: absolute;
-  background-color: var(--modalColor);
-  color: var(--textColor);
+  background-color: var(--transparentColor);
+  color: white;
   padding: 10px;
   border-radius: 10px;
-  left: ${props => props.mouse?.x + 20}px;
-  top: ${props => props.mouse?.y}px;
+  width: 200px;
+  left: calc(50% - 280px);
+  bottom: 50px;
   z-index: 1000;
+  text-align: center;
+  font-weight: bolder;
 `
 
 const Label = () => {
-  const [mouse, setMouse] = useState(null);
   const { hoverCountry } = useSelector(state => state.map);
-  useEffect(() => {
-    if (mouse === null) {
-      document.addEventListener('mousemove', (e) => {
-        setMouse({
-          x: e.clientX,
-          y: e.clientY
-        });
-      } );
-    }
-  }, []);
 
   return hoverCountry === 'Sea' ?
   <></>
   :
-  <LabelWrapper mouse = {mouse}>
+  <LabelWrapper>
     { hoverCountry }
   </LabelWrapper>
 };

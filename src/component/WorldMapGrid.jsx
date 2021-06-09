@@ -24,8 +24,8 @@ const MapDiv = styled.div`
 const InputCountWrap = styled.div`
   width: 250px;
   position: absolute;
-  top: ${props => props.yPosition && `${props.yPosition}px`};
-  left: ${props => props.xPosition && `${props.xPosition}px`};
+  top: ${props => props.yPosition && (props.yPosition > (window.screen.height - 150)) ? `${window.screen.height - 150}px` : `${props.yPosition}px`};
+  left: ${props => props.xPosition && (props.xPosition > (window.screen.width - 125)) ? `${window.screen.width - 125}px` : `${props.xPosition}px`};
   z-index: 1000;
   padding: 15px;
   background-color: var(--modalColor);
@@ -39,16 +39,14 @@ const InputCountWrap = styled.div`
  
   & > span {
     width: 100%;
-    height: 30px;
+    height: auto;
     display: block;
     margin-bottom: 10px;
     max-width: 190px;
-    white-space: nowrap;
+    white-space: wrap;
     overflow-x: auto;
     -ms-overflow-style: none;
-    scrollbar-width: none; 
-
-    
+    scrollbar-width: none;
 
     &::-webkit-scrollbar {
       display: none;
@@ -170,8 +168,6 @@ const WorldMapGrid = ({finishLoading}) => {
     </MapDiv>
     });
   }
-
- 
   return <>
     <MapWrapper onClick={onClickLand}>
       {generateMapGrid()}

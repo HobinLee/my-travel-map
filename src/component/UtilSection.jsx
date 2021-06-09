@@ -54,6 +54,7 @@ const UtilSectionWrap = styled.div`
     height: 100%;
     min-width: 0;
     width: ${props => props.fold ? "0" : "100vw"};
+    z-index: 1000;
   }
 `
 

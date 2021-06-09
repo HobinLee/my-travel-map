@@ -9,7 +9,7 @@ const LabelWrapper = styled.div`
   padding: 10px;
   border-radius: 10px;
   width: 200px;
-  left: calc(50% - 280px);
+  left: calc(50% - 100px);
   bottom: 50px;
   z-index: 1000;
   text-align: center;

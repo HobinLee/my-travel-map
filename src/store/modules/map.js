@@ -12,7 +12,7 @@ const initialState = {
   isEdit: false,
   editCountry: "",
   editCount: 0,
-  hoverCountry: "",
+  hoverCountry: "Sea",
 }
 
 export const userListObjUpdate = (item) => ({type: USER_LIST_OBJ_UPDATE, item: item});

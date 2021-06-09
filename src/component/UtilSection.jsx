@@ -27,7 +27,7 @@ const UtilSectionWrap = styled.div`
   height: 100%;
   overflow: hidden;
   transition: 0.3s;
-  z-index: 60;
+  z-index: 100;
   background-color: var(--backgroundColor);
 
   & > button {

@@ -33,7 +33,6 @@ const MapContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   overflow: auto;
-  position: relative;
 `
 
 const OpenButton = styled.button`
@@ -59,6 +58,7 @@ const OpenButton = styled.button`
 `
 
 const ContentWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width:  ${props => props.fold ? "100%" : "calc(100% - 350px)"};
@@ -78,8 +78,8 @@ const Main = ({finishLoading}) => {
         <Header />
         <MapContainer fold={fold}>
           <WorldMapGrid finishLoading = {finishLoading}/>
-          <Label/>
         </MapContainer>
+        <Label/>
       </ContentWrapper>
      
       <UtilSection fold={fold} onClickFold={onClickFold}/>

@@ -9,9 +9,9 @@ const LabelWrapper = styled.div`
   padding: 10px;
   border-radius: 10px;
   width: 200px;
-  left: calc(50% - 100px);
+  right: calc(50% - 100px);
   bottom: 50px;
-  z-index: 1000;
+  z-index: 50;
   text-align: center;
   font-weight: bolder;
 `

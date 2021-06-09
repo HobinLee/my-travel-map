@@ -37,7 +37,7 @@ const MapContainer = styled.div`
 
 const OpenButton = styled.button`
   position: fixed;
-  top: 15px;
+  top: 10px;
   right: 20px;
   z-index: 5;
   font-size: 25px;
@@ -54,7 +54,6 @@ const OpenButton = styled.button`
   &:active {
     color: #eee;
   }
- 
 `
 
 const ContentWrapper = styled.div`
@@ -63,6 +62,10 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   width:  ${props => props.fold ? "100%" : "calc(100% - 350px)"};
   transition: 0.3s;
+
+  @media screen and (max-width: 780px) {
+    width: 100%;
+  }
 `
 
 const Main = ({finishLoading}) => {

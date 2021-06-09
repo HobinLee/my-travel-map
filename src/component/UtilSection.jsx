@@ -17,13 +17,13 @@ const foldMove = keyframes`
 `
 
 const UtilSectionWrap = styled.div`
+  position: fixed;
+  top: 0;
+  right: ${props => props.fold ? "-350px" : "0"};
   display: flex;
   flex-direction: column;
-  width: ${props => props.fold ? "0" : "350px"};
-  padding: ${props => props.fold ? "0" : "50px 10px 0"};
-  position: relative;
-  top: 0;
-  right: ${props => props.fold ? "-350px;" : "0"};
+  width: 350px;
+  padding: 50px 10px 0;
   height: 100%;
   overflow: hidden;
   transition: 0.3s;

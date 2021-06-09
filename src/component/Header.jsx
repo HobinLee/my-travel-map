@@ -6,7 +6,7 @@ import { GiEarthAmerica } from 'react-icons/gi';
 const HeaderWrap = styled.header`
   width: 100%;
   height: 150px;
-  padding: 15px;
+  padding: 10px 15px;
   background-color: var(--backgroundColor);
   color: var(--textColor);
   box-shadow: 0 1px 2px var(--highlightColor);
@@ -21,6 +21,7 @@ const HeaderLogo = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  margin-bottom: 10px;
 
   & > h1 {
     font-family: 'Squada One', cursive;

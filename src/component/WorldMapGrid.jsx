@@ -24,8 +24,8 @@ const MapDiv = styled.div`
 const InputCountWrap = styled.div`
   width: 250px;
   position: absolute;
-  top: ${props => props.yPosition && (props.yPosition > (window.screen.height - 150)) ? `${window.screen.height - 150}px` : `${props.yPosition}px`};
-  left: ${props => props.xPosition && (props.xPosition > (window.screen.width - 125)) ? `${window.screen.width - 125}px` : `${props.xPosition}px`};
+  top: ${props => props.yPosition && `${props.yPosition}px`};
+  left: ${props => props.xPosition && `${props.xPosition}px`};
   z-index: 1000;
   padding: 15px;
   background-color: var(--modalColor);
@@ -116,12 +116,25 @@ const WorldMapGrid = ({finishLoading}) => {
     if(country !== 'Sea') {
       setIsLandClick(true);
       setClickCountryName(country);
-      setXPosition(e.clientX);
-      setYPosition(e.clientY);
+      const pos = getObjectPositionOnScreen(e.clientX, e.clientY);
+      console.log(pos);
+      setXPosition(pos.x);
+      setYPosition(pos.y);
     } else {
       setClickCountryName(null); 
       setIsLandClick(false);
     }
+  }
+
+  const getObjectPositionOnScreen = (mouseX, mouseY) => {
+    const obj = {
+      x: 280,
+      y: 180,
+    };
+    return {
+      x: mouseX > (window.innerWidth - obj.x) ? (window.innerWidth - obj.x) : mouseX,
+      y: mouseY > (window.innerHeight - obj.y) ? (window.innerHeight - obj.y) : mouseY,
+    };
   }
 
   const onClickClose = () => {

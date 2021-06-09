@@ -26,7 +26,7 @@ const InputCountWrap = styled.div`
   position: absolute;
   top: ${props => props.yPosition && `${props.yPosition}px`};
   left: ${props => props.xPosition && `${props.xPosition}px`};
-  z-index: 1000;
+  z-index: 55;
   padding: 15px;
   background-color: var(--modalColor);
   color: var(--textColor);

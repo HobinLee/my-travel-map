@@ -20,7 +20,7 @@ const UtilSectionWrap = styled.div`
   display: flex;
   flex-direction: column;
   width: ${props => props.fold ? "0" : "350px"};
-  padding: ${props => props.fold ? "0" : "10px"};
+  padding: ${props => props.fold ? "0" : "50px 10px 0"};
   position: relative;
   top: 0;
   right: ${props => props.fold ? "-350px;" : "0"};
@@ -33,7 +33,7 @@ const UtilSectionWrap = styled.div`
   & > button {
     position: absolute;
     left: 10px;
-    bottom: 10px;
+    top: 10px;
     background: unset;
     border: none;
     font-size: 25px;

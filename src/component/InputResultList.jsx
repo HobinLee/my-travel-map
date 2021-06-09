@@ -8,7 +8,7 @@ import { filterDataUpdate } from '../store/modules/filter';
 
 const ListWrap = styled.ul`
   width: 100%;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 170px);
   overflow: auto;
   display: block;
   background-color: var(--backgroundColor);

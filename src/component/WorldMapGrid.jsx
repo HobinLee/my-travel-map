@@ -10,7 +10,6 @@ import { updateHoverContry } from '../store/modules/map';
 
 const MapWrapper = styled.div`
   width: auto;
-  padding: 15px;
   display: grid;
   grid-gap: 3px;
   grid-template-rows: repeat(80, 10px);
@@ -87,7 +86,7 @@ const CloseButton = styled(IoMdClose)`
 `
 
 
-const WorldMapGrid = ({finishLoading}) => {
+const WorldMapGrid = ({ finishLoading, mapRef }) => {
   const dispatch = useDispatch();
   const { userListObj } = useSelector(state => state.map);
   const [ mapArray, setMapArray] = useState(null);
@@ -113,6 +112,8 @@ const WorldMapGrid = ({finishLoading}) => {
   }, [mapArray]);
 
   const onClickLand = (e) => {
+    console.log(mapRef.current.offsetWidth);
+
     if(country !== 'Sea') {
       setIsLandClick(true);
       setClickCountryName(country);
@@ -132,8 +133,8 @@ const WorldMapGrid = ({finishLoading}) => {
       y: 180,
     };
     return {
-      x: mouseX > (window.innerWidth - obj.x) ? (window.innerWidth - obj.x) : mouseX,
-      y: mouseY > (window.innerHeight - obj.y) ? (window.innerHeight - obj.y) : mouseY,
+      x: mouseX > (mapRef.current.offsetWidth - obj.x) ? (mapRef.current.offsetWidth - obj.x) : mouseX,
+      y: mouseY > (mapRef.current.offsetHeight - obj.y) ? (mapRef.current.offsetHeight - obj.y) : mouseY,
     };
   }
 

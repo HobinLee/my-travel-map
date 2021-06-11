@@ -55,9 +55,9 @@ const UserCountryButtons = ({ listItem, closeModal = null, isModal = false }) =>
 		const newObj = { ...userListObj };
 		dispatch(userListObjUpdate(newObj));
 		
-		window.localStorage.setItem("visitedObj", JSON.stringify({
-		  ...newObj
-    }));
+		// window.localStorage.setItem("visitedObj", JSON.stringify({
+		//   ...newObj
+    // }));
     
     closeModal && closeModal();
 	}
@@ -75,9 +75,9 @@ const UserCountryButtons = ({ listItem, closeModal = null, isModal = false }) =>
 		const newObj = { ...userListObj };
 		dispatch(userListObjUpdate(newObj));
 		
-		window.localStorage.setItem("visitedObj", JSON.stringify({
-		  ...newObj
-    }));
+		// window.localStorage.setItem("visitedObj", JSON.stringify({
+		//   ...newObj
+    // }));
     
     closeModal && closeModal();
   }

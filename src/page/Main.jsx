@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { BsBoxArrowInLeft } from 'react-icons/bs';
 
@@ -29,6 +29,7 @@ const Wrapper = styled.div`
 const MapContainer = styled.div`
   width:  100%;
   height: 100vh;
+  padding: 15px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -70,6 +71,7 @@ const ContentWrapper = styled.div`
 
 const Main = ({finishLoading}) => {
   const [fold, setFold] = useState(false);
+  const mapRef = useRef();
 
   const onClickFold = () => {
     setFold(!fold);
@@ -79,8 +81,8 @@ const Main = ({finishLoading}) => {
     <Wrapper>
       <ContentWrapper fold={fold}>
         <Header />
-        <MapContainer fold={fold}>
-          <WorldMapGrid finishLoading = {finishLoading}/>
+        <MapContainer fold={fold} ref={mapRef}>
+          <WorldMapGrid finishLoading = {finishLoading} mapRef={mapRef}/>
         </MapContainer>
         <Label/>
       </ContentWrapper>

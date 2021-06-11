@@ -60,12 +60,12 @@ const UtilSectionWrap = styled.div`
 
 
 const UtilSection = ({ fold, onClickFold }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(()=> {
-    const localData = JSON.parse(window.localStorage.getItem("visitedObj"));
-    dispatch(userListObjUpdate(localData));
-  })
+  // useEffect(()=> {
+  //   const localData = JSON.parse(window.localStorage.getItem("visitedObj"));
+  //   dispatch(userListObjUpdate(localData));
+  // }, [])
 
   return (
     <>
